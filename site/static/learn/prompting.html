@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prompting — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+<style>
+.quiz-section,.reading-section{margin-top:2.5rem}
+.quiz-section h2,.reading-section h2{font-size:1rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem}
+.quiz-section h2::before{content:"\2713 ";font-size:0.85rem;opacity:.5}
+.reading-section h2::before{content:"\2197 ";font-size:0.85rem;opacity:.5}
+.qz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin-bottom:0.6rem;border-left:3px solid var(--accent);overflow:hidden}
+.qz-q{padding:0.75rem 1rem;font-size:0.84rem;font-weight:600;line-height:1.5;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;color:var(--text)}
+.qz-q:hover{background:var(--surface-2)}
+.qz-tog{color:var(--muted-2);font-size:0.75rem;flex-shrink:0;user-select:none;margin-top:0.15rem}
+.qz-a{display:none;padding:0.65rem 1rem 0.85rem;border-top:1px solid var(--border);background:var(--surface-2);font-size:0.82rem;color:var(--muted);line-height:1.65}
+.qz-a.open{display:block}
+.qz-a strong{color:var(--text)}
+.read-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem}
+.read-list li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0.7rem 1rem;display:flex;flex-direction:column;gap:0.2rem}
+.read-list a{font-size:0.83rem;font-weight:600;color:var(--accent);text-decoration:none}
+.read-list a:hover{text-decoration:underline}
+.read-list .read-desc{font-size:0.75rem;color:var(--muted)}
+.read-type{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;opacity:.6}
+</style>
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="../index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="index.html" class="active">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks"><button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel"><div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid"><a href="../week-01.html">01</a><a href="../week-02.html">02</a><a href="../week-03.html">03</a><a href="../week-04.html">04</a><a href="../week-05.html">05</a><a href="../week-06.html">06</a><a href="../week-07.html">07</a><a href="../week-08.html">08</a><a href="../week-09.html">09</a><a href="../week-10.html">10</a><a href="../week-11.html">11</a><a href="../week-12.html">12</a><a href="../week-13.html">13</a><a href="../week-14.html">14</a></div>
+      </div>
+    </div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="index.html">Learn hub</a><a class="mob-link" href="foundations.html">Foundations</a><a class="mob-link active" href="prompting.html">Prompting</a><a class="mob-link" href="sql-and-data.html">SQL &amp; data</a><a class="mob-link" href="visualization.html">Visualization</a><a class="mob-link" href="rag.html">RAG</a><a class="mob-link" href="chatbots.html">Chatbots</a><a class="mob-link" href="prototypes.html">Prototypes</a><a class="mob-link" href="agents-and-launch.html">Agents &amp; launch</a>
+  <a class="mob-link" href="faang-prep.html">FAANG prep</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid"><a class="mob-week-btn" href="../week-01.html">01</a><a class="mob-week-btn" href="../week-02.html">02</a><a class="mob-week-btn" href="../week-03.html">03</a><a class="mob-week-btn" href="../week-04.html">04</a><a class="mob-week-btn" href="../week-05.html">05</a><a class="mob-week-btn" href="../week-06.html">06</a><a class="mob-week-btn" href="../week-07.html">07</a><a class="mob-week-btn" href="../week-08.html">08</a><a class="mob-week-btn" href="../week-09.html">09</a><a class="mob-week-btn" href="../week-10.html">10</a><a class="mob-week-btn" href="../week-11.html">11</a><a class="mob-week-btn" href="../week-12.html">12</a><a class="mob-week-btn" href="../week-13.html">13</a><a class="mob-week-btn" href="../week-14.html">14</a></div>
+</div>
+<nav class="subnav">
+  <a href="../index.html">Home</a><span class="subnav-sep"></span>
+  <a href="index.html">Hub</a><a href="foundations.html">Foundations</a><a href="prompting.html" class="active">Prompting</a><a href="sql-and-data.html">SQL &amp; data</a><a href="visualization.html">Visualization</a><a href="rag.html">RAG</a><a href="chatbots.html">Chatbots</a><a href="prototypes.html">Prototypes</a><a href="agents-and-launch.html">Agents &amp; launch</a><a href="faang-prep.html">FAANG prep</a>
+</nav>
+
+<main class="page has-subnav prose">
+  <h1>Prompting</h1>
+  <p><em>Chapter 2 · Phase 1 · practice in <a href="../week-02.html">Week 2</a> and <a href="../week-03.html">Week 3</a></em></p>
+
+  <div class="callout callout--info">
+    <div class="callout-title">What you will know after this chapter</div>
+    How a prompt is structured (system / user / assistant) · the six core prompting patterns · how to design evals before writing prompts · how function calling works and when to use it · how to version prompts like code
+  </div>
+
+  <h2>1. Anatomy of a prompt</h2>
+  <p>Modern LLMs use a <strong>chat format</strong> with three distinct message roles. Understanding them is the foundation of everything else.</p>
+
+  <div class="diagram">
+    <div class="diagram-label">Chat message roles</div>
+    <div class="d-col" style="gap:0.4rem">
+      <div style="display:flex;gap:0.75rem;align-items:flex-start">
+        <div class="d-node d-node--blue" style="width:90px;text-align:center;flex-shrink:0">system</div>
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);padding:0.45rem 0.75rem;font-size:0.82rem;flex:1">You are a triage assistant for a B2B SaaS support team. Answer only from the provided knowledge base. If unsure, say "I don't know" and offer to escalate.</div>
+      </div>
+      <div style="display:flex;gap:0.75rem;align-items:flex-start">
+        <div class="d-node d-node--green" style="width:90px;text-align:center;flex-shrink:0">user</div>
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);padding:0.45rem 0.75rem;font-size:0.82rem;flex:1">How do I export my data to CSV?</div>
+      </div>
+      <div style="display:flex;gap:0.75rem;align-items:flex-start">
+        <div class="d-node d-node--gold" style="width:90px;text-align:center;flex-shrink:0">assistant</div>
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);padding:0.45rem 0.75rem;font-size:0.82rem;flex:1">To export your data: go to Settings → Data → Export. Select CSV format. [Source: KB article #0042]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">System message</div>
+      <div class="def-body">Persistent instructions that frame the model's role, constraints, and behavior. Set once per session. <strong>This is where PM requirements live:</strong> persona, output format, scope limits, escalation rules.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">User message</div>
+      <div class="def-body">The human turn in the conversation. In production, this is what your user types — or what your application constructs programmatically (e.g., a retrieved document + user question).</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Assistant message</div>
+      <div class="def-body">The model's response. In multi-turn conversations, previous assistant turns are included in subsequent calls to maintain context — consuming tokens each time.</div>
+    </div>
+  </div>
+
+  <h2>2. Core prompting patterns</h2>
+
+  <h3>Pattern 1 — Role + constraint</h3>
+  <p>Give the model a specific role and explicit boundaries. This is the minimum viable system prompt.</p>
+  <pre><code>You are a senior TPM reviewing engineering estimates.
+Your job: identify unstated assumptions and missing dependencies.
+DO NOT provide your own estimate. Ask clarifying questions only.
+Respond in bullet points, max 5.</code></pre>
+  <div class="pm-box"><div class="pm-box-label">Why it works</div>Without a role, models give generic responses. A role + explicit constraint (what not to do) drastically narrows the output space and reduces hallucination.</div>
+
+  <h3>Pattern 2 — Few-shot examples</h3>
+  <p>Show 2–5 examples of input → desired output in the prompt. The model learns the pattern without training.</p>
+  <pre><code>Classify each support ticket as: billing / technical / feature-request
+
+Ticket: "My invoice shows double charge this month"
+Category: billing
+
+Ticket: "The API returns 500 when I POST with a null field"
+Category: technical
+
+Ticket: "Can you add dark mode?"
+Category: feature-request
+
+Ticket: "I was charged twice for the Pro plan"
+Category:</code></pre>
+  <div class="pm-box"><div class="pm-box-label">PM tip</div>Few-shot is your fastest path to consistent output format and category alignment. Start with 3 examples. If accuracy is poor, add more examples or add a negative example ("here is what NOT to do").</div>
+
+  <h3>Pattern 3 — Chain-of-thought (CoT)</h3>
+  <p>Ask the model to reason step by step before giving an answer. This dramatically improves accuracy on complex or multi-step tasks.</p>
+  <pre><code>Analyze this incident and identify the root cause.
+Think step by step:
+1. What symptoms are described?
+2. What is the likely proximate cause?
+3. What is the systemic cause?
+4. What mitigations would prevent recurrence?
+
+Incident: [paste incident report]</code></pre>
+  <div class="pm-box"><div class="pm-box-label">Why it works</div>CoT forces the model to "show its work." Each reasoning step becomes context for the next, reducing errors that happen when the model jumps to a conclusion. Accuracy on math, logic, and diagnosis tasks improves significantly.</div>
+
+  <h3>Pattern 4 — Self-critique</h3>
+  <p>After an initial response, ask the model to review its own output for errors, gaps, or risky claims.</p>
+  <pre><code># Step 1 — Generate
+Generate a go-to-market plan for [product].
+
+# Step 2 — Critique (new message)
+Review the plan above. List:
+- Any assumptions that need validation
+- Any claims that might be factually wrong
+- Any risks not mentioned
+Be specific.</code></pre>
+
+  <h3>Pattern 5 — Decomposition</h3>
+  <p>Break a complex task into explicit sub-tasks and ask the model to complete each step before moving to the next.</p>
+  <pre><code>Task: Write a technical spec for a rate-limiting feature.
+
+Step 1: List all user stories this feature must satisfy.
+Step 2: Define the data model needed.
+Step 3: Define the API contract.
+Step 4: Identify failure modes and mitigations.
+
+Complete Step 1 first, then wait for my confirmation before Step 2.</code></pre>
+
+  <h3>Pattern 6 — Constrained output format</h3>
+  <p>Specify the exact output structure (JSON, YAML, a table, specific headings). This is essential for production systems that parse the response programmatically.</p>
+  <pre><code>Return your analysis as JSON with this schema:
+{
+  "severity": "P0" | "P1" | "P2" | "P3",
+  "category": string,
+  "summary": string (max 50 chars),
+  "recommended_action": string,
+  "confidence": 0.0–1.0
+}
+Return only the JSON. No explanation text.</code></pre>
+
+  <h2>3. Evaluations (evals) — design before you write prompts</h2>
+  <p>An <strong>eval</strong> is a test suite for a prompt. Before writing a single line of prompt text, define what "good" looks like and how you will measure it. This is the PM's highest-leverage contribution to an AI feature.</p>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Eval</div>
+      <div class="def-body">A set of (input, expected output) or (input, scoring criteria) pairs used to measure prompt quality at scale. Like unit tests, but for language model behavior.</div>
+    </div>
+  </div>
+
+  <h3>Types of evals</h3>
+  <div class="concept-list">
+    <div class="concept-item">
+      <div class="concept-num">1</div>
+      <div class="concept-body"><h4>Exact match</h4><p>Output must equal or contain a specific string. Good for classification, routing, structured output. <code>"category" === "billing"</code></p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">2</div>
+      <div class="concept-body"><h4>Contains check</h4><p>Output must include certain phrases or citations. Good for grounded responses. <code>response.includes("KB article #0042")</code></p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">3</div>
+      <div class="concept-body"><h4>LLM-as-judge</h4><p>A second LLM call scores the response on criteria like helpfulness, safety, and accuracy. Good for open-ended text where exact match is too strict. Return a 1–5 score with a rationale.</p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">4</div>
+      <div class="concept-body"><h4>Human eval</h4><p>Domain expert reviews a sample of outputs and rates them. Gold standard but expensive. Use for final validation and to create training data for LLM-as-judge.</p></div>
+    </div>
+  </div>
+
+  <div class="callout callout--warn">
+    <div class="callout-title">PM anti-pattern</div>
+    Writing a prompt, seeing it "looks good" on 3 examples, and shipping. Without evals on 50–100 representative cases, you have no idea how your prompt behaves on edge cases, adversarial inputs, or off-topic queries. Build evals first.
+  </div>
+
+  <h2>4. Function calling (tool use)</h2>
+  <p>Modern LLMs can decide to call external functions and use their results before generating a response. This is how you ground a model in live data without RAG.</p>
+
+  <div class="diagram">
+    <div class="diagram-label">Function calling flow</div>
+    <div class="d-col" style="gap:0.5rem">
+      <div class="d-flow">
+        <div class="d-node">User: "What is the current status of incident INC-4821?"</div>
+      </div>
+      <div class="d-arrow--down">↓</div>
+      <div class="d-flow">
+        <div class="d-node d-node--blue">LLM decides: call <code>get_incident(id="INC-4821")</code></div>
+      </div>
+      <div class="d-arrow--down">↓</div>
+      <div class="d-flow">
+        <div class="d-node d-node--gold">Your code executes the function → returns live data</div>
+      </div>
+      <div class="d-arrow--down">↓</div>
+      <div class="d-flow">
+        <div class="d-node d-node--green">LLM generates response grounded in live incident data</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Functions are defined as JSON schemas passed to the API. The model does not execute code — it generates a structured call that your application executes.</p>
+  <pre><code>tools = [{
+  "type": "function",
+  "function": {
+    "name": "get_incident",
+    "description": "Fetch live incident status from PagerDuty",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string", "description": "Incident ID, e.g. INC-4821"}
+      },
+      "required": ["id"]
+    }
+  }
+}]</code></pre>
+
+  <h2>5. Prompt versioning and governance</h2>
+  <p>Production prompts are code. A prompt change can break features just as badly as a code change.</p>
+
+  <div class="concept-list">
+    <div class="concept-item">
+      <div class="concept-num">✓</div>
+      <div class="concept-body"><h4>Store prompts in version control</h4><p>Check prompts into your Git repo. Every change has a PR, a diff, and a reviewer. Never edit prompts directly in production.</p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">✓</div>
+      <div class="concept-body"><h4>Run evals on every prompt change</h4><p>Before merging a prompt update, run your eval suite and compare scores. A prompt that improves one metric may regress another.</p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">✓</div>
+      <div class="concept-body"><h4>Pin model versions</h4><p>Model providers update underlying models. A prompt written for <code>gpt-4o-2024-08-06</code> may behave differently on <code>gpt-4o-2025-01-01</code>. Pin the exact model version in production and upgrade deliberately.</p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">✓</div>
+      <div class="concept-body"><h4>Log every prompt + response</h4><p>Log the full prompt (including system message), model version, temperature, and response for every production call. You need this for debugging, retraining, and incident investigation.</p></div>
+    </div>
+  </div>
+
+  <hr />
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">
+    <a class="btn btn-outline" href="foundations.html">← Foundations</a>
+    <div style="display:flex;gap:0.65rem">
+      <a class="btn btn-outline" href="../week-02.html">Practice → Week 2</a>
+      <a class="btn btn-primary" href="sql-and-data.html">Next: SQL &amp; data →</a>
+    </div>
+  </div>
+
+<div class='quiz-section'>
+  <h2>Test your understanding</h2>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What are the four main components of a well-structured prompt?<span class="qz-tog">v</span></div><div class="qz-a"><strong>Role</strong> (who the model is), <strong>Context</strong> (relevant background), <strong>Task</strong> (what to do, precisely), <strong>Format</strong> (how to structure output). Adding examples (few-shot) is a powerful fifth component.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is chain-of-thought prompting, and when does it improve output quality?<span class="qz-tog">v</span></div><div class="qz-a">Chain-of-thought asks the model to reason step-by-step before answering ('think through this step by step'). Improves quality on multi-step reasoning, math, logic, and complex analysis. Little benefit on simple factual lookups; increases token cost.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">You have 3 examples to include in a prompt. What makes a good few-shot example?<span class="qz-tog">v</span></div><div class="qz-a">Good examples: (1) representative of the full input distribution, not just easy cases; (2) cover edge cases you care about; (3) demonstrate the exact output format you expect; (4) are internally consistent. Contradictory examples confuse the model more than no examples.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">A prompt works great in development but fails on edge-case inputs in production. What is your first debugging step?<span class="qz-tog">v</span></div><div class="qz-a">Sample and categorize 20 real failing cases. Find the pattern — is it one query type, one user segment, a specific phrasing? Pick the most common failure mode and fix that first by adding a targeted example or constraint.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is function/tool calling, and how does it differ from asking for JSON output?<span class="qz-tog">v</span></div><div class="qz-a">Tool calling is a first-class API feature where you declare functions the model can invoke. It is more reliable than requesting JSON because the API enforces the schema and the model is specifically trained to produce valid tool calls, not free-form text.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">Write a role constraint in a system prompt that limits a support bot to billing questions only.<span class="qz-tog">v</span></div><div class="qz-a"><em>'You are a billing support assistant. Only answer questions about invoices, payments, plan upgrades, and account charges. If asked about anything else, politely say you can only help with billing and suggest contacting the appropriate team.'</em></div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is a 'self-critique' prompt pattern, and when is it useful?<span class="qz-tog">v</span></div><div class="qz-a">Ask the model to review its own output: 'Review your previous answer. Is anything incorrect or unsupported? If so, revise it.' Useful when quality matters more than latency and you can afford an extra LLM call. Less useful on simple tasks.</div></div>
+</div>
+<div class='reading-section'>
+  <h2>Further reading &amp; watching</h2>
+  <ul class='read-list'>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Prompt Evaluation, Versioning & Optimization (Part I)</a><div class="read-desc">Part I covers prompt evaluation, versioning, few-shot learning, CoT, and prompt optimization. Must-read for any PM owning a prompt.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/" target="_blank" rel="noopener">Lilian Weng — Prompt Engineering</a><div class="read-desc">Comprehensive survey of prompting techniques with research citations. Reference-grade post.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://github.com/brexhq/prompt-engineering" target="_blank" rel="noopener">Brex Prompt Engineering Guide</a><div class="read-desc">Pragmatic, opinionated, production-focused guide from Brex engineering. Community resource.</div></li>
+  <li><span class="read-type">Course</span><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener">DeepLearning.AI — ChatGPT Prompt Engineering for Developers</a><div class="read-desc">Free 1-hour course from Andrew Ng. Concise and hands-on.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://simonwillison.net/2023/Apr/14/prompt-injection-explained/" target="_blank" rel="noopener">Simon Willison — Prompt Injection Explained</a><div class="read-desc">Critical prompt security risk — every PM should understand this before shipping.</div></li>
+  </ul>
+</div>
+<script>
+function toggleQz(el){var a=el.nextElementSibling,t=el.querySelector('.qz-tog'),o=a.classList.contains('open');a.classList.toggle('open',!o);t.textContent=o?'v':'u';}
+</script>
+</main>
+<script src="../js/nav.js"></script>
+</body>
+</html>

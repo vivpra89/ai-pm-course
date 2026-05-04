@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI for TPM / Technical PM — Course Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="#/" class="sidebar-logo">AI PM Course Hub</a>
+        <p class="sidebar-tagline">Learn by topic · weekly practice · labs.</p>
+      </div>
+
+      <nav class="nav-scroll" aria-label="Main">
+        <div class="nav-section">Learn</div>
+        <button type="button" class="nav-link nav-link--compact" data-learn="">Learn hub</button>
+        <button type="button" class="nav-link nav-link--compact" data-learn="foundations">Foundations</button>
+        <button type="button" class="nav-link nav-link--compact" data-learn="prompting">Prompting</button>
+        <button type="button" class="nav-link nav-link--compact" data-learn="sql-and-data">SQL &amp; data</button>
+        <button type="button" class="nav-link nav-link--compact" data-learn="visualization">Visualization</button>
+        <button type="button" class="nav-link nav-link--compact" data-learn="rag">RAG</button>
+        <button type="button" class="nav-link nav-link--compact" data-learn="chatbots">Chatbots</button>
+        <button type="button" class="nav-link nav-link--compact" data-learn="prototypes">Prototypes</button>
+        <button type="button" class="nav-link nav-link--compact" data-learn="agents-and-launch">Agents &amp; launch</button>
+
+        <div class="nav-section">Library</div>
+        <button type="button" class="nav-link active" data-route="home">Home</button>
+        <button type="button" class="nav-link" data-route="learning-plan">Technical Learning Plan</button>
+        <button type="button" class="nav-link" data-route="graduate-course">Graduate Course</button>
+        <button type="button" class="nav-link" data-route="course-weeks">Weekly Track Index</button>
+        <button type="button" class="nav-link" data-route="practice-env">Practice Environment</button>
+
+        <div class="nav-section">Weekly practice</div>
+        <div class="week-grid" aria-label="Jump to week">
+          <button type="button" class="week-btn" data-week="01">01</button>
+          <button type="button" class="week-btn" data-week="02">02</button>
+          <button type="button" class="week-btn" data-week="03">03</button>
+          <button type="button" class="week-btn" data-week="04">04</button>
+          <button type="button" class="week-btn" data-week="05">05</button>
+          <button type="button" class="week-btn" data-week="06">06</button>
+          <button type="button" class="week-btn" data-week="07">07</button>
+          <button type="button" class="week-btn" data-week="08">08</button>
+          <button type="button" class="week-btn" data-week="09">09</button>
+          <button type="button" class="week-btn" data-week="10">10</button>
+          <button type="button" class="week-btn" data-week="11">11</button>
+          <button type="button" class="week-btn" data-week="12">12</button>
+          <button type="button" class="week-btn" data-week="13">13</button>
+          <button type="button" class="week-btn" data-week="14">14</button>
+        </div>
+      </nav>
+
+      <footer class="sidebar-footer">
+        Markdown loads via fetch — run a local server from the repo root (see instructions on Home).
+      </footer>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Open menu">Menu</button>
+        <div class="breadcrumb" id="breadcrumb"><strong>Home</strong></div>
+      </header>
+
+      <main class="content" id="content"></main>
+    </div>
+
+    <!-- Home dashboard (cloned into #content by JS) -->
+    <template id="home-template">
+      <div class="hero wide-top">
+        <span class="time-pill">~6–10 hrs/week · 14 weeks suggested</span>
+        <h1>AI for TPM / Technical PM</h1>
+        <p>
+          Build technical credibility on LLMs, data validation, RAG, and AI product delivery — with structured readings,
+          weekly assignments, and hands-on labs.
+        </p>
+      </div>
+
+      <div class="alert">
+        <strong>Dynamic hub:</strong> from the <code>AI_PM_course</code> repo root run
+        <code>python3 -m http.server 8080</code> then open <code>http://localhost:8080/site/</code> — or use pre-built pages in
+        <code>site/static/</code> offline (open <code>site/static/index.html</code>).
+      </div>
+
+      <section class="start-here" aria-labelledby="start-heading">
+        <p class="section-kicker">Recommended path</p>
+        <h2 id="start-heading">Start here (first session)</h2>
+        <ol class="steps">
+          <li>
+            <strong>Open the Learn hub</strong>
+            <p>Topic chapters (foundations → prompting → SQL → …) with curated links — study at your own pace.</p>
+          </li>
+          <li>
+            <strong>Set up the practice environment</strong>
+            <p>Build <code>cloudnote.db</code> and run the sample script; you’ll reuse it for SQL, plots, and RAG labs.</p>
+          </li>
+          <li>
+            <strong>Use weekly folders for hands-on work</strong>
+            <p>When ready, start Week 1: Overview → Readings → Practice → Exam. The practice lab sheet adds drills. Save under <code>my-submissions/week-01/</code>.</p>
+          </li>
+        </ol>
+      </section>
+
+      <div class="split-learning">
+        <div class="panel-learn">
+          <h3>Three tracks</h3>
+          <ul>
+            <li><strong>Learn</strong> — concepts and curated resources (main study path).</li>
+            <li><strong>Weekly practice</strong> — calendar rhythm, exams, drills.</li>
+            <li><strong>Library</strong> — learning plan, graduate rubrics, weekly index, practice env.</li>
+          </ul>
+        </div>
+        <div class="panel-learn">
+          <h3>Habits that work</h3>
+          <ul>
+            <li>Ship one <strong>artifact</strong> per week (SQL, prompts, diagram).</li>
+            <li>Take each week’s <strong>Exam</strong> closed-notes first, then reread the plan’s intuition checklist.</li>
+            <li>Verify any LLM <strong>SQL or numbers</strong> against the practice database.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="cards-section-title">Jump to content</p>
+      <div class="cards">
+        <article class="card card-featured">
+          <span class="card-badge">Study path</span>
+          <h2>Learn hub</h2>
+          <p>Eight chapters from foundations through agents — concepts first, then map to practice weeks.</p>
+          <p class="card-meta">Recommended before weekly assignments</p>
+          <button type="button" class="card-action" data-nav="learn">Open Learn hub →</button>
+        </article>
+        <article class="card">
+          <span class="card-badge">Hands-on</span>
+          <h2>Week 1 — Fundamentals</h2>
+          <p>Set up <code>cloudnote.db</code>, complete readings and the practice lab sheet.</p>
+          <button type="button" class="card-action" data-nav="week:01">Start Week 1 →</button>
+        </article>
+        <article class="card">
+          <h2>Technical Learning Plan</h2>
+          <p>Master roadmap, phases, job impact, capstone.</p>
+          <button type="button" class="card-action" data-nav="learning-plan">Open →</button>
+        </article>
+        <article class="card">
+          <h2>Graduate course</h2>
+          <p>PS/L assignments, midterm, rubrics.</p>
+          <button type="button" class="card-action" data-nav="graduate-course">Open →</button>
+        </article>
+        <article class="card">
+          <h2>Weekly index</h2>
+          <p>All 14 weeks at a glance.</p>
+          <button type="button" class="card-action" data-nav="course-weeks">Open →</button>
+        </article>
+        <article class="card">
+          <h2>Practice environment</h2>
+          <p>Setup guide: SQLite, drills, corpus, labs.</p>
+          <button type="button" class="card-action" data-nav="practice-env">Open practice env →</button>
+        </article>
+        <article class="card">
+          <h2>Milestones</h2>
+          <p><strong>Week 8</strong> — midterm · <strong>Week 14</strong> — capstone.</p>
+          <button type="button" class="card-action" data-nav="week:08">Week 8 →</button>
+          <button type="button" class="card-action" data-nav="week:14">Week 14 →</button>
+        </article>
+      </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+# Core practice (SQL, plots, notebooks)
+pandas>=2.0
+matplotlib>=3.8
+jupyter>=1.0
+ipython>=8.0
+
+# Optional: nicer plots / dashboards (install when you reach those labs)
+# plotly>=5.18
+# streamlit>=1.28
+
+# Optional: later phases — RAG / agents (uncomment when needed)
+# openai>=1.0
+# langchain>=0.3
+# llama-index>=0.10
+# python-dotenv>=1.0

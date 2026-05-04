@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chatbots — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+<style>
+.quiz-section,.reading-section{margin-top:2.5rem}
+.quiz-section h2,.reading-section h2{font-size:1rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem}
+.quiz-section h2::before{content:"\2713 ";font-size:0.85rem;opacity:.5}
+.reading-section h2::before{content:"\2197 ";font-size:0.85rem;opacity:.5}
+.qz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin-bottom:0.6rem;border-left:3px solid var(--accent);overflow:hidden}
+.qz-q{padding:0.75rem 1rem;font-size:0.84rem;font-weight:600;line-height:1.5;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;color:var(--text)}
+.qz-q:hover{background:var(--surface-2)}
+.qz-tog{color:var(--muted-2);font-size:0.75rem;flex-shrink:0;user-select:none;margin-top:0.15rem}
+.qz-a{display:none;padding:0.65rem 1rem 0.85rem;border-top:1px solid var(--border);background:var(--surface-2);font-size:0.82rem;color:var(--muted);line-height:1.65}
+.qz-a.open{display:block}
+.qz-a strong{color:var(--text)}
+.read-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem}
+.read-list li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0.7rem 1rem;display:flex;flex-direction:column;gap:0.2rem}
+.read-list a{font-size:0.83rem;font-weight:600;color:var(--accent);text-decoration:none}
+.read-list a:hover{text-decoration:underline}
+.read-list .read-desc{font-size:0.75rem;color:var(--muted)}
+.read-type{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;opacity:.6}
+</style>
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="../index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="index.html" class="active">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks"><button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel"><div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid"><a href="../week-01.html">01</a><a href="../week-02.html">02</a><a href="../week-03.html">03</a><a href="../week-04.html">04</a><a href="../week-05.html">05</a><a href="../week-06.html">06</a><a href="../week-07.html">07</a><a href="../week-08.html">08</a><a href="../week-09.html">09</a><a href="../week-10.html">10</a><a href="../week-11.html">11</a><a href="../week-12.html">12</a><a href="../week-13.html">13</a><a href="../week-14.html">14</a></div>
+      </div></div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="index.html">Learn hub</a><a class="mob-link" href="foundations.html">Foundations</a><a class="mob-link" href="prompting.html">Prompting</a><a class="mob-link" href="sql-and-data.html">SQL &amp; data</a><a class="mob-link" href="visualization.html">Visualization</a><a class="mob-link" href="rag.html">RAG</a><a class="mob-link active" href="chatbots.html">Chatbots</a><a class="mob-link" href="prototypes.html">Prototypes</a><a class="mob-link" href="agents-and-launch.html">Agents &amp; launch</a>
+  <a class="mob-link" href="faang-prep.html">FAANG prep</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid"><a class="mob-week-btn" href="../week-01.html">01</a><a class="mob-week-btn" href="../week-02.html">02</a><a class="mob-week-btn" href="../week-03.html">03</a><a class="mob-week-btn" href="../week-04.html">04</a><a class="mob-week-btn" href="../week-05.html">05</a><a class="mob-week-btn" href="../week-06.html">06</a><a class="mob-week-btn" href="../week-07.html">07</a><a class="mob-week-btn" href="../week-08.html">08</a><a class="mob-week-btn" href="../week-09.html">09</a><a class="mob-week-btn" href="../week-10.html">10</a><a class="mob-week-btn" href="../week-11.html">11</a><a class="mob-week-btn" href="../week-12.html">12</a><a class="mob-week-btn" href="../week-13.html">13</a><a class="mob-week-btn" href="../week-14.html">14</a></div>
+</div>
+<nav class="subnav">
+  <a href="../index.html">Home</a><span class="subnav-sep"></span>
+  <a href="index.html">Hub</a><a href="foundations.html">Foundations</a><a href="prompting.html">Prompting</a><a href="sql-and-data.html">SQL &amp; data</a><a href="visualization.html">Visualization</a><a href="rag.html">RAG</a><a href="chatbots.html" class="active">Chatbots</a><a href="prototypes.html">Prototypes</a><a href="agents-and-launch.html">Agents &amp; launch</a><a href="faang-prep.html">FAANG prep</a>
+</nav>
+
+<main class="page has-subnav prose">
+  <h1>Chatbots</h1>
+  <p><em>Chapter 6 · Phase 5 · practice in <a href="../week-09.html">Week 9</a> and <a href="../week-10.html">Week 10</a></em></p>
+
+  <div class="callout callout--info">
+    <div class="callout-title">What you will know after this chapter</div>
+    How multi-turn conversation context works and what it costs · UX patterns (streaming, error states, fallbacks) · what to log and why · rate limiting and cost management · an incident playbook for when the chatbot misbehaves
+  </div>
+
+  <h2>1. Multi-turn conversations — context management</h2>
+  <p>A chatbot is stateless on the model's side. Every API call is independent. To maintain conversation history, your application must send all previous messages with every new request.</p>
+
+  <div class="diagram">
+    <div class="diagram-label">How multi-turn context is maintained</div>
+    <div class="d-col" style="gap:0.5rem">
+      <div style="font-size:0.78rem;color:var(--muted)">Turn 1 — API call contains:</div>
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);padding:0.65rem 0.85rem;font-family:var(--mono);font-size:0.8rem">
+        [system: "You are a support bot..."]<br/>
+        [user: "How do I reset my password?"]
+      </div>
+      <div style="font-size:0.78rem;color:var(--muted)">Turn 2 — API call contains:</div>
+      <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-sm);padding:0.65rem 0.85rem;font-family:var(--mono);font-size:0.8rem">
+        [system: "You are a support bot..."]<br/>
+        [user: "How do I reset my password?"]<br/>
+        [assistant: "Click Forgot Password on the login page..."]<br/>
+        [user: "I don't see that option on mobile"]
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout--warn">
+    <div class="callout-title">Token accumulation problem</div>
+    Each turn adds more tokens to the context. A 20-turn conversation may consume 5,000+ tokens of context before a single word of response is generated. Long conversations become expensive and eventually hit the context limit.
+  </div>
+
+  <h3>Context management strategies</h3>
+  <table>
+    <thead><tr><th>Strategy</th><th>How it works</th><th>Trade-off</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Sliding window</strong></td><td>Keep only the last N turns. Older turns drop off.</td><td>Simple. Model loses early context — may "forget" something said at turn 1.</td></tr>
+      <tr><td><strong>Summarization</strong></td><td>Periodically summarize old turns into a compact summary. Replace old messages with the summary.</td><td>Preserves key facts. Summary quality affects recall.</td></tr>
+      <tr><td><strong>Selective memory</strong></td><td>Extract and store key entities (name, issue type) from the conversation. Inject as structured context.</td><td>Precise. Requires entity extraction pipeline.</td></tr>
+      <tr><td><strong>Session reset</strong></td><td>Start fresh context after task completion. Each task is independent.</td><td>Clean, but requires detecting task boundaries.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2. UX patterns for LLM chatbots</h2>
+
+  <h3>Streaming responses</h3>
+  <p>LLMs generate tokens one at a time. Without streaming, the user waits for the full response before seeing anything — often 3–10 seconds. With streaming, tokens appear as generated, making the experience feel much faster even if total time is unchanged.</p>
+
+  <p>How it works: instead of waiting for the complete response before sending anything back to the user, the server sends tokens as they are generated — word by word, essentially. The user's UI renders each token as it arrives, creating the typewriter effect you see in ChatGPT. Technically this is done over a Server-Sent Events (SSE) or WebSocket connection, but as a PM you need to know one thing: <strong>always ship streaming for any LLM response that takes more than 2 seconds.</strong> A 6-second streaming response feels acceptable. The same 6-second response without streaming feels broken.</p>
+
+  <div class="pm-box"><div class="pm-box-label">PM rule</div>Time to first token is the UX metric that matters, not total generation time. Streaming can halve perceived latency without changing actual model speed at all. It is almost always worth the engineering effort.</div>
+
+  <h3>Error states and fallbacks</h3>
+  <div class="concept-list">
+    <div class="concept-item"><div class="concept-num">1</div><div class="concept-body"><h4>Graceful API errors</h4><p>Never show raw API errors to users ("openai.error.RateLimitError"). Map all errors to user-friendly messages: "I'm having trouble right now — please try again in a moment."</p></div></div>
+    <div class="concept-item"><div class="concept-num">2</div><div class="concept-body"><h4>Timeout handling</h4><p>Set a max response timeout (e.g., 30s). If exceeded, return a partial response or a fallback: "I started generating a response but it's taking too long. Here's what I have so far..."</p></div></div>
+    <div class="concept-item"><div class="concept-num">3</div><div class="concept-body"><h4>Out-of-scope detection</h4><p>Define what your bot should not answer. Detect off-topic queries (classifier or LLM-as-judge) and redirect: "I'm a support assistant — I can't help with that, but you can contact our billing team at..."</p></div></div>
+    <div class="concept-item"><div class="concept-num">4</div><div class="concept-body"><h4>Confidence threshold</h4><p>For RAG-backed chatbots, if retrieval recall is low (no high-similarity chunks found), respond with reduced confidence: "I don't have specific information on that — here's what's closest in our docs, but please verify."</p></div></div>
+  </div>
+
+  <h2>3. What to log — observability for LLM chatbots</h2>
+  <p>Without logging, you cannot debug incidents, measure quality, retrain, or audit. Log everything.</p>
+
+  <table>
+    <thead><tr><th>Field</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td><code>session_id</code></td><td>Link all turns in a conversation for debugging</td></tr>
+      <tr><td><code>user_id</code></td><td>Attribute cost and behavior to specific users</td></tr>
+      <tr><td><code>timestamp</code></td><td>Correlate with deployments, incidents, A/B test periods</td></tr>
+      <tr><td><code>model_version</code></td><td>Track behavior changes across model updates</td></tr>
+      <tr><td><code>full_prompt</code></td><td>Reproduce any call exactly for debugging</td></tr>
+      <tr><td><code>full_response</code></td><td>Audit content, train reward models, detect policy violations</td></tr>
+      <tr><td><code>input_tokens</code> / <code>output_tokens</code></td><td>Cost attribution, quota enforcement</td></tr>
+      <tr><td><code>latency_ms</code></td><td>SLA monitoring, p95/p99 alerting</td></tr>
+      <tr><td><code>retrieved_chunk_ids</code></td><td>Debug RAG retrieval quality</td></tr>
+      <tr><td><code>user_feedback</code></td><td>Thumbs up/down for quality measurement</td></tr>
+      <tr><td><code>finish_reason</code></td><td>Detect truncations (<code>max_tokens</code> hit) or content filter triggers</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. Rate limiting and cost management</h2>
+
+  <h3>Per-user quota enforcement</h3>
+  <p>Every user's token consumption should be tracked against a daily cap that corresponds to their plan tier. The logic works as follows: before making any API call, look up how many tokens this user has already consumed today. Add the tokens you are about to use. If the total exceeds their plan limit, block the request and surface a friendly message rather than letting the call go through and incurring unexpected cost.</p>
+  <p>Reasonable daily limits by tier: Free users — 10,000 tokens/day (enough for ~20 short conversations). Pro users — 100,000 tokens/day. Enterprise — negotiate based on contract. These numbers vary by product but the principle is the same: every plan has a ceiling and hitting it should be a deliberate, communicated experience, not a surprise error.</p>
+
+  <div class="pm-box">
+    <div class="pm-box-label">PM decision</div>
+    Define quota limits before launch, not after your first surprise API bill. Token quotas are a pricing and trust lever — too restrictive and users feel blocked; too loose and a single abuser can drain your monthly budget overnight.
+  </div>
+
+  <h3>Cost-aware context window management</h3>
+  <p>As a conversation grows, the context you send on each turn grows with it — every previous message gets included. Left unchecked, a 30-turn conversation might include 8,000 tokens of history even before the user's new question. The solution is a trimming strategy: always keep the system message (it defines the bot's behavior), then walk backwards through recent turns keeping them in the budget, dropping the oldest turns first when you run out of space.</p>
+  <p>This means the bot may "forget" things said 20 turns ago. Design your UX with this in mind — if something is important, the user should be able to pin it, or your system should extract key facts and inject them explicitly rather than relying on raw message history.</p>
+
+  <h2>5. Incident playbook</h2>
+  <p>When a chatbot misbehaves in production, you need a pre-defined response process. Improvising during an incident wastes time and increases damage.</p>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">P0 — Active harm</div>
+      <div class="def-body"><strong>Trigger:</strong> Model generating dangerous, illegal, or severely harmful content.<br/><strong>Response:</strong> (1) Kill switch — disable the chatbot immediately, show static maintenance message. (2) Preserve logs for investigation. (3) Page on-call. (4) Draft public statement if user-facing.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">P1 — Systematic errors</div>
+      <div class="def-body"><strong>Trigger:</strong> Model giving wrong answers consistently (e.g., wrong prices, wrong instructions).<br/><strong>Response:</strong> (1) Add a disclaimer banner. (2) Identify root cause (prompt regression? model update? stale knowledge base?). (3) Hotfix or rollback prompt version. (4) Re-run evals to verify fix.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">P2 — Degraded quality</div>
+      <div class="def-body"><strong>Trigger:</strong> User satisfaction score drops, thumbs-down rate increases, but no safety issue.<br/><strong>Response:</strong> (1) Sample recent conversations to identify pattern. (2) Check if model version changed. (3) Run eval suite. (4) Iterate on prompt. No rush to kill switch.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">P3 — Latency regression</div>
+      <div class="def-body"><strong>Trigger:</strong> p95 latency exceeds SLA (e.g., &gt; 5 seconds).<br/><strong>Response:</strong> (1) Check provider status page. (2) Check if prompt length grew (token cost). (3) Consider smaller model or caching. No user-visible quality impact.</div>
+    </div>
+  </div>
+
+  <hr />
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">
+    <a class="btn btn-outline" href="rag.html">← RAG</a>
+    <div style="display:flex;gap:0.65rem">
+      <a class="btn btn-outline" href="../week-09.html">Practice → Week 9</a>
+      <a class="btn btn-primary" href="prototypes.html">Next: Prototypes →</a>
+    </div>
+  </div>
+
+<div class='quiz-section'>
+  <h2>Test your understanding</h2>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is the context window management problem in multi-turn chatbots?<span class="qz-tog">v</span></div><div class="qz-a">Each new turn appends to conversation history sent to the model. Eventually the history exceeds the context window limit. You must decide what to drop or compress without losing the conversation thread.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">Name two strategies for managing conversation history when approaching the context limit.<span class="qz-tog">v</span></div><div class="qz-a"><strong>(1) Sliding window:</strong> keep only the last N turns, drop oldest. Simple but loses early context. <strong>(2) Summary compression:</strong> periodically ask the model to summarize earlier turns and replace them with the summary. More complex but preserves key context in a smaller footprint.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What should a chatbot do when its confidence is low?<span class="qz-tog">v</span></div><div class="qz-a">Say so explicitly: 'I am not certain about this — you may want to verify with [source].' Or escalate to a human agent. Confident wrong answers erode user trust permanently once discovered.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">Why is streaming important for chatbot UX?<span class="qz-tog">v</span></div><div class="qz-a">Streaming sends tokens as they are generated instead of waiting for the full response. This reduces <strong>perceived latency</strong> — users see the first word in 0.5s instead of waiting 5s. Users rate streaming experiences as faster and less frustrating even if total generation time is the same.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What metrics would you track to know if your chatbot is working well?<span class="qz-tog">v</span></div><div class="qz-a">Deflection rate, resolution rate, escalation rate, thumbs-up/down per conversation, session abandonment rate, and latency p50/p95. Also track token cost per resolved conversation.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">A chatbot goes offline at 2am. What does a good incident response plan include?<span class="qz-tog">v</span></div><div class="qz-a">Automatic alerting when error rate exceeds a threshold. On-call runbook: (1) check provider status page, (2) check error logs, (3) route to fallback (static FAQ or human queue), (4) communicate status to users. A fallback path is mandatory — never depend on a single LLM endpoint with no backup.</div></div>
+</div>
+<div class='reading-section'>
+  <h2>Further reading &amp; watching</h2>
+  <ul class='read-list'>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Chatbot & AI Assistant Use Cases (Part 3)</a><div class="read-desc">Part 3 covers chatbot product patterns, what separates AI assistants from chatbots, and production considerations.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Prompt Consistency & Reliability (Part I)</a><div class="read-desc">Part I covers the consistency and reliability challenges of LLM outputs — directly relevant to chatbot UX and user trust.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://a16z.com/emerging-architectures-for-llm-applications/" target="_blank" rel="noopener">a16z — Emerging Architectures for LLM Applications</a><div class="read-desc">Reference architecture diagram for LLM apps: orchestration, memory, retrieval, and serving layers.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://simonwillison.net/2023/Apr/14/prompt-injection-explained/" target="_blank" rel="noopener">Simon Willison — Prompt Injection Explained</a><div class="read-desc">Essential security reading for anyone shipping a chatbot.</div></li>
+  <li><span class="read-type">Video</span><a href="https://www.youtube.com/c/Fireship" target="_blank" rel="noopener">Fireship — AI chatbot architecture videos</a><div class="read-desc">Dense, visual explainers on modern AI app architecture.</div></li>
+  </ul>
+</div>
+<script>
+function toggleQz(el){var a=el.nextElementSibling,t=el.querySelector('.qz-tog'),o=a.classList.contains('open');a.classList.toggle('open',!o);t.textContent=o?'v':'u';}
+</script>
+</main>
+<script src="../js/nav.js"></script>
+</body>
+</html>

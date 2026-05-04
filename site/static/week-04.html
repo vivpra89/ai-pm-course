@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 04 — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="learn/index.html">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks">
+      <button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel">
+        <div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid">
+          <a href="week-01.html">01</a><a href="week-02.html">02</a><a href="week-03.html">03</a><a href="week-04.html" class="active">04</a><a href="week-05.html">05</a><a href="week-06.html">06</a><a href="week-07.html">07</a>
+          <a href="week-08.html">08</a><a href="week-09.html">09</a><a href="week-10.html">10</a><a href="week-11.html">11</a><a href="week-12.html">12</a><a href="week-13.html">13</a><a href="week-14.html">14</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="learn/index.html">Learn hub</a>
+  <a class="mob-link" href="learn/foundations.html">Foundations</a>
+  <a class="mob-link" href="learn/prompting.html">Prompting</a>
+  <a class="mob-link" href="learn/sql-and-data.html">SQL &amp; data</a>
+  <a class="mob-link" href="learn/visualization.html">Visualization</a>
+  <a class="mob-link" href="learn/rag.html">RAG</a>
+  <a class="mob-link" href="learn/chatbots.html">Chatbots</a>
+  <a class="mob-link" href="learn/prototypes.html">Prototypes</a>
+  <a class="mob-link" href="learn/agents-and-launch.html">Agents &amp; launch</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid">
+    <a class="mob-week-btn " href="week-01.html">01</a><a class="mob-week-btn " href="week-02.html">02</a><a class="mob-week-btn " href="week-03.html">03</a><a class="mob-week-btn class="activehref="week-04.html">04</a><a class="mob-week-btn " href="week-05.html">05</a><a class="mob-week-btn " href="week-06.html">06</a><a class="mob-week-btn " href="week-07.html">07</a>
+    <a class="mob-week-btn " href="week-08.html">08</a><a class="mob-week-btn " href="week-09.html">09</a><a class="mob-week-btn " href="week-10.html">10</a><a class="mob-week-btn " href="week-11.html">11</a><a class="mob-week-btn " href="week-12.html">12</a><a class="mob-week-btn " href="week-13.html">13</a><a class="mob-week-btn " href="week-14.html">14</a>
+  </div>
+</div>
+
+<nav class="subnav">
+  <a href="index.html">Home</a>
+  <span class="subnav-sep"></span>
+  <a href="week-01.html">W01</a>
+  <a href="week-02.html">W02</a>
+  <a href="week-03.html">W03</a>
+  <a class="active" href="week-04.html">W04</a>
+  <a href="week-05.html">W05</a>
+  <a href="week-06.html">W06</a>
+  <a href="week-07.html">W07</a>
+  <a href="week-08.html">W08</a>
+  <a href="week-09.html">W09</a>
+  <a href="week-10.html">W10</a>
+  <a href="week-11.html">W11</a>
+  <a href="week-12.html">W12</a>
+  <a href="week-13.html">W13</a>
+  <a href="week-14.html">W14</a>
+</nav>
+
+<main class="page has-subnav md-body">
+<div class="week-intro" style="border-left-color:#06b6d4">
+  <div class="phase-tag" style="color:#06b6d4">Phase 2</div>
+  <p><strong>Week 4.</strong> SQL as source of truth — natural language → queries on CloudNote data.</p>
+</div>
+<aside class="related-learn"><strong>Learn chapter:</strong> <a href="learn/sql-and-data.html">SQL & data</a> — concepts, videos, and links. Study alongside or before practice.</aside>
+<div class="week-tabs">
+  <button class="active" data-tab="section-overview">Overview</button>
+  <button data-tab="section-readings">Readings</button>
+  <button data-tab="section-practice">Practice</button>
+  <button data-tab="section-exam">Exam</button>
+  <button data-tab="section-lab-sheet">Lab sheet</button>
+</div>
+<div class="tab-panel" id="section-overview">
+
+<h2>Problem statement</h2>
+<p>PM asks: “Are enterprise users generating more errors after the AI sidebar experiment?” You must translate that into <strong>precise definitions</strong>, then <strong>SQL</strong> on <strong><code>practice-env</code></strong> — no trusting prose from an LLM without a query.</p>
+<h2>Outcomes</h2>
+<ul>
+<li>Natural language → <strong>metric definition</strong> → SQL on <code>cloudnote.db</code>.</li>
+<li>Awareness of <strong>joins</strong>, <strong>filters</strong>, <strong>row counts</strong>.</li>
+</ul>
+<h2>Deliverables</h2>
+<ul>
+<li>Five English questions + matching SQL + one-line interpretation each (<code>sql_week04.md</code>).</li>
+<li>DB running locally.</li>
+</ul>
+<h2>Links</h2>
+<ul>
+<li><a href="learning-plan.html#phase-2--llms--data-validate-ideas-with-databases-weeks-45">Phase 2</a></li>
+<li>Drills: <a href="../../practice-env/sql/faang_style_drills.sql">faang_style_drills.sql</a></li>
+</ul>
+</div>
+<div class="tab-panel" id="section-readings" hidden>
+
+<ul>
+<li>[ ] SQLite basics: SELECT, JOIN, WHERE, GROUP BY, date filters (any tutorial).</li>
+<li>[ ] Skim one article on <strong>text-to-SQL</strong> failure modes (wrong join, wrong window).</li>
+</ul>
+<p><strong>Optional:</strong> pandas <code>read_sql</code> overview.</p>
+<p>Time: ~2 h.</p>
+</div>
+<div class="tab-panel" id="section-practice" hidden>
+
+<p><strong>Prerequisite:</strong> <code>practice-env/data/cloudnote.db</code> exists. Schema: see <a href="../../practice-env/README.md">practice-env README</a>.</p>
+<h2>Task A — Five questions</h2>
+<p>Write <strong>5</strong> business questions in English. For each:</p>
+<ol>
+<li>Metric definition (numerator/denominator/window if applicable).  </li>
+<li>SQL that answers it (run and verify rows make sense).  </li>
+<li>One-line takeaway.</li>
+</ol>
+<p>Save as <code>sql_week04.md</code>.</p>
+<h2>Task B — Two drills</h2>
+<p>Complete <strong>2</strong> prompts from <a href="../../practice-env/sql/faang_style_drills.sql"><code>faang_style_drills.sql</code></a>: English definition + SQL + interpretation.</p>
+<h2>Task C — Optional LLM</h2>
+<p>Paste <strong>schema excerpt + one question</strong> into an LLM; generate SQL; <strong>review</strong> before running. Document <strong>one</strong> mistake the model almost made.</p>
+<hr />
+<p><strong>Submit:</strong> <code>my-submissions/week-04/sql_week04.md</code> (+ optional LLM note).</p>
+</div>
+<div class="tab-panel" id="section-exam" hidden>
+
+<p><strong>45 min.</strong> May use SQLite + <code>cloudnote.db</code> + schema notes — <strong>no</strong> full solutions from prior weeks.</p>
+<h2>1. Definitions</h2>
+<p>What does “SQL is source of truth” mean for PM-led AI features?</p>
+<h2>2. Query writing</h2>
+<p>Using <strong>only</strong> <code>dim_user</code>, <code>fct_product_event</code>, write a query that counts <strong><code>error_boundary</code> events per segment</strong> (<code>smb</code>, <code>mid</code>, <code>enterprise</code>) for events after <strong>2025-01-01</strong>. Show column names in result.</p>
+<h2>3. Ambiguity trap</h2>
+<p>PM says “active users this month.” List <strong>three</strong> ambiguities you’d resolve before writing SQL.</p>
+<hr />
+<p><strong>Self-grade:</strong> Query runs; denominators discussed; compare <a href="learning-plan.html#phase-2--end-of-weeks-45">Phase 2 checklist</a>.</p>
+</div>
+<div class="tab-panel" id="section-lab-sheet" hidden>
+
+<p><strong>Concepts &amp; curated links:</strong> read the Learn chapter <strong><a href="learn/sql-and-data.html">SQL &amp; data validation</a></strong> first (topic path, not calendar-only). This file is the <strong>weekly practice bank</strong> — extra drills and a checklist on top of <strong>Readings</strong> → <strong>Practice</strong> → <strong>Exam</strong>.</p>
+<hr />
+<h2>1. Practice bank</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Problem</th>
+<th>Data / materials</th>
+<th>Expected outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Write <strong>5</strong> business questions + working <strong>SQL</strong> + one-line insight each.</td>
+<td><code>practice-env/data/cloudnote.db</code></td>
+<td><code>sql_week04.md</code></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Complete <strong>2</strong> prompts from <code>practice-env/sql/faang_style_drills.sql</code>.</td>
+<td>Same DB + drill file</td>
+<td>Metric definition + SQL + interpretation</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>Paste schema + one question into an LLM; <strong>catch one bad SQL suggestion</strong> before running.</td>
+<td>Schema from <code>practice-env/README.md</code></td>
+<td>Short write-up of the mistake</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Week checklist</h2>
+<ul>
+<li>[ ] SQL primer + drills done</li>
+<li>[ ] <strong><code>PRACTICE.md</code></strong> complete</li>
+<li>[ ] <strong><code>EXAM.md</code></strong></li>
+</ul>
+</div>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.week-tabs button');
+  var panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(function (b) { b.classList.remove('active'); });
+      panels.forEach(function (p) { p.hidden = true; });
+      btn.classList.add('active');
+      var panel = document.getElementById(btn.dataset.tab);
+      if (panel) panel.hidden = false;
+    });
+  });
+})();
+</script>
+<nav class="week-pager" aria-label="Adjacent weeks">
+  <a class="pager-link" href="week-03.html">← Week 03</a>
+  <a class="pager-link pager-link--next" href="week-05.html">Week 05 →</a>
+</nav>
+<aside class="work-tip">
+  <strong>Keep your work organized.</strong> Save prompts, SQL, and notes under <code>my-submissions/week-04/</code> in your clone so you can review before interviews.
+</aside>
+</main>
+<script src="js/nav.js"></script>
+</body>
+</html>

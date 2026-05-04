@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Technical Learning Plan — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-logo">AI PM Course</a>
+        <p class="sidebar-tagline">Learn by topic · weekly practice · labs.</p>
+      </div>
+      <nav class="nav-scroll" aria-label="Main">
+        <div class="nav-section">Learn</div>
+        <a class="nav-link nav-link--compact" href="learn/index.html">Learn hub</a>
+        <a class="nav-link nav-link--compact" href="learn/foundations.html">Foundations</a>
+        <a class="nav-link nav-link--compact" href="learn/prompting.html">Prompting</a>
+        <a class="nav-link nav-link--compact" href="learn/sql-and-data.html">SQL & data</a>
+        <a class="nav-link nav-link--compact" href="learn/visualization.html">Visualization</a>
+        <a class="nav-link nav-link--compact" href="learn/rag.html">RAG</a>
+        <a class="nav-link nav-link--compact" href="learn/chatbots.html">Chatbots</a>
+        <a class="nav-link nav-link--compact" href="learn/prototypes.html">Prototypes</a>
+        <a class="nav-link nav-link--compact" href="learn/agents-and-launch.html">Agents & launch</a>
+        <div class="nav-section">Library</div>
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="learning-plan.html">Learning Plan</a>
+        <a class="nav-link" href="graduate-course.html">Graduate Course</a>
+        <a class="nav-link" href="course-weeks.html">Weekly Index</a>
+        <a class="nav-link" href="practice-env.html">Practice Env</a>
+        <div class="nav-section">Weekly practice</div>
+        <div class="week-grid"><a class="week-btn" href="week-01.html">01</a>
+          <a class="week-btn" href="week-02.html">02</a>
+          <a class="week-btn" href="week-03.html">03</a>
+          <a class="week-btn" href="week-04.html">04</a>
+          <a class="week-btn" href="week-05.html">05</a>
+          <a class="week-btn" href="week-06.html">06</a>
+          <a class="week-btn" href="week-07.html">07</a>
+          <a class="week-btn" href="week-08.html">08</a>
+          <a class="week-btn" href="week-09.html">09</a>
+          <a class="week-btn" href="week-10.html">10</a>
+          <a class="week-btn" href="week-11.html">11</a>
+          <a class="week-btn" href="week-12.html">12</a>
+          <a class="week-btn" href="week-13.html">13</a>
+          <a class="week-btn" href="week-14.html">14</a></div>
+      </nav>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <div class="breadcrumb"><strong>Technical Learning Plan</strong></div>
+      </header>
+      <main class="content md-body">
+<h1>TPM / PM: AI Technical Learning Plan</h1>
+<p>A self-paced course for program and product managers who need <strong>technical depth and current AI jargon</strong>—not generic PM skills. Target: <strong>10–14 weeks</strong> at <strong>6–10 hours/week</strong> (adjust as needed).</p>
+<p><strong>Graduate-style syllabus (readings, problem sets, labs, midterm, capstone rubrics):</strong> <strong><a href="graduate-course.html">TPM-PM-AI-Graduate-Course.md</a></strong></p>
+<p><strong>Weekly folders (problem statement, readings, practice, exam per week):</strong> <strong><a href="course-weeks.html">course-weeks/README.md</a></strong></p>
+<p><strong>Course hub (browser UI):</strong> <strong><a href="site/README.md">site/README.md</a></strong> — <strong>fully static pages:</strong> open <strong><code>site/static/index.html</code></strong> (no server), or use the dynamic hub with <code>python3 -m http.server</code> from the repo root → <code>http://localhost:8080/site/</code>.</p>
+<hr />
+<h2>How each phase helps you at work</h2>
+<p>Use this table to see <strong>why</strong> a week matters for a <strong>TPM / technical PM / program manager</strong> job—not just interview prep. Prioritize phases that match your next quarter (e.g. skip ahead to RAG if you are shipping a copilot soon), but keep <strong>Phase 0</strong> first so vocabulary in meetings stays precise.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Weeks (typical)</th>
+<th>How this shows up on the job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phase 0</strong> — Fundamentals &amp; jargon</td>
+<td>1</td>
+<td>You can <strong>follow engineering and ML conversations</strong> (tokens, latency, context limits, hallucination vs grounding), push back on vague timelines, and ask for <strong>SLOs</strong> and cost drivers instead of accepting “the model will figure it out.” You sound credible in <strong>roadmap and staffing</strong> discussions.</td>
+</tr>
+<tr>
+<td><strong>Phase 1</strong> — Prompt engineering</td>
+<td>2–3</td>
+<td>You turn fuzzy asks into <strong>repeatable specs</strong>: system vs user prompts, output schema, eval criteria. That improves <strong>PRDs, AI feature readiness gates</strong>, and vendor POCs—you define <strong>what “good” means</strong> before eng burns cycles.</td>
+</tr>
+<tr>
+<td><strong>Phase 2</strong> — LLMs + databases</td>
+<td>4–5</td>
+<td>You connect product questions to <strong>data the company already trusts</strong>: metrics definitions, SQL/text-to-SQL workflows, and <strong>safe</strong> exploration (read-only, approved tables). You validate hypotheses in <strong>reviews with analytics</strong>, not only slides.</td>
+</tr>
+<tr>
+<td><strong>Phase 3</strong> — Plots &amp; quantitative validation</td>
+<td>5–6</td>
+<td>You drive decisions with <strong>charts tied to a hypothesis</strong>—exec updates, experiment readouts, incident narratives. You catch <strong>bad denominators</strong> and cherry-picked windows before they reach leadership.</td>
+</tr>
+<tr>
+<td><strong>Phase 4</strong> — RAG</td>
+<td>7–8</td>
+<td>You specify <strong>doc-grounded</strong> features (support copilots, internal Q&amp;A), spot <strong>retrieval</strong> failure modes (stale docs, ACL leaks), and align <strong>legal/compliance</strong> asks with how retrieval actually works.</td>
+</tr>
+<tr>
+<td><strong>Phase 5</strong> — Chatbot</td>
+<td>9–10</td>
+<td>You own the <strong>product surface</strong>: streaming UX, logging for debugging, rate limits, fallbacks. You write sensible <strong>launch criteria and incident playbooks</strong>—what ops does when the model or DB misbehaves.</td>
+</tr>
+<tr>
+<td><strong>Phase 6</strong> — Prototypes</td>
+<td>11–12</td>
+<td>You ship <strong>credible demos</strong> to leadership and XFN fast—reproducible prompts, traces, cost awareness—so decisions are based on <strong>evidence</strong>, not one-off lucky prompts.</td>
+</tr>
+<tr>
+<td><strong>Phase 7</strong> — Agentic patterns</td>
+<td>12–14</td>
+<td>You design and review <strong>multi-step automations</strong> (tools, approvals, retries): what must stay <strong>human-in-the-loop</strong>, where <strong>audit logs</strong> go, and how to avoid runaway cost—critical for <strong>internal agents</strong> and integrations.</td>
+</tr>
+<tr>
+<td><strong>Extras</strong> — Evals, security, observability, MCP</td>
+<td>Ongoing</td>
+<td>You run <strong>launch reviews</strong> with the right questions: offline/online eval, prompt injection, residency, observability. You engage <strong>security/legal</strong> with specifics instead of generic “we’ll monitor it.”</td>
+</tr>
+<tr>
+<td><strong>Capstone</strong></td>
+<td>Near end</td>
+<td>You practice telling a <strong>single end-to-end story</strong> (data → retrieval → UI → metrics)—how you’d justify headcount, vendor spend, and <strong>phase rollout</strong> on a real program.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tip:</strong> In <strong>program management</strong>, Phases <strong>0–2–3</strong> plus <strong>Extras</strong> pay off first for <strong>cross-team alignment</strong> and <strong>milestone reviews</strong>. In <strong>product-facing AI</strong>, weight <strong>1, 4, 5, 7</strong> and <strong>Extras</strong> (safety, eval).</p>
+<hr />
+<h2>FAANG-level prep (what to optimize for)</h2>
+<p>FAANG-style TPM and technical PM loops stress <strong>structured ambiguity</strong>, <strong>metric rigor</strong>, <strong>tradeoffs</strong>, and <strong>execution mechanics</strong>. Use this plan together with the hands-on environment in <a href="practice-env.html"><code>practice-env/README.md</code></a> for timed drills.</p>
+<h3>What interviewers often probe</h3>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>What “good” sounds like</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Problem framing</strong></td>
+<td>You restate goals, constraints, and success criteria before solutions.</td>
+</tr>
+<tr>
+<td><strong>Metric definition</strong></td>
+<td>You define numerators/denominators, windows (e.g. 7d vs 28d), and segment cuts when comparing cohorts.</td>
+</tr>
+<tr>
+<td><strong>System thinking</strong></td>
+<td>For AI features: data → retrieval/tools → model → eval → safety → cost/latency → rollback; you name single points of failure.</td>
+</tr>
+<tr>
+<td><strong>Tradeoffs</strong></td>
+<td>RAG vs fine-tuning; streaming vs batch eval; human review gates; when <strong>not</strong> to use an LLM.</td>
+</tr>
+<tr>
+<td><strong>Execution</strong></td>
+<td>Phased rollout, shadow mode, guardrails, dashboards, incident response; <strong>idempotency</strong> and <strong>audit logs</strong> for agents.</td>
+</tr>
+</tbody>
+</table>
+<h3>AI / ML system design (common arc)</h3>
+<ol>
+<li><strong>Requirements</strong>: who is the user, latency budget, offline vs online freshness, compliance (PII, residency).</li>
+<li><strong>Baseline</strong>: rules, search, or smaller model before “big LLM everywhere.”</li>
+<li><strong>Eval</strong>: golden sets, regression suites, online A/B; human rubric for subjective quality.</li>
+<li><strong>Observability</strong>: traces, prompt/version IDs, token/cost attribution.</li>
+<li><strong>Safety</strong>: prompt injection (including via retrieved docs), harmful outputs, unsafe tool calls.</li>
+<li><strong>Launch</strong>: progressive exposure, kill switch, fallback UX.</li>
+</ol>
+<h3>Behavioral stories (short structure)</h3>
+<p>Use <strong>STAR</strong> but include <strong>one technical anchor</strong> per story: e.g. “P95 latency moved from X to Y,” “eval gate blocked release until citation accuracy ≥ Z%.” Practice aloud with the <a href="practice-env.html"><code>practice-env</code></a> dataset as the subject (“how I’d validate an AI sidebar hypothesis with events + tickets”).</p>
+<h3>Timed drill idea (45–60 min)</h3>
+<p>Open <a href="practice-env/sql/faang_style_drills.sql"><code>practice-env/sql/faang_style_drills.sql</code></a>. Pick two prompts: write the <strong>metric definition in English</strong>, then <strong>SQL or pandas</strong>, then <strong>one chart type</strong> you’d show to leadership and <strong>one risk</strong> with the metric.</p>
+<hr />
+<h2>Practice environment (dummy data)</h2>
+<p>The <strong><code>practice-env/</code></strong> folder contains:</p>
+<ul>
+<li><strong><code>data/cloudnote.db</code></strong> — SQLite (“CloudNote” B2B SaaS: users, subscriptions, events, experiments, support tickets); rebuild with <code>python scripts/build_dummy_db.py</code>.</li>
+<li><strong><code>corpus/</code></strong> — Markdown files for <strong>RAG</strong> labs.</li>
+<li><strong><code>sql/faang_style_drills.sql</code></strong> — Analytical prompts.</li>
+<li><strong><code>labs/explore_metrics.py</code></strong> — Sample Python + pandas.</li>
+</ul>
+<p>See <strong><a href="practice-env.html">practice-env/README.md</a></strong> for setup (<code>venv</code>, <code>pip install -r requirements.txt</code>).</p>
+<hr />
+<h2>How to use this plan</h2>
+<ul>
+<li><strong>Concepts &amp; curated links</strong> live in <strong><code>learn/</code></strong> (topic chapters — read in order or jump to what your job needs). <strong>Each week</strong>, use <strong><code>README.md</code> → <code>READINGS.md</code> → <code>PRACTICE.md</code> → <code>EXAM.md</code></strong> for rhythm; <strong><code>TOPICS.md</code></strong> is the extra <strong>practice lab sheet</strong> (drills + checklist) with pointers back to the matching Learn chapter.</li>
+<li><strong>Outcome per week</strong>: read concepts → <strong>one hands-on artifact</strong> (notebook, small app, or diagram you could explain in an interview).</li>
+<li><strong>Language for prototypes</strong>: Python is the default for data/LLM tooling; TypeScript is fine for product-shaped demos. Pick one stack and stay consistent.</li>
+<li><strong>Interview artifact</strong>: keep a <strong>one-page “system diagram + tradeoffs”</strong> for each major project (chatbot, RAG, SQL agent).</li>
+</ul>
+<hr />
+<h2>Concepts &amp; intuitions checklist (end of each phase)</h2>
+<p>Use this when you <strong>finish a phase</strong> (or the listed week range). If an item feels fuzzy, stay on that phase until you can explain it <strong>without notes</strong> in <strong>2–3 sentences</strong>.</p>
+<p><strong>Legend:</strong> <em>Concepts</em> = vocabulary and facts you recognize and use correctly. <em>Intuitions</em> = mental models—what “good” feels like, what usually breaks, what to ask next.</p>
+<h3>Phase 0 — End of Week 1</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tokens</strong> as the unit of cost, latency, and context—not “characters” or “words” alone.</td>
+<td>Long inputs and outputs <strong>cost more</strong> and <strong>take longer</strong>; huge prompts hit a <strong>hard ceiling</strong> (context window).</td>
+</tr>
+<tr>
+<td><strong>Context window</strong> as max simultaneous text the model can attend to.</td>
+<td>If it doesn’t fit in context, you must <strong>summarize</strong>, <strong>chunk</strong>, <strong>retrieve</strong>, or <strong>drop</strong>—there is no “just read the whole drive.”</td>
+</tr>
+<tr>
+<td><strong>Inference</strong> vs <strong>training</strong>; you ship features on <strong>inference</strong>.</td>
+<td>Training is rare for PM scope; your roadmap debates are almost always <strong>serving, eval, data, and cost</strong>—not retraining from scratch.</td>
+</tr>
+<tr>
+<td><strong>Temperature / top-p</strong> as randomness knobs.</td>
+<td>Higher temperature → <strong>more variance</strong> run-to-run; for production you often want <strong>low</strong> for deterministic UX unless creativity is the goal.</td>
+</tr>
+<tr>
+<td><strong>Hallucination</strong> vs <strong>grounding</strong>; <strong>structured output</strong> (JSON/schema).</td>
+<td>The model can sound certain and be wrong; <strong>trust comes from tools, retrieval, and checks</strong>—not from fluency.</td>
+</tr>
+<tr>
+<td><strong>Embeddings</strong> as “meaning-ish” vectors for similarity search.</td>
+<td>Similar <strong>words</strong> ≠ similar <strong>vectors</strong> in every case; similarity is <strong>approximate</strong> and domain-sensitive.</td>
+</tr>
+<tr>
+<td><strong>Fine-tuning</strong> vs <strong>RAG</strong> at a decision level (when each is in play).</td>
+<td>RAG answers “<strong>what’s true today in our docs/DB</strong>”; fine-tuning often answers “<strong>behave in our style / task pattern</strong>”—different bets.</td>
+</tr>
+<tr>
+<td>Basic jargon: <strong>tool/function calling</strong>, <strong>guardrails</strong>, <strong>prompt injection</strong>, <strong>eval</strong>, <strong>streaming</strong>, <strong>SLO/latency</strong>.</td>
+<td>You can ask engineers sensible questions: <strong>what’s in context</strong>, <strong>what’s the fallback</strong>, <strong>what’s measured</strong>, <strong>what’s blocked</strong>.</td>
+</tr>
+</tbody>
+</table>
+<h3>Phase 1 — End of Weeks 2–3</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>System vs user</strong> prompts; <strong>multi-turn</strong> state.</td>
+<td>The <strong>system</strong> prompt is the product contract; changing it is like changing <strong>requirements</strong>—version it.</td>
+</tr>
+<tr>
+<td>Patterns: <strong>role + constraints + format</strong>, <strong>few-shot</strong>, <strong>CoT</strong>, <strong>decomposition</strong>, <strong>tool-use framing</strong>.</td>
+<td>Prompts are <strong>interfaces</strong>: vague prompts → vague failure; <strong>constraints and examples</strong> reduce rework.</td>
+</tr>
+<tr>
+<td><strong>Eval sets</strong> and <strong>pass/fail rubrics</strong> (golden questions).</td>
+<td>If you can’t say what “wrong” looks like, you can’t ship with confidence—<strong>define checks before</strong> debating model choice.</td>
+</tr>
+<tr>
+<td><strong>JSON mode / schema</strong> for machine-readable outputs.</td>
+<td>When downstream is code or UI, <strong>schema beats prose</strong> for reliability.</td>
+</tr>
+</tbody>
+</table>
+<h3>Phase 2 — End of Weeks 4–5</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SQL (or approved metrics)</strong> as <strong>source of truth</strong>; LLM proposes, human/rules <strong>validate</strong>.</td>
+<td>“The model said the number” is not evidence—<strong>the query + table + filters</strong> are.</td>
+</tr>
+<tr>
+<td><strong>Text-to-SQL</strong> pipeline: schema snippet → query → <strong>sandbox execution</strong> → summary.</td>
+<td>Wrong <strong>joins</strong>, <strong>date filters</strong>, and <strong>duplicates</strong> are the default risks—<strong>always sanity-check row counts</strong>.</td>
+</tr>
+<tr>
+<td><strong>Read-only</strong> DB, <strong>LIMIT</strong>, <strong>allowlisted</strong> tables/columns, <strong>PII</strong> sensitivity.</td>
+<td>Treat model-generated SQL like <strong>untrusted code</strong> until reviewed—especially with writes (often <strong>disallowed</strong>).</td>
+</tr>
+<tr>
+<td><strong>Schema grounding</strong>; <strong>semantic layer</strong> (approved metric definitions).</td>
+<td>Ambiguous business language (“active user,” “revenue”) must map to <strong>one</strong> definition or metrics <strong>won’t</strong> align across teams.</td>
+</tr>
+</tbody>
+</table>
+<h3>Phase 3 — End of Weeks 5–6</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Aggregation</strong>, <strong>grouping</strong>, <strong>time windows</strong>, <strong>segments</strong>.</td>
+<td>A chart without an explicit <strong>denominator and window</strong> is a <strong>story</strong>, not a metric.</td>
+</tr>
+<tr>
+<td>When to use <strong>line vs bar vs funnel</strong>; axes, labels, titles.</td>
+<td>The chart type encodes a <strong>claim</strong>—match it to the claim (trend vs comparison vs conversion).</td>
+</tr>
+<tr>
+<td><strong>pandas/SQL</strong> as the path from DB → plot; optional LLM for <strong>plot code</strong> only under review.</td>
+<td>Generated code can <strong>mis-filter</strong> or <strong>double-count</strong>—the intuition is <strong>mistrust until you verify</strong> on real data.</td>
+</tr>
+<tr>
+<td>Hypothesis → <strong>falsifiable</strong> view; <strong>baseline</strong> or comparison.</td>
+<td>Ask: “What would <strong>convince me I’m wrong</strong>?”—if nothing, the metric isn’t ready.</td>
+</tr>
+</tbody>
+</table>
+<h3>Phase 4 — End of Weeks 7–8</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG pipeline: <strong>ingest → chunk → embed → retrieve → augment → generate</strong>; <strong>metadata</strong> (source, date, ACL).</td>
+<td>Retrieval quality <strong>caps</strong> answer quality—bad chunks → confident nonsense.</td>
+</tr>
+<tr>
+<td><strong>Chunking</strong>, <strong>overlap</strong>, <strong>embedding model</strong>, <strong>vector DB / pgvector</strong>, <strong>top-k</strong>.</td>
+<td>Smaller chunks ≠ always better; trade <strong>precision vs recall</strong> at chunk boundaries.</td>
+</tr>
+<tr>
+<td><strong>Hybrid search</strong>, <strong>reranking</strong>, <strong>citation</strong> to retrieved spans.</td>
+<td>Keyword search finds <strong>exact terms</strong>; embeddings find <strong>paraphrases</strong>—many products need <strong>both</strong>.</td>
+</tr>
+<tr>
+<td>Failure modes: <strong>stale</strong> docs, <strong>duplicates</strong>, <strong>ACL leaks</strong>, <strong>low recall</strong>.</td>
+<td>RAG is not “upload PDF = truth”; <strong>permissions</strong> and <strong>freshness</strong> are product and legal requirements.</td>
+</tr>
+</tbody>
+</table>
+<h3>Phase 5 — End of Weeks 9–10</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chat <strong>UX</strong>: streaming, errors, retries, <strong>disclaimers</strong>, <strong>feedback</strong>, “why this answer.”</td>
+<td>Users need <strong>progressive disclosure</strong>—fast partial output beats blocking silence if latency is high.</td>
+</tr>
+<tr>
+<td><strong>Session / memory</strong>, <strong>rate limits</strong>, <strong>logging</strong> (query, sources, latency, version).</td>
+<td>Without logs you cannot <strong>debug</strong> production AI—treat logging as <strong>non-optional</strong> for launched features.</td>
+</tr>
+<tr>
+<td><strong>Naive RAG chat</strong> vs <strong>agent + tools</strong> (when complexity warrants).</td>
+<td>More autonomy → more <strong>failure modes</strong>; agents are for <strong>multi-step</strong> tasks with <strong>clear stop conditions</strong>.</td>
+</tr>
+<tr>
+<td><strong>Prompt injection</strong>, <strong>PII</strong>, <strong>off-topic</strong> handling at UX + backend.</td>
+<td>Any user content can try to <strong>override instructions</strong>—assume <strong>hostile</strong> inputs in design reviews.</td>
+</tr>
+</tbody>
+</table>
+<h3>Phase 6 — End of Weeks 11–12</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prototype stacks: <strong>notebook</strong>, <strong>Streamlit/Gradio</strong>, <strong>Next.js</strong> mock, <strong>Figma</strong> + API.</td>
+<td>Choose fidelity to <strong>the decision</strong>—notebook for logic, Streamlit for <strong>stakeholder demos</strong>, prod-shaped when testing <strong>integration</strong>.</td>
+</tr>
+<tr>
+<td><strong>Reproducibility</strong>: seeds, <strong>versioned prompts</strong>, saved <strong>traces</strong>.</td>
+<td>A demo that only works on one laptop is a <strong>liability</strong>—pin artifacts like any release candidate.</td>
+</tr>
+<tr>
+<td><strong>Latency and cost per session</strong> as product constraints.</td>
+<td>Every extra token and round-trip is <strong>money and time</strong>—prototype under realistic caps.</td>
+</tr>
+</tbody>
+</table>
+<h3>Phase 7 — End of Weeks 12–14</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Plan → act (tool) → observe → revise</strong> loops; <strong>ReAct-style</strong> behavior.</td>
+<td>Longer loops mean <strong>more places to fail</strong>—you need <strong>stop rules</strong>, <strong>timeouts</strong>, and <strong>max iterations</strong>.</td>
+</tr>
+<tr>
+<td><strong>Single agent + tools</strong> vs <strong>multi-agent</strong> / <strong>supervisor</strong> routing.</td>
+<td>More agents ≠ smarter; often <strong>harder to debug</strong>—default to <strong>simplicity</strong> until proven insufficient.</td>
+</tr>
+<tr>
+<td><strong>Human-in-the-loop</strong> for high-impact actions; <strong>idempotency</strong>; <strong>audit logs</strong>.</td>
+<td>Side effects (send money, email externally, delete data) need <strong>gates</strong> and <strong>replay-safe</strong> tool design.</td>
+</tr>
+<tr>
+<td><strong>Cost explosion</strong> on long runs; <strong>non-determinism</strong> across retries.</td>
+<td>Same user input may <strong>branch</strong> differently—product UX must tolerate <strong>variance</strong> or constrain it.</td>
+</tr>
+</tbody>
+</table>
+<h3>Extras — Ongoing (layer across later phases)</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Offline eval</strong> vs <strong>online</strong> A/B; <strong>LLM-as-judge</strong> caveats.</td>
+<td>Offline catches regressions; online catches <strong>real distribution shift</strong>—you need both for serious launches.</td>
+</tr>
+<tr>
+<td><strong>Observability</strong>: traces, prompt/model <strong>version</strong> tags, token accounting.</td>
+<td>If you can’t slice failures by <strong>version</strong>, you can’t run a <strong>blameless</strong> postmortem.</td>
+</tr>
+<tr>
+<td><strong>Prompt injection</strong> vs <strong>indirect</strong> injection (via retrieved content); <strong>residency</strong>.</td>
+<td>Untrusted text anywhere in context—including <strong>RAG results</strong>—can steer the model.</td>
+</tr>
+<tr>
+<td><strong>MCP</strong> as “tools/resources for agents” (conceptual).</td>
+<td>Standard protocols reduce <strong>one-off glue</strong>; still need <strong>authz</strong> at the tool boundary.</td>
+</tr>
+<tr>
+<td>When <strong>not</strong> to use LLMs: deterministic logic, regulated math, <strong>tight latency</strong>.</td>
+<td>Use the cheapest <strong>correct</strong> tool: rules, classical search, small models, or human workflow.</td>
+</tr>
+</tbody>
+</table>
+<h3>Capstone — End of course</h3>
+<table>
+<thead>
+<tr>
+<th>Concepts you should have</th>
+<th>Intuitions you should have</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One <strong>end-to-end</strong> story: data + retrieval + UI + <strong>metrics</strong> + <strong>risk</strong>.</td>
+<td>Shipping AI is a <strong>system</strong> problem—model choice is one box in a larger diagram.</td>
+</tr>
+<tr>
+<td><strong>Launch criteria</strong>: eval thresholds, <strong>fallbacks</strong>, <strong>rollback</strong>, <strong>kill switch</strong>.</td>
+<td>“GA” means <strong>operational</strong> readiness, not “demo worked once.”</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Phase 0 — Mental model and jargon (Week 1)</h2>
+<h3>Fundamentals</h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>What PMs/TPMs need to know</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tokens</strong></td>
+<td>Billing, latency, and context limits are measured in tokens (chunks of text), not “words.”</td>
+</tr>
+<tr>
+<td><strong>Context window</strong></td>
+<td>Max text the model can “see” at once; drives summarization, RAG chunking, and tool output size.</td>
+</tr>
+<tr>
+<td><strong>Inference</strong></td>
+<td>Running the model to get a completion; distinct from <strong>training</strong>.</td>
+</tr>
+<tr>
+<td><strong>Temperature / top-p</strong></td>
+<td>Sampling knobs: lower = more deterministic; higher = more creative/variance.</td>
+</tr>
+<tr>
+<td><strong>Hallucination</strong></td>
+<td>Confident wrong outputs; mitigated with retrieval, tools, and evaluation—not “prompt magic” alone.</td>
+</tr>
+<tr>
+<td><strong>Grounding</strong></td>
+<td>Tying answers to verifiable sources (docs, DB rows, APIs).</td>
+</tr>
+<tr>
+<td><strong>Structured output</strong></td>
+<td>JSON/schema-constrained answers for pipelines and UIs.</td>
+</tr>
+<tr>
+<td><strong>Embeddings</strong></td>
+<td>Vectors representing meaning for similarity search (core to RAG).</td>
+</tr>
+<tr>
+<td><strong>Fine-tuning vs RAG</strong></td>
+<td>Fine-tuning = teach style/tasks with examples; RAG = inject fresh facts at query time. Different cost/risk profiles.</td>
+</tr>
+</tbody>
+</table>
+<h3>Jargon cheat sheet (high leverage)</h3>
+<ul>
+<li><strong>System prompt vs user prompt</strong>, <strong>multi-turn chat</strong>, <strong>tool calling / function calling</strong>, <strong>orchestration</strong>, <strong>agent</strong>, <strong>planner</strong>, <strong>eval / benchmark</strong>, <strong>guardrails</strong>, <strong>PII redaction</strong>, <strong>prompt injection</strong>, <strong>latency vs throughput</strong>, <strong>streaming</strong>, <strong>SLA/SLO</strong> for AI features.</li>
+</ul>
+<h3>Mini deliverable</h3>
+<p>Write a <strong>half-page</strong> explaining why <strong>context limits</strong> force RAG or summarization for long corpuses.</p>
+<hr />
+<h2>Phase 1 — Prompt engineering: patterns, not tricks (Weeks 2–3)</h2>
+<h3>Patterns that map to real product work</h3>
+<ol>
+<li><strong>Role + constraints + format</strong> (audience, tone, length, schema).</li>
+<li><strong>Chain-of-thought (reasoning steps)</strong> — use when you need auditability; hide raw chain from users if needed.</li>
+<li><strong>Decomposition</strong> — break PM questions into sub-questions and merge (PRDs, risks, test plans).</li>
+<li><strong>Few-shot</strong> — 2–5 examples of desired input/output for repeatable formats.</li>
+<li><strong>Self-critique / verification</strong> — “list assumptions, then challenge them.”</li>
+<li><strong>Tool-use framing</strong> — prompts that assume the model will call tools (SQL, search, calendar): specify <strong>when</strong> to use tools vs answer from chat.</li>
+</ol>
+<h3>Tools and concepts to know exist</h3>
+<p>Prompt/version libraries (e.g. LangChain/LlamaIndex concepts), <strong>JSON mode</strong>, <strong>eval sets</strong> (golden questions with expected properties).</p>
+<h3>Mini deliverable</h3>
+<p>A <strong>10-question eval sheet</strong> for a feature (correctness, safety, style) with pass/fail rubric.</p>
+<hr />
+<h2>Phase 2 — LLMs + data: validate ideas with databases (Weeks 4–5)</h2>
+<h3>Core idea</h3>
+<p>Turn questions into <strong>queryable truth</strong> and <strong>LLM-assisted exploration</strong> without replacing the database as source of truth.</p>
+<h3>Stack concept map</h3>
+<ul>
+<li><strong>SQL</strong> remains the contract; the model proposes queries, you <strong>validate</strong> (human or rules).</li>
+<li><strong>Text-to-SQL</strong> flow: schema snippet → model generates SQL → execute in sandbox → summarize results.</li>
+<li>Risks: wrong joins, leaking PII, destructive queries → <strong>read-only roles</strong>, <strong>LIMIT</strong>, <strong>allowlisted tables</strong>.</li>
+</ul>
+<h3>Patterns</h3>
+<ul>
+<li><strong>Schema grounding</strong>: feed column names, types, sample rows (small).</li>
+<li><strong>Iterative refinement</strong>: run → error message → fix SQL (agent loop).</li>
+<li><strong>Semantic layer</strong> (BI term): predefined metrics so the model maps to <strong>approved</strong> definitions.</li>
+</ul>
+<h3>Mini deliverable</h3>
+<p>Connect to <strong>SQLite</strong> with a fake dataset; produce <strong>5 natural-language questions</strong> that resolve to SQL + a one-paragraph “what we learned.”</p>
+<p><strong>Use <a href="practice-env.html"><code>practice-env</code></a>:</strong> run <code>python scripts/build_dummy_db.py</code>, query <code>data/cloudnote.db</code>, and try <a href="practice-env/sql/faang_style_drills.sql"><code>sql/faang_style_drills.sql</code></a>.</p>
+<hr />
+<h2>Phase 3 — Plots and quantitative validation (Weeks 5–6)</h2>
+<h3>Goal</h3>
+<p>From DB → <strong>pandas/SQL</strong> → <strong>chart</strong> → <strong>narrative</strong> tied to a hypothesis.</p>
+<h3>Minimum skill path</h3>
+<ul>
+<li>SQL aggregation → export or <strong>pandas</strong> → <strong>matplotlib/plotly</strong>.</li>
+<li>For exec-ready charts: know <strong>when to use</strong> bar vs line vs funnel; label axes; show denominators.</li>
+</ul>
+<h3>LLM angle</h3>
+<p>Model drafts <strong>plot code</strong>; you run it locally and inspect the chart. Always verify <strong>filters and time windows</strong>.</p>
+<h3>Mini deliverable</h3>
+<p>Three plots answering: “Is the problem getting worse?”, “Who is affected?”, “What’s the counterfactual baseline?”</p>
+<p>Start from <a href="practice-env/labs/explore_metrics.py"><code>labs/explore_metrics.py</code></a> and extend.</p>
+<hr />
+<h2>Phase 4 — RAG and related concepts (Weeks 7–8)</h2>
+<h3>Core pipeline</h3>
+<ol>
+<li><strong>Ingest</strong> documents (PDF, HTML, tickets).</li>
+<li><strong>Chunk</strong> text with overlap; track metadata (source, date, ACL).</li>
+<li><strong>Embed</strong> chunks; store in <strong>vector DB</strong> (or pgvector).</li>
+<li><strong>Retrieve</strong> top-k similar chunks for a query.</li>
+<li><strong>Augment</strong> prompt: chunks + user question → answer with citations.</li>
+</ol>
+<h3>Jargon</h3>
+<ul>
+<li><strong>Chunking</strong>, <strong>embedding model</strong>, <strong>vector similarity</strong>, <strong>hybrid search</strong> (keyword + vector), <strong>reranking</strong>, <strong>reciprocal rank fusion</strong>, <strong>citation fidelity</strong>, <strong>ACL-aware retrieval</strong>.</li>
+</ul>
+<h3>Failure modes PMs should recognize</h3>
+<p>Stale docs, <strong>duplicate chunks</strong>, wrong chunk boundaries, <strong>permission leaks</strong> in retrieval, <strong>low recall</strong> (missed relevant passages).</p>
+<h3>Mini deliverable</h3>
+<p>Small <strong>RAG over your own notes/PDFs</strong> with <strong>citations</strong>; document two failure cases you observed.</p>
+<p>Starter corpus: <a href="practice-env/corpus/"><code>practice-env/corpus/</code></a> (<code>product_faq.md</code>, <code>internal_rfc_ai_sidebar.md</code>).</p>
+<hr />
+<h2>Phase 5 — Building a chatbot (Weeks 9–10)</h2>
+<h3>Layers to specify like a TPM</h3>
+<ul>
+<li><strong>UX</strong>: streaming, disclaimers, retry, “why this answer,” feedback thumbs.</li>
+<li><strong>Backend</strong>: session memory, rate limits, logging.</li>
+<li><strong>Knowledge</strong>: RAG + optional tools (SQL, ticketing API).</li>
+<li><strong>Safety</strong>: PII, prompt injection, <strong>off-topic</strong> handling.</li>
+</ul>
+<h3>Architecture patterns</h3>
+<ul>
+<li><strong>Naive RAG chat</strong> (single retrieval step).</li>
+<li><strong>Agent</strong> with tools (retrieve, SQL, HTTP)—<strong>only</strong> when you need multi-step reasoning with verification.</li>
+</ul>
+<h3>Mini deliverable</h3>
+<p>A <strong>minimal</strong> chat UI + backend that logs questions, retrieved sources, and latency. Write a <strong>one-page incident playbook</strong>: “model wrong,” “DB down,” “rate limit hit.”</p>
+<hr />
+<h2>Phase 6 — Prototypes (Weeks 11–12)</h2>
+<h3>Prototype types PMs should know</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Good for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prompt + notebook</strong></td>
+<td>Logic and eval before UI</td>
+</tr>
+<tr>
+<td><strong>Streamlit / Gradio</strong></td>
+<td>Internal demos fast</td>
+</tr>
+<tr>
+<td><strong>Next.js + API route</strong></td>
+<td>Closer to prod shape</td>
+</tr>
+<tr>
+<td><strong>Figma + API mocks</strong></td>
+<td>UX without backend</td>
+</tr>
+</tbody>
+</table>
+<h3>What “good prototype” means technically</h3>
+<p>Reproducible <strong>seed</strong>, versioned <strong>prompt</strong>, saved <strong>traces</strong>, simple <strong>metrics</strong> (latency, cost per session).</p>
+<h3>Mini deliverable</h3>
+<p>One <strong>demo script</strong> (5 minutes) with a live query that hits your DB or RAG corpus and shows a chart.</p>
+<hr />
+<h2>Phase 7 — Agentic patterns (Weeks 12–14)</h2>
+<h3>What “agentic” usually means in industry</h3>
+<ul>
+<li><strong>Loop</strong>: plan → act (tool) → observe → revise.</li>
+<li><strong>Multi-agent</strong> (specialized sub-agents) vs <strong>single agent with tools</strong> (simpler to debug).</li>
+</ul>
+<h3>Patterns</h3>
+<ul>
+<li><strong>ReAct-style</strong> reasoning + tool use.</li>
+<li><strong>Supervisor</strong> routes to specialist tools.</li>
+<li><strong>Human-in-the-loop</strong> for high-stakes actions (refunds, deletes, emails).</li>
+</ul>
+<h3>TPM concerns</h3>
+<p>Non-determinism, <strong>cost explosion</strong>, <strong>long-running tasks</strong>, <strong>idempotency</strong>, <strong>audit logs</strong>.</p>
+<h3>Mini deliverable</h3>
+<p>Diagram an agent that <strong>must not</strong> send email without approval—show where checks live.</p>
+<hr />
+<h2>Extras — topics you might not know yet</h2>
+<ul>
+<li><strong>Evaluation</strong>: offline eval sets, online A/B, <strong>LLM-as-judge</strong> (with caveats), human rubrics.</li>
+<li><strong>Observability</strong>: traces (Langfuse/OpenTelemetry-style concepts), prompt/version tagging.</li>
+<li><strong>Cost</strong>: tokens in/out, caching, smaller models for routing.</li>
+<li><strong>Security</strong>: <strong>prompt injection</strong>, <strong>indirect injection</strong> (malicious content inside retrieved docs), <strong>data residency</strong>.</li>
+<li><strong>Governance</strong>: model cards, <strong>bias/fairness</strong> checkpoints for user-facing decisions.</li>
+<li><strong>MCP (Model Context Protocol)</strong>: standard way to expose <strong>tools/resources</strong> to agents (worth a shallow pass for vendor conversations).</li>
+<li><strong>When not to use LLMs</strong>: tight deterministic logic, regulated math, sub-ms latency—use traditional code.</li>
+</ul>
+<hr />
+<h2>Capstone project</h2>
+<p><strong>“Insight copilot”</strong> for a fake product:</p>
+<ol>
+<li>Ingest FAQs/docs → <strong>RAG</strong> with citations (use <a href="practice-env/corpus/"><code>practice-env/corpus</code></a> or your own).</li>
+<li>Add <strong>read-only SQL</strong> on <a href="practice-env.html"><code>practice-env/data/cloudnote.db</code></a>.</li>
+<li>Generate <strong>plot code</strong> + chart for one hypothesis.</li>
+<li><strong>Chatbot</strong> UI with logging and a basic <strong>eval</strong> set.</li>
+<li><strong>Written reflection</strong>: tradeoffs, failure modes, what you’d measure in production.</li>
+</ol>
+<hr />
+<h2>Suggested weekly rhythm</h2>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Concept deep dive (articles/docs)</td>
+<td>2–3 h</td>
+</tr>
+<tr>
+<td>Hands-on lab</td>
+<td>3–5 h</td>
+</tr>
+<tr>
+<td>Jargon flashcards + explain aloud</td>
+<td>1 h</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Quick topic index</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Phase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM fundamentals &amp; jargon</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Prompt engineering patterns</td>
+<td>1</td>
+</tr>
+<tr>
+<td>AI + databases / validation</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Plots from DB data</td>
+<td>3</td>
+</tr>
+<tr>
+<td>RAG</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Chatbot</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Prototypes</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Agentic patterns</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Evals, security, observability, MCP</td>
+<td>Extras</td>
+</tr>
+</tbody>
+</table>
+      </main>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('overlay');
+    if (toggle && sidebar) {
+      toggle.addEventListener('click', function () {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('show');
+      });
+      if (overlay) {
+        overlay.addEventListener('click', function () {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('show');
+        });
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

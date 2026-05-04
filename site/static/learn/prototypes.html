@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prototypes — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+<style>
+.quiz-section,.reading-section{margin-top:2.5rem}
+.quiz-section h2,.reading-section h2{font-size:1rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem}
+.quiz-section h2::before{content:"\2713 ";font-size:0.85rem;opacity:.5}
+.reading-section h2::before{content:"\2197 ";font-size:0.85rem;opacity:.5}
+.qz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin-bottom:0.6rem;border-left:3px solid var(--accent);overflow:hidden}
+.qz-q{padding:0.75rem 1rem;font-size:0.84rem;font-weight:600;line-height:1.5;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;color:var(--text)}
+.qz-q:hover{background:var(--surface-2)}
+.qz-tog{color:var(--muted-2);font-size:0.75rem;flex-shrink:0;user-select:none;margin-top:0.15rem}
+.qz-a{display:none;padding:0.65rem 1rem 0.85rem;border-top:1px solid var(--border);background:var(--surface-2);font-size:0.82rem;color:var(--muted);line-height:1.65}
+.qz-a.open{display:block}
+.qz-a strong{color:var(--text)}
+.read-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem}
+.read-list li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0.7rem 1rem;display:flex;flex-direction:column;gap:0.2rem}
+.read-list a{font-size:0.83rem;font-weight:600;color:var(--accent);text-decoration:none}
+.read-list a:hover{text-decoration:underline}
+.read-list .read-desc{font-size:0.75rem;color:var(--muted)}
+.read-type{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;opacity:.6}
+</style>
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="../index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="index.html" class="active">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks"><button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel"><div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid"><a href="../week-01.html">01</a><a href="../week-02.html">02</a><a href="../week-03.html">03</a><a href="../week-04.html">04</a><a href="../week-05.html">05</a><a href="../week-06.html">06</a><a href="../week-07.html">07</a><a href="../week-08.html">08</a><a href="../week-09.html">09</a><a href="../week-10.html">10</a><a href="../week-11.html">11</a><a href="../week-12.html">12</a><a href="../week-13.html">13</a><a href="../week-14.html">14</a></div>
+      </div></div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="index.html">Learn hub</a><a class="mob-link" href="foundations.html">Foundations</a><a class="mob-link" href="prompting.html">Prompting</a><a class="mob-link" href="sql-and-data.html">SQL &amp; data</a><a class="mob-link" href="visualization.html">Visualization</a><a class="mob-link" href="rag.html">RAG</a><a class="mob-link" href="chatbots.html">Chatbots</a><a class="mob-link active" href="prototypes.html">Prototypes</a><a class="mob-link" href="agents-and-launch.html">Agents &amp; launch</a>
+  <a class="mob-link" href="faang-prep.html">FAANG prep</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid"><a class="mob-week-btn" href="../week-01.html">01</a><a class="mob-week-btn" href="../week-02.html">02</a><a class="mob-week-btn" href="../week-03.html">03</a><a class="mob-week-btn" href="../week-04.html">04</a><a class="mob-week-btn" href="../week-05.html">05</a><a class="mob-week-btn" href="../week-06.html">06</a><a class="mob-week-btn" href="../week-07.html">07</a><a class="mob-week-btn" href="../week-08.html">08</a><a class="mob-week-btn" href="../week-09.html">09</a><a class="mob-week-btn" href="../week-10.html">10</a><a class="mob-week-btn" href="../week-11.html">11</a><a class="mob-week-btn" href="../week-12.html">12</a><a class="mob-week-btn" href="../week-13.html">13</a><a class="mob-week-btn" href="../week-14.html">14</a></div>
+</div>
+<nav class="subnav">
+  <a href="../index.html">Home</a><span class="subnav-sep"></span>
+  <a href="index.html">Hub</a><a href="foundations.html">Foundations</a><a href="prompting.html">Prompting</a><a href="sql-and-data.html">SQL &amp; data</a><a href="visualization.html">Visualization</a><a href="rag.html">RAG</a><a href="chatbots.html">Chatbots</a><a href="prototypes.html" class="active">Prototypes</a><a href="agents-and-launch.html">Agents &amp; launch</a><a href="faang-prep.html">FAANG prep</a>
+</nav>
+
+<main class="page has-subnav prose">
+  <h1>Prototypes</h1>
+  <p><em>Chapter 7 · Phase 6 · practice in <a href="../week-11.html">Week 11</a> and <a href="../week-12.html">Week 12</a></em></p>
+
+  <div class="callout callout--info">
+    <div class="callout-title">What you will know after this chapter</div>
+    What makes an AI prototype trustworthy vs a one-hit wonder · how to pin everything for reproducibility · how to estimate token costs before building · how to structure a demo script · how to hand off a prototype to engineering
+  </div>
+
+  <h2>1. The reproducibility problem</h2>
+  <p>An LLM prototype that "works great in the demo" but fails during the stakeholder review, or produces different output every run, is worse than useless — it erodes trust in the technology. Reproducibility is not optional.</p>
+
+  <div class="callout callout--warn">
+    <div class="callout-title">The demo anti-pattern</div>
+    You run the prototype 20 times to find the 1 run that looks impressive, screenshot it, and present it. This is common and it destroys credibility. Stakeholders will ask to see it live and it will fail.
+  </div>
+
+  <h2>2. What to pin for reproducibility</h2>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Model version</div>
+      <div class="def-body">Always pin the exact model version string, not an alias. <code>gpt-4o-2024-08-06</code> not <code>gpt-4o</code>. Aliases point to whatever the provider considers "current" — and it changes without warning. A model version bump can change behavior significantly.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Temperature</div>
+      <div class="def-body">For reproducible output, use <code>temperature=0</code> (deterministic mode). The model will still vary slightly across provider infrastructure, but output will be far more consistent. Use temperature &gt; 0 only for creative tasks where variation is desirable.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Seed</div>
+      <div class="def-body">OpenAI's API supports a <code>seed</code> parameter. When specified with <code>temperature=0</code>, the same seed produces identical output. Set <code>seed=42</code> (or any fixed value) for full reproducibility in demos and evals.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Prompt version</div>
+      <div class="def-body">Every prompt change is a version. Tag your prompt as <code>v1.0</code>, commit to git, and include the version in your demo notes. If a demo goes wrong, you can check out the exact prompt that was used.</div>
+    </div>
+  </div>
+
+  <div class="callout callout--info">
+    <div class="callout-title">What to record for every prototype run</div>
+    Keep a simple text file or doc alongside your prototype that captures: the exact model version string (e.g., <code>gpt-4o-2024-08-06</code>), the temperature setting (0 for demos), the seed value if used, the prompt version tag, and the max output token limit. Log this at the top of every output you share. When a demo goes wrong two weeks later, you will be grateful you can reproduce the exact conditions.
+  </div>
+
+  <h2>3. Token cost estimation before you build</h2>
+  <p>Build a cost model before writing a single API call. This shapes your architecture decisions and prevents budget surprises. The math is simple — you just need to commit to doing it.</p>
+
+  <h3>Worked example — RAG-backed support chatbot</h3>
+  <p>Assume you are using GPT-4o at approximately $5 per million input tokens and $15 per million output tokens (2025 pricing). Each conversation turn has these components:</p>
+  <table>
+    <thead><tr><th>Component</th><th>Tokens</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>System prompt</td><td>~500</td><td>Static instructions, sent every call</td></tr>
+      <tr><td>Retrieved RAG chunks</td><td>~1,500</td><td>3 chunks × 500 tokens each</td></tr>
+      <tr><td>User question</td><td>~50</td><td>Typical short question</td></tr>
+      <tr><td>Model response (output)</td><td>~300</td><td>A paragraph-length answer</td></tr>
+    </tbody>
+  </table>
+  <p>Total input per call: 2,050 tokens. Total output: 300 tokens. Cost per call: (2,050 × $5 / 1,000,000) + (300 × $15 / 1,000,000) = <strong>$0.0153 per conversation turn</strong>. At 1,000 queries per day, that is ~$460/month. At 10,000 queries per day, ~$4,600/month. These numbers should inform your pricing, tier limits, and model selection before you write a single line of code.</p>
+
+  <div class="pm-box"><div class="pm-box-label">PM checklist before any API call</div>
+  1. How many tokens is my system prompt? (count it)<br/>
+  2. How many tokens of context am I injecting per call? (RAG chunks, history)<br/>
+  3. What is my expected output length?<br/>
+  4. At target query volume, what is the monthly cost?<br/>
+  5. Is there a cheaper model that achieves the same quality for this task?
+  </div>
+
+  <h3>Model cost vs quality tradeoffs (2025)</h3>
+  <table>
+    <thead><tr><th>Task</th><th>Try first</th><th>Upgrade to if needed</th></tr></thead>
+    <tbody>
+      <tr><td>Simple classification, routing</td><td>GPT-4o mini / Claude Haiku</td><td>GPT-4o</td></tr>
+      <tr><td>Summarization</td><td>GPT-4o mini</td><td>GPT-4o</td></tr>
+      <tr><td>RAG question answering</td><td>GPT-4o mini</td><td>GPT-4o</td></tr>
+      <tr><td>Complex reasoning, analysis</td><td>GPT-4o</td><td>o3, Claude 3 Opus</td></tr>
+      <tr><td>Code generation</td><td>GPT-4o</td><td>o3, Claude 3.7 Sonnet</td></tr>
+      <tr><td>Long document processing</td><td>Gemini 1.5 Pro</td><td>Claude 3.5 Sonnet (200K)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4. Demo script structure</h2>
+  <p>A demo without a script becomes an improvised performance. Write the script before the demo.</p>
+
+  <div class="concept-list">
+    <div class="concept-item"><div class="concept-num">1</div><div class="concept-body"><h4>State the problem (30 sec)</h4><p>"Today, support agents take 4 minutes to find the right article for a customer question. We want to cut that to 30 seconds."</p></div></div>
+    <div class="concept-item"><div class="concept-num">2</div><div class="concept-body"><h4>Show the baseline (1 min)</h4><p>Show the current experience — the 4-minute manual lookup. This is the before state. Do not skip this; without it, the demo has no impact.</p></div></div>
+    <div class="concept-item"><div class="concept-num">3</div><div class="concept-body"><h4>Run the prototype on your curated inputs (3–5 min)</h4><p>Use 3 specific inputs you have tested and know work well. Show the best case, a medium case, and one graceful failure ("I don't have information on that").</p></div></div>
+    <div class="concept-item"><div class="concept-num">4</div><div class="concept-body"><h4>Quantify what you saw (30 sec)</h4><p>"On these 3 cases, we went from 4 minutes to under 30 seconds. On our eval set of 50 real tickets, we hit 87% accuracy." Use your eval data.</p></div></div>
+    <div class="concept-item"><div class="concept-num">5</div><div class="concept-body"><h4>State the next step and open risks (1 min)</h4><p>What is the next unknown to de-risk? "We need to test on adversarial inputs and integrate with the ticketing API." Name the risks proactively — it shows rigor.</p></div></div>
+  </div>
+
+  <h2>5. Prototype to production handoff</h2>
+  <p>A prototype proves feasibility. To hand off to engineering, you need to provide the right artifacts.</p>
+
+  <div class="callout callout--green">
+    <div class="callout-title">Handoff checklist</div>
+    <ul>
+      <li><strong>Pinned system prompt</strong> — the exact version, in version control</li>
+      <li><strong>Eval suite</strong> — 50–100 test cases with expected outputs and current scores</li>
+      <li><strong>Token cost model</strong> — spreadsheet showing cost at target scale</li>
+      <li><strong>Failure mode documentation</strong> — known cases where the prototype fails and why</li>
+      <li><strong>Latency baseline</strong> — p50/p95 latency from your testing</li>
+      <li><strong>Architecture diagram</strong> — what components the production version needs (API, DB, vector store, logging)</li>
+      <li><strong>Model pinned version</strong> — exact version string, not an alias</li>
+    </ul>
+  </div>
+
+  <hr />
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">
+    <a class="btn btn-outline" href="chatbots.html">← Chatbots</a>
+    <div style="display:flex;gap:0.65rem">
+      <a class="btn btn-outline" href="../week-11.html">Practice → Week 11</a>
+      <a class="btn btn-primary" href="agents-and-launch.html">Next: Agents &amp; launch →</a>
+    </div>
+  </div>
+
+<div class='quiz-section'>
+  <h2>Test your understanding</h2>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">Why is pinning the exact prompt version important in a prototype demo?<span class="qz-tog">v</span></div><div class="qz-a">LLMs are non-deterministic and providers update models silently. Pinning the model version, temperature, and exact system prompt makes the demo reproducible — you can re-run it and get the same result.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is a 'demo script' and why is it essential for AI prototype demos?<span class="qz-tog">v</span></div><div class="qz-a">A demo script is a fixed set of inputs that you know produce good outputs from your current model and prompt. Without it, live demos depend on luck with unpredictable outputs — and live demos always go wrong eventually.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">How do you budget for token costs during a prototype phase?<span class="qz-tog">v</span></div><div class="qz-a">Estimate: (avg input tokens per query) x (queries per day) x (cost per 1K tokens) + same for output. 10 users, 50 queries/day, 1500 tokens/query at $0.01/1K = ~$225/month. If prototyping costs are already high, the production architecture will be unsustainable.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is the difference between a prototype and an MVP for an AI feature?<span class="qz-tog">v</span></div><div class="qz-a">A <strong>prototype</strong> answers a question ('does this AI approach work?') — it may use hardcoded inputs and no real data pipeline. An <strong>MVP</strong> is the smallest shippable version with real users, real data, monitoring, and the ability to iterate.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">How do you demonstrate uncertainty handling in a prototype?<span class="qz-tog">v</span></div><div class="qz-a">Include at least one input in your demo script that the model cannot reliably answer, and show how the system handles it gracefully ('I'm not sure', or explicit escalation). Demonstrating graceful failure is as important as demonstrating success.</div></div>
+</div>
+<div class='reading-section'>
+  <h2>Further reading &amp; watching</h2>
+  <ul class='read-list'>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Cost & Latency Analysis (Part I)</a><div class="read-desc">Concrete cost breakdown for LLM prototypes — token pricing, inference costs, and buy-vs-build tradeoff. Read before budgeting a prototype.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Prompting vs Fine-tuning (Part I)</a><div class="read-desc">Helps decide your prototype architecture: when prompting is enough vs when fine-tuning is needed.</div></li>
+  <li><span class="read-type">Tool</span><a href="https://streamlit.io/" target="_blank" rel="noopener">Streamlit — Build ML apps fast</a><div class="read-desc">The fastest way to turn a Python prototype into a shareable web UI. No front-end skill required.</div></li>
+  <li><span class="read-type">Tool</span><a href="https://www.gradio.app/" target="_blank" rel="noopener">Gradio — Instant UI for AI demos</a><div class="read-desc">Similar to Streamlit. Used widely for research demos and rapid prototyping.</div></li>
+  <li><span class="read-type">Essay</span><a href="http://paulgraham.com/ds.html" target="_blank" rel="noopener">Paul Graham — Do Things That Don't Scale</a><div class="read-desc">The canonical essay on why manual, prototype-grade approaches are how great products start.</div></li>
+  </ul>
+</div>
+<script>
+function toggleQz(el){var a=el.nextElementSibling,t=el.querySelector('.qz-tog'),o=a.classList.contains('open');a.classList.toggle('open',!o);t.textContent=o?'v':'u';}
+</script>
+</main>
+<script src="../js/nav.js"></script>
+</body>
+</html>

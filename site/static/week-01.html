@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 01 — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="learn/index.html">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks">
+      <button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel">
+        <div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid">
+          <a href="week-01.html" class="active">01</a><a href="week-02.html">02</a><a href="week-03.html">03</a><a href="week-04.html">04</a><a href="week-05.html">05</a><a href="week-06.html">06</a><a href="week-07.html">07</a>
+          <a href="week-08.html">08</a><a href="week-09.html">09</a><a href="week-10.html">10</a><a href="week-11.html">11</a><a href="week-12.html">12</a><a href="week-13.html">13</a><a href="week-14.html">14</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="learn/index.html">Learn hub</a>
+  <a class="mob-link" href="learn/foundations.html">Foundations</a>
+  <a class="mob-link" href="learn/prompting.html">Prompting</a>
+  <a class="mob-link" href="learn/sql-and-data.html">SQL &amp; data</a>
+  <a class="mob-link" href="learn/visualization.html">Visualization</a>
+  <a class="mob-link" href="learn/rag.html">RAG</a>
+  <a class="mob-link" href="learn/chatbots.html">Chatbots</a>
+  <a class="mob-link" href="learn/prototypes.html">Prototypes</a>
+  <a class="mob-link" href="learn/agents-and-launch.html">Agents &amp; launch</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid">
+    <a class="mob-week-btn class="activehref="week-01.html">01</a><a class="mob-week-btn " href="week-02.html">02</a><a class="mob-week-btn " href="week-03.html">03</a><a class="mob-week-btn " href="week-04.html">04</a><a class="mob-week-btn " href="week-05.html">05</a><a class="mob-week-btn " href="week-06.html">06</a><a class="mob-week-btn " href="week-07.html">07</a>
+    <a class="mob-week-btn " href="week-08.html">08</a><a class="mob-week-btn " href="week-09.html">09</a><a class="mob-week-btn " href="week-10.html">10</a><a class="mob-week-btn " href="week-11.html">11</a><a class="mob-week-btn " href="week-12.html">12</a><a class="mob-week-btn " href="week-13.html">13</a><a class="mob-week-btn " href="week-14.html">14</a>
+  </div>
+</div>
+
+<nav class="subnav">
+  <a href="index.html">Home</a>
+  <span class="subnav-sep"></span>
+  <a class="active" href="week-01.html">W01</a>
+  <a href="week-02.html">W02</a>
+  <a href="week-03.html">W03</a>
+  <a href="week-04.html">W04</a>
+  <a href="week-05.html">W05</a>
+  <a href="week-06.html">W06</a>
+  <a href="week-07.html">W07</a>
+  <a href="week-08.html">W08</a>
+  <a href="week-09.html">W09</a>
+  <a href="week-10.html">W10</a>
+  <a href="week-11.html">W11</a>
+  <a href="week-12.html">W12</a>
+  <a href="week-13.html">W13</a>
+  <a href="week-14.html">W14</a>
+</nav>
+
+<main class="page has-subnav md-body">
+<div class="week-intro" style="border-left-color:#8b5cf6">
+  <div class="phase-tag" style="color:#8b5cf6">Phase 0</div>
+  <p><strong>Week 1.</strong> Fundamentals and jargon — tokens, context limits; set up the practice database.</p>
+</div>
+<aside class="related-learn"><strong>Learn chapter:</strong> <a href="learn/foundations.html">Foundations</a> — concepts, videos, and links. Study alongside or before practice.</aside>
+<div class="week-tabs">
+  <button class="active" data-tab="section-overview">Overview</button>
+  <button data-tab="section-readings">Readings</button>
+  <button data-tab="section-practice">Practice</button>
+  <button data-tab="section-exam">Exam</button>
+  <button data-tab="section-lab-sheet">Lab sheet</button>
+</div>
+<div class="tab-panel" id="section-overview">
+
+<h2>Problem statement</h2>
+<p>You join an exec briefing where engineers say: “We’re hitting context limits; inference cost scales with tokens.” You must <strong>recognize every term</strong>, ask <strong>one clarifying question each</strong> about cost and reliability, and explain <strong>why</strong> “dump the whole wiki into the prompt” cannot work.</p>
+<h2>Outcomes</h2>
+<p>By Friday you can define <strong>tokens</strong>, <strong>context window</strong>, <strong>inference vs training</strong>, <strong>hallucination vs grounding</strong>, <strong>embeddings</strong>, and <strong>fine-tuning vs RAG</strong> without reading slides.</p>
+<h2>Deliverables</h2>
+<ol>
+<li><strong><code>READINGS.md</code></strong> completed (checkboxes).</li>
+<li><strong><code>PRACTICE.md</code></strong> exercises + artifact in <code>my-submissions/week-01/</code> (or this folder).</li>
+<li><strong><code>EXAM.md</code></strong> closed-book attempt <strong>before</strong> opening notes.</li>
+</ol>
+<h2>Files in this folder</h2>
+<ul>
+<li><code>READINGS.md</code> — provider docs + OWASP skim.</li>
+<li><code>PRACTICE.md</code> — glossary, context-limit exercise using <code>data/</code>.</li>
+<li><code>EXAM.md</code> — short oral/written check.</li>
+<li><code>data/long_briefing_stub.txt</code> — optional prop for “why truncation matters.”</li>
+</ul>
+<h2>Links</h2>
+<ul>
+<li>Master plan: <a href="learning-plan.html#phase-0--mental-model-and-jargon-week-1">Phase 0</a></li>
+<li>Shared DB setup (needed this week): <a href="../../practice-env/README.md">practice-env</a></li>
+</ul>
+</div>
+<div class="tab-panel" id="section-readings" hidden>
+
+<p>Complete <strong>before</strong> <code>PRACTICE.md</code>. Spend ~2–3 hours total.</p>
+<h2>Required (pick one provider ecosystem)</h2>
+<p>Skim official docs for:</p>
+<ul>
+<li>[ ] How <strong>tokens</strong> are counted (rough rule: input + output).</li>
+<li>[ ] <strong>Chat completions</strong> vs legacy naming (whatever your provider calls multi-turn chat).</li>
+<li>[ ] <strong>JSON / structured output</strong> mode (schema or constrained JSON).</li>
+<li>[ ] Any page on <strong>models</strong> listing <strong>context window</strong> sizes for the models you might use.</li>
+</ul>
+<p><strong>Suggested entry points (swap for your stack):</strong></p>
+<ul>
+<li>OpenAI: platform docs on tokens, chat, structured outputs.</li>
+<li>Anthropic: Messages API, model cards / context limits.</li>
+<li>Google AI Studio / Gemini: context length, JSON mode.</li>
+</ul>
+<h2>Recommended</h2>
+<ul>
+<li>[ ] OWASP <strong>LLM Top 10</strong> — read the <strong>titles + one paragraph each</strong>, not memorization.</li>
+</ul>
+<h2>Optional</h2>
+<ul>
+<li>[ ] One blog post or doc on <strong>embedding</strong> vs <strong>generation</strong> (why retrieval uses embeddings).</li>
+</ul>
+<hr />
+<p><strong>Reading notes:</strong> After each session, write <strong>5 bullets from memory</strong> (no paste). Store in your submissions folder.</p>
+</div>
+<div class="tab-panel" id="section-practice" hidden>
+
+<h2>Lab A — Environment (required)</h2>
+<p>Follow <strong><a href="../../practice-env/README.md">practice-env/README.md</a></strong>:</p>
+<ol>
+<li>Create <code>venv</code>, <code>pip install -r requirements.txt</code>.</li>
+<li>Run <code>python scripts/build_dummy_db.py</code>.</li>
+<li>Run <code>python labs/explore_metrics.py</code>.</li>
+<li>Save terminal output (or screenshot) + <strong>one sentence</strong>: what the rollup measures.</li>
+</ol>
+<h2>Lab B — Glossary (required)</h2>
+<p>Create <code>glossary.md</code> with <strong>10 terms</strong> from the master plan’s jargon list (<a href="learning-plan.html#phase-0--mental-model-and-jargon-week-1">Phase 0 cheat sheet</a>). Define each <strong>in your own words</strong> in <strong>≤ 2 lines</strong>.</p>
+<h2>Lab C — Context limits (required)</h2>
+<ol>
+<li>Open <code>data/long_briefing_stub.txt</code>. Imagine you must fit “the key decisions” into <strong>≤ 150 words</strong> for a VP.</li>
+<li>Write that summary <strong>yourself</strong> (no LLM), then optionally compare with one LLM summary.</li>
+<li>Write <strong>5 bullets</strong>: what you would <strong>drop</strong> first if the context budget shrinks again—tie drops to <strong>business risk</strong> (e.g. losing audit trail vs losing narrative).</li>
+</ol>
+<h2>Lab D — Short essay (required)</h2>
+<p>In <strong>≤ 250 words</strong>, explain why <strong>context limits</strong> force <strong>summarization</strong>, <strong>chunking</strong>, or <strong>RAG</strong> for large corpora. Link to a <strong>product</strong> consequence (cost, wrong answers, stale policy).</p>
+<hr />
+<p><strong>Submit:</strong> folder <code>my-submissions/week-01/</code> containing <code>glossary.md</code>, <code>essay_context_limits.md</code>, env proof, optional comparison notes.</p>
+</div>
+<div class="tab-panel" id="section-exam" hidden>
+
+<p><strong>Rules:</strong> Answer <strong>without</strong> the learning plan or web open (30–45 minutes). Afterward, compare with <a href="learning-plan.html#phase-0--end-of-week-1">Phase 0 checklist</a> and restudy gaps.</p>
+<h2>Section A — Definitions (20 min)</h2>
+<p>Define in <strong>2–3 sentences</strong> each:</p>
+<ol>
+<li>Token  </li>
+<li>Context window  </li>
+<li>Inference vs training  </li>
+<li>Hallucination vs grounding  </li>
+<li>Embedding (what it’s for)  </li>
+<li>Fine-tuning vs RAG (when each is a reasonable bet)</li>
+</ol>
+<h2>Section B — Scenario (15 min)</h2>
+<p>An engineer proposes: “We’ll paste all 500 pages of our internal wiki into the prompt so the model knows everything.” Write <strong>4 sentences</strong> explaining why this fails and <strong>two</strong> mitigations (pick from summarization, chunking, RAG, structured retrieval).</p>
+<h2>Section C — Vocabulary in the wild (10 min)</h2>
+<p>In a mock Slack message, use <strong>correctly</strong> in one short paragraph: <strong>guardrails</strong>, <strong>prompt injection</strong>, <strong>eval</strong>, <strong>latency</strong>. (Invent context if needed.)</p>
+<hr />
+<p><strong>Self-grade:</strong> Meets = all definitions accurate; scenario names tradeoffs; Slack paragraph uses terms correctly. Restudy anything marked “partial.”</p>
+</div>
+<div class="tab-panel" id="section-lab-sheet" hidden>
+
+<p><strong>Concepts &amp; curated links:</strong> read the Learn chapter <strong><a href="learn/foundations.html">Foundations</a></strong> first (topic path, not calendar-only). This file is the <strong>weekly practice bank</strong> — extra drills and a checklist on top of <strong>Readings</strong> → <strong>Practice</strong> → <strong>Exam</strong>.</p>
+<hr />
+<h2>1. Practice bank</h2>
+<p>Use <strong><code>practice-env</code></strong> for anything marked with data below. Paths are relative to the <strong><code>practice-env/</code></strong> folder in this repo.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Problem</th>
+<th>Data / materials</th>
+<th>Expected outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Explain in <strong>≤ 5 sentences</strong> why “paste the whole wiki into the prompt” fails at scale.</td>
+<td>Concept only</td>
+<td>Written answer you could give in a design review</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Run the tokenizer or provider docs: approximate token count for <strong>200 words</strong> of English.</td>
+<td>Tokenizer link in T1</td>
+<td>Screenshot or number + one-line interpretation</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>List <strong>3 risks</strong> of relying on model prose for <strong>revenue numbers</strong> without a database.</td>
+<td>None</td>
+<td>Bullet list in your notes</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>Complete <strong><code>practice-env</code> setup</strong>: venv, <code>pip install</code>, <code>build_dummy_db.py</code>, <code>explore_metrics.py</code>.</td>
+<td><code>practice-env/README.md</code></td>
+<td>Terminal output saved + one sentence on what the rollup shows</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>Open <code>data/long_briefing_stub.txt</code> (in <strong><code>course-weeks/week-01/data/</code></strong>). Summarize to <strong>≤ 120 words</strong> for a VP yourself (no LLM), then optionally compare with one LLM summary.</td>
+<td><code>course-weeks/week-01/data/long_briefing_stub.txt</code></td>
+<td>Two short paragraphs: yours vs what you’d change after comparing</td>
+</tr>
+</tbody>
+</table>
+<h3>Expanded (same as table)</h3>
+<p><strong>P4 — Environment</strong></p>
+<ul>
+<li><strong>Problem:</strong> Prove the practice database runs end-to-end.</li>
+<li><strong>Data:</strong> SQLite <code>cloudnote.db</code>, script output.</li>
+<li><strong>Outcome:</strong> Reproducible proof you can load metrics locally (foundation for Weeks 4–6).</li>
+</ul>
+<p><strong>P5 — Context / summarization</strong></p>
+<ul>
+<li><strong>Problem:</strong> Practice aggressive summarization tradeoffs.</li>
+<li><strong>Data:</strong> Long stub briefing.</li>
+<li><strong>Outcome:</strong> Explicit list of what you dropped and why (ties to context limits).</li>
+</ul>
+<hr />
+<h2>2. Week checklist</h2>
+<ul>
+<li>[ ] Watched/read at least <strong>one</strong> resource per topic row (T1–T6)</li>
+<li>[ ] Finished <strong>P4</strong> (practice env)</li>
+<li>[ ] Finished <strong>P5</strong> or <strong>P1–P3</strong> written prompts</li>
+<li>[ ] Completed <strong><code>READINGS.md</code></strong> and <strong><code>PRACTICE.md</code></strong> for the formal week assignment</li>
+<li>[ ] <strong><code>EXAM.md</code></strong> without peeking at notes first</li>
+</ul>
+</div>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.week-tabs button');
+  var panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(function (b) { b.classList.remove('active'); });
+      panels.forEach(function (p) { p.hidden = true; });
+      btn.classList.add('active');
+      var panel = document.getElementById(btn.dataset.tab);
+      if (panel) panel.hidden = false;
+    });
+  });
+})();
+</script>
+<nav class="week-pager" aria-label="Adjacent weeks">
+  <a class="pager-link pager-link--next" href="week-02.html">Week 02 →</a>
+</nav>
+<aside class="work-tip">
+  <strong>Keep your work organized.</strong> Save prompts, SQL, and notes under <code>my-submissions/week-01/</code> in your clone so you can review before interviews.
+</aside>
+</main>
+<script src="js/nav.js"></script>
+</body>
+</html>

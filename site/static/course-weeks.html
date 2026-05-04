@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weekly Track — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-logo">AI PM Course</a>
+        <p class="sidebar-tagline">Learn by topic · weekly practice · labs.</p>
+      </div>
+      <nav class="nav-scroll" aria-label="Main">
+        <div class="nav-section">Learn</div>
+        <a class="nav-link nav-link--compact" href="learn/index.html">Learn hub</a>
+        <a class="nav-link nav-link--compact" href="learn/foundations.html">Foundations</a>
+        <a class="nav-link nav-link--compact" href="learn/prompting.html">Prompting</a>
+        <a class="nav-link nav-link--compact" href="learn/sql-and-data.html">SQL & data</a>
+        <a class="nav-link nav-link--compact" href="learn/visualization.html">Visualization</a>
+        <a class="nav-link nav-link--compact" href="learn/rag.html">RAG</a>
+        <a class="nav-link nav-link--compact" href="learn/chatbots.html">Chatbots</a>
+        <a class="nav-link nav-link--compact" href="learn/prototypes.html">Prototypes</a>
+        <a class="nav-link nav-link--compact" href="learn/agents-and-launch.html">Agents & launch</a>
+        <div class="nav-section">Library</div>
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="learning-plan.html">Learning Plan</a>
+        <a class="nav-link" href="graduate-course.html">Graduate Course</a>
+        <a class="nav-link active" href="course-weeks.html">Weekly Index</a>
+        <a class="nav-link" href="practice-env.html">Practice Env</a>
+        <div class="nav-section">Weekly practice</div>
+        <div class="week-grid"><a class="week-btn" href="week-01.html">01</a>
+          <a class="week-btn" href="week-02.html">02</a>
+          <a class="week-btn" href="week-03.html">03</a>
+          <a class="week-btn" href="week-04.html">04</a>
+          <a class="week-btn" href="week-05.html">05</a>
+          <a class="week-btn" href="week-06.html">06</a>
+          <a class="week-btn" href="week-07.html">07</a>
+          <a class="week-btn" href="week-08.html">08</a>
+          <a class="week-btn" href="week-09.html">09</a>
+          <a class="week-btn" href="week-10.html">10</a>
+          <a class="week-btn" href="week-11.html">11</a>
+          <a class="week-btn" href="week-12.html">12</a>
+          <a class="week-btn" href="week-13.html">13</a>
+          <a class="week-btn" href="week-14.html">14</a></div>
+      </nav>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <div class="breadcrumb"><strong>Weekly Track</strong></div>
+      </header>
+      <main class="content md-body">
+<h1>Weekly folders — AI for TPM / Technical PM</h1>
+<p>This directory maps <strong><a href="learning-plan.html">TPM-PM-AI-Technical-Learning-Plan.md</a></strong> to <strong>14 consecutive weeks</strong> of hands-on work. <strong>Concepts and resource lists</strong> are in <strong><a href="../learn/README.md"><code>../learn/</code></a></strong> (topic path). Each week folder is self-contained:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>README.md</code></strong></td>
+<td><strong>Start here each week:</strong> problem statement, scenario, deliverables</td>
+</tr>
+<tr>
+<td><strong><code>TOPICS.md</code></strong></td>
+<td><strong>Practice lab sheet</strong> — extra drills + checklist; links to the matching Learn chapter</td>
+</tr>
+<tr>
+<td><strong><code>READINGS.md</code></strong></td>
+<td>What to read or skim before practice (docs, concepts)</td>
+</tr>
+<tr>
+<td><strong><code>PRACTICE.md</code></strong></td>
+<td>Hands-on assignments (“learn by doing”)</td>
+</tr>
+<tr>
+<td><strong><code>EXAM.md</code></strong></td>
+<td>End-of-week check—redo <strong>without</strong> peeking at notes until you’ve answered</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Shared environment:</strong> <a href="practice-env.html"><code>../practice-env/</code></a> — SQLite <code>cloudnote.db</code>, <code>corpus/</code> for RAG weeks, SQL drills.</p>
+<p><strong>Graduate-style detail:</strong> <strong><a href="graduate-course.html">TPM-PM-AI-Graduate-Course.md</a></strong></p>
+<p><strong>Where to put your work:</strong> create <code>my-submissions/week-XX/</code> at the repo root (or inside each <code>week-XX/</code> folder) so your prompts, SQL, and exports stay organized.</p>
+<hr />
+<h2>Week index</h2>
+<table>
+<thead>
+<tr>
+<th>Folder</th>
+<th>Focus</th>
+<th>Phase (plan)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="week-01.html">week-01</a></td>
+<td>LLM fundamentals, jargon, context limits; setup <code>practice-env</code></td>
+<td>Phase 0</td>
+</tr>
+<tr>
+<td><a href="week-02.html">week-02</a></td>
+<td>Prompt patterns: role/constraints, few-shot, decomposition</td>
+<td>Phase 1</td>
+</tr>
+<tr>
+<td><a href="week-03.html">week-03</a></td>
+<td>CoT, self-critique, tool-use framing; <strong>10-Q eval sheet</strong></td>
+<td>Phase 1</td>
+</tr>
+<tr>
+<td><a href="week-04.html">week-04</a></td>
+<td>SQL as source of truth; natural language → SQL</td>
+<td>Phase 2</td>
+</tr>
+<tr>
+<td><a href="week-05.html">week-05</a></td>
+<td>Text-to-SQL safety; threat model; drills</td>
+<td>Phase 2</td>
+</tr>
+<tr>
+<td><a href="week-06.html">week-06</a></td>
+<td>Plots + quantitative validation</td>
+<td>Phase 3</td>
+</tr>
+<tr>
+<td><a href="week-07.html">week-07</a></td>
+<td>RAG pipeline (ingest → retrieve → cite)</td>
+<td>Phase 4</td>
+</tr>
+<tr>
+<td><a href="week-08.html">week-08</a></td>
+<td>RAG failure modes; <strong>midterm</strong></td>
+<td>Phase 4</td>
+</tr>
+<tr>
+<td><a href="week-09.html">week-09</a></td>
+<td>Chatbot UX, logging, rate limits</td>
+<td>Phase 5</td>
+</tr>
+<tr>
+<td><a href="week-10.html">week-10</a></td>
+<td>Minimal chat UI; incident playbook</td>
+<td>Phase 5</td>
+</tr>
+<tr>
+<td><a href="week-11.html">week-11</a></td>
+<td>Prototypes: reproducibility, Streamlit/Gradio path</td>
+<td>Phase 6</td>
+</tr>
+<tr>
+<td><a href="week-12.html">week-12</a></td>
+<td>Demo script; cost/latency; <strong>capstone kickoff</strong></td>
+<td>Phase 6</td>
+</tr>
+<tr>
+<td><a href="week-13.html">week-13</a></td>
+<td>Agentic loops; human-in-the-loop; idempotency</td>
+<td>Phase 7</td>
+</tr>
+<tr>
+<td><a href="week-14.html">week-14</a></td>
+<td>Capstone integration; extras review; <strong>final review</strong></td>
+<td>Phase 7 + Capstone</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>How to consume each week (recommended order)</h2>
+<ol>
+<li><strong>Learn chapter</strong> (from <a href="../learn/README.md"><code>../learn/README.md</code></a>) — study the topic that matches this week when you need concepts or links.</li>
+<li><strong><code>README.md</code></strong> → <strong><code>READINGS.md</code></strong> → <strong><code>PRACTICE.md</code></strong> — course assignments in full.</li>
+<li><strong><code>TOPICS.md</code></strong> — practice bank rows (problem / data / outcome) as extra drills.</li>
+<li><strong><code>EXAM.md</code></strong> — self-test before checking solutions or notes.</li>
+</ol>
+<h2>Note on “Week 1” vs prompt engineering</h2>
+<p><strong>Week 1</strong> is <strong>fundamentals and setup</strong> (tokens, context window, jargon)—not full prompt-engineering patterns. <strong>Prompt engineering patterns</strong> start in <strong>Weeks 2–3</strong>, aligned with <strong>Phase 1</strong> in the master plan.</p>
+      </main>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('overlay');
+    if (toggle && sidebar) {
+      toggle.addEventListener('click', function () {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('show');
+      });
+      if (overlay) {
+        overlay.addEventListener('click', function () {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('show');
+        });
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

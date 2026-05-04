@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RAG — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+<style>
+.quiz-section,.reading-section{margin-top:2.5rem}
+.quiz-section h2,.reading-section h2{font-size:1rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem}
+.quiz-section h2::before{content:"\2713 ";font-size:0.85rem;opacity:.5}
+.reading-section h2::before{content:"\2197 ";font-size:0.85rem;opacity:.5}
+.qz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin-bottom:0.6rem;border-left:3px solid var(--accent);overflow:hidden}
+.qz-q{padding:0.75rem 1rem;font-size:0.84rem;font-weight:600;line-height:1.5;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;color:var(--text)}
+.qz-q:hover{background:var(--surface-2)}
+.qz-tog{color:var(--muted-2);font-size:0.75rem;flex-shrink:0;user-select:none;margin-top:0.15rem}
+.qz-a{display:none;padding:0.65rem 1rem 0.85rem;border-top:1px solid var(--border);background:var(--surface-2);font-size:0.82rem;color:var(--muted);line-height:1.65}
+.qz-a.open{display:block}
+.qz-a strong{color:var(--text)}
+.read-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem}
+.read-list li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0.7rem 1rem;display:flex;flex-direction:column;gap:0.2rem}
+.read-list a{font-size:0.83rem;font-weight:600;color:var(--accent);text-decoration:none}
+.read-list a:hover{text-decoration:underline}
+.read-list .read-desc{font-size:0.75rem;color:var(--muted)}
+.read-type{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;opacity:.6}
+</style>
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="../index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="index.html" class="active">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks"><button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel"><div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid"><a href="../week-01.html">01</a><a href="../week-02.html">02</a><a href="../week-03.html">03</a><a href="../week-04.html">04</a><a href="../week-05.html">05</a><a href="../week-06.html">06</a><a href="../week-07.html">07</a><a href="../week-08.html">08</a><a href="../week-09.html">09</a><a href="../week-10.html">10</a><a href="../week-11.html">11</a><a href="../week-12.html">12</a><a href="../week-13.html">13</a><a href="../week-14.html">14</a></div>
+      </div></div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="index.html">Learn hub</a><a class="mob-link" href="foundations.html">Foundations</a><a class="mob-link" href="prompting.html">Prompting</a><a class="mob-link" href="sql-and-data.html">SQL &amp; data</a><a class="mob-link" href="visualization.html">Visualization</a><a class="mob-link active" href="rag.html">RAG</a><a class="mob-link" href="chatbots.html">Chatbots</a><a class="mob-link" href="prototypes.html">Prototypes</a><a class="mob-link" href="agents-and-launch.html">Agents &amp; launch</a>
+  <a class="mob-link" href="faang-prep.html">FAANG prep</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid"><a class="mob-week-btn" href="../week-01.html">01</a><a class="mob-week-btn" href="../week-02.html">02</a><a class="mob-week-btn" href="../week-03.html">03</a><a class="mob-week-btn" href="../week-04.html">04</a><a class="mob-week-btn" href="../week-05.html">05</a><a class="mob-week-btn" href="../week-06.html">06</a><a class="mob-week-btn" href="../week-07.html">07</a><a class="mob-week-btn" href="../week-08.html">08</a><a class="mob-week-btn" href="../week-09.html">09</a><a class="mob-week-btn" href="../week-10.html">10</a><a class="mob-week-btn" href="../week-11.html">11</a><a class="mob-week-btn" href="../week-12.html">12</a><a class="mob-week-btn" href="../week-13.html">13</a><a class="mob-week-btn" href="../week-14.html">14</a></div>
+</div>
+<nav class="subnav">
+  <a href="../index.html">Home</a><span class="subnav-sep"></span>
+  <a href="index.html">Hub</a><a href="foundations.html">Foundations</a><a href="prompting.html">Prompting</a><a href="sql-and-data.html">SQL &amp; data</a><a href="visualization.html">Visualization</a><a href="rag.html" class="active">RAG</a><a href="chatbots.html">Chatbots</a><a href="prototypes.html">Prototypes</a><a href="agents-and-launch.html">Agents &amp; launch</a><a href="faang-prep.html">FAANG prep</a>
+</nav>
+
+<main class="page has-subnav prose">
+  <h1>RAG — Retrieval-Augmented Generation</h1>
+  <p><em>Chapter 5 · Phase 4 · practice in <a href="../week-07.html">Week 7</a> and <a href="../week-08.html">Week 8</a></em></p>
+
+  <div class="callout callout--info">
+    <div class="callout-title">What you will know after this chapter</div>
+    Why RAG exists and what problem it solves · the full 5-stage pipeline (chunk → embed → index → retrieve → generate) · chunking strategies and size tradeoffs · how vector search works · hybrid search · what causes RAG to fail · how to evaluate a RAG system
+  </div>
+
+  <h2>1. Why RAG exists</h2>
+  <p>LLMs have two hard constraints that prevent them from answering questions about your internal data:</p>
+  <ol>
+    <li><strong>Context limits</strong> — a 200K token window fits ~450 pages. Your documentation, codebase, or knowledge base is probably larger.</li>
+    <li><strong>Training cutoff</strong> — the model's weights encode knowledge up to a training date. Anything newer or proprietary is unknown to the model.</li>
+  </ol>
+  <p>RAG solves both by retrieving relevant information at query time and injecting it into the prompt. The model's role changes from "remember everything" to "reason over what I'm given."</p>
+
+  <h2>2. The full RAG pipeline</h2>
+
+  <div class="diagram">
+    <div class="diagram-label">RAG — complete architecture</div>
+    <div class="d-col" style="gap:1rem">
+      <div style="font-size:0.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em">Indexing (offline — run once or periodically)</div>
+      <div class="d-flow" style="flex-wrap:wrap;gap:0.3rem">
+        <div class="d-node">Raw docs<br/><small>PDFs, pages, tickets</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--gold">Chunker<br/><small>splits into segments</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--gold">Embedding model<br/><small>text → vector</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--gold">Vector DB<br/><small>pgvector, Pinecone, Weaviate</small></div>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em">Query (online — every user request)</div>
+      <div class="d-flow" style="flex-wrap:wrap;gap:0.3rem">
+        <div class="d-node">User question</div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--blue">Embedding model<br/><small>same model as indexing</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--blue">Vector search<br/><small>top-K by cosine sim</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--blue">Reranker<br/><small>optional</small></div>
+      </div>
+      <div class="d-flow" style="flex-wrap:wrap;gap:0.3rem">
+        <div class="d-node">Retrieved chunks</div>
+        <div class="d-arrow">+</div>
+        <div class="d-node">User question</div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--green">LLM generates answer<br/><small>with citations</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node">Response to user</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>3. Stage 1 — Chunking</h2>
+  <p>A <strong>chunk</strong> is the unit of retrieval. You never retrieve an entire document — you retrieve the most relevant segment. Chunk strategy is one of the highest-impact tuning levers in a RAG system.</p>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Chunk size</div>
+      <div class="def-body">How many tokens each chunk contains. Typical range: 256–1024 tokens. Too small = each chunk lacks context. Too large = irrelevant content dilutes the relevant signal.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Chunk overlap</div>
+      <div class="def-body">How many tokens at the boundary are shared between consecutive chunks. Overlap of 50–100 tokens prevents a sentence that spans a boundary from being split across two chunks.</div>
+    </div>
+  </div>
+
+  <h3>Chunking strategies</h3>
+  <table>
+    <thead><tr><th>Strategy</th><th>How it works</th><th>Best for</th><th>Weakness</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Fixed-size</strong></td><td>Split every N tokens with overlap</td><td>General purpose, fast setup</td><td>Splits mid-sentence; ignores document structure</td></tr>
+      <tr><td><strong>Sentence / paragraph</strong></td><td>Split on natural language boundaries</td><td>Prose documents, articles</td><td>Uneven chunk sizes; some chunks are too short</td></tr>
+      <tr><td><strong>Semantic</strong></td><td>Embed and split where cosine similarity drops</td><td>Long documents with topic shifts</td><td>Slow, requires a second embedding pass</td></tr>
+      <tr><td><strong>Hierarchical</strong></td><td>Parent chunk (section) + child chunks (paragraphs)</td><td>Structured docs, code bases, legal</td><td>More complex retrieval and deduplication</td></tr>
+      <tr><td><strong>Document-aware</strong></td><td>Respect section headers, code blocks, tables</td><td>Technical docs, APIs, manuals</td><td>Requires custom parsing per document type</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pm-box"><div class="pm-box-label">PM decision</div>Start with fixed-size chunks (512 tokens, 50 token overlap). Only move to more complex strategies after measuring retrieval quality. The effort-return curve flattens quickly.</div>
+
+  <h2>4. Stage 2 — Embedding and indexing</h2>
+  <p>Each chunk is passed through an <strong>embedding model</strong> to produce a dense vector. This is the representation used for similarity search.</p>
+
+  <h3>How vector search works</h3>
+  <div class="diagram">
+    <div class="diagram-label">Cosine similarity — the core math</div>
+    <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;font-family:var(--mono);font-size:0.82rem;line-height:1.9">
+      query = "How do I reset my password?"  → embed → q_vec<br />
+      chunk_A = "Account recovery: click Forgot Password..." → a_vec<br />
+      chunk_B = "Billing: update payment method..." → b_vec<br />
+      <br />
+      cosine_sim(q_vec, a_vec) = 0.91  ✓ HIGH — return this<br />
+      cosine_sim(q_vec, b_vec) = 0.23  ✗ LOW — skip<br />
+      <br />
+      Top-K = [chunk_A, ...]  → inject into prompt
+    </div>
+  </div>
+
+  <h3>Vector database options</h3>
+  <table>
+    <thead><tr><th>Option</th><th>Notes</th><th>Good when</th></tr></thead>
+    <tbody>
+      <tr><td><strong>pgvector</strong></td><td>Postgres extension. SQL + vectors in one DB.</td><td>You already use Postgres; corpus &lt; 10M vectors</td></tr>
+      <tr><td><strong>Pinecone</strong></td><td>Managed cloud. Fast setup, serverless tier.</td><td>Fast iteration, no infra management</td></tr>
+      <tr><td><strong>Weaviate</strong></td><td>Open source, supports multi-modal, hybrid search built-in.</td><td>Hybrid search, self-hosted required</td></tr>
+      <tr><td><strong>Qdrant</strong></td><td>Open source, Rust-based, high performance.</td><td>High throughput, self-hosted</td></tr>
+      <tr><td><strong>Chroma</strong></td><td>Simple Python-first, good for prototypes.</td><td>Local development, quick demos</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Stage 3 — Retrieval and reranking</h2>
+
+  <h3>Top-K retrieval</h3>
+  <p>The query vector is compared to all indexed vectors. The K most similar chunks (typically K=3–10) are returned. These are injected into the prompt as context.</p>
+
+  <h3>Hybrid search — keyword + semantic</h3>
+  <p>Pure semantic search misses exact matches (product names, error codes, IDs). Hybrid search combines BM25 keyword matching with semantic similarity and merges results.</p>
+  <div class="diagram">
+    <div class="diagram-label">Hybrid search merge</div>
+    <div class="d-flow">
+      <div class="d-col">
+        <div class="d-node">Query</div>
+      </div>
+      <div class="d-arrow">→</div>
+      <div class="d-col" style="gap:0.4rem">
+        <div class="d-node d-node--blue">BM25 keyword results</div>
+        <div class="d-node d-node--gold">Semantic vector results</div>
+      </div>
+      <div class="d-arrow">→</div>
+      <div class="d-node d-node--green">RRF merge / reranker<br/><small>Reciprocal Rank Fusion</small></div>
+      <div class="d-arrow">→</div>
+      <div class="d-node">Top-K final chunks</div>
+    </div>
+  </div>
+
+  <h3>Reranking</h3>
+  <p>A <strong>cross-encoder reranker</strong> takes (query, chunk) pairs and scores them with higher accuracy than the bi-encoder used for fast retrieval. It is slower but more precise — run on the top-20 candidates to reorder before taking the top-5.</p>
+
+  <h2>6. Stage 4 — Generation with context</h2>
+  <p>The retrieved chunks are injected into the prompt with explicit instructions to use only the provided context.</p>
+  <pre><code>SYSTEM: You are a support assistant. Answer ONLY from the provided context.
+If the answer is not in the context, say "I couldn't find that in our docs."
+Always cite the source article ID.
+
+CONTEXT:
+[Article KB-0042] To export to CSV: navigate to Settings → Data → Export...
+[Article KB-0088] Billing changes take effect at the next billing cycle...
+
+USER: How do I export my usage data?</code></pre>
+
+  <h2>7. RAG failure modes</h2>
+  <div class="callout callout--red">
+    <div class="callout-title">The most common RAG failures</div>
+    <ul>
+      <li><strong>Wrong chunk retrieved</strong> — the most similar chunk is not the most relevant one. Usually a chunking or embedding model problem.</li>
+      <li><strong>Answer not in corpus</strong> — the document exists but was not indexed (wrong file format, crawl missed it, access control excluded it).</li>
+      <li><strong>Stale index</strong> — document updated but not re-indexed. User gets outdated information.</li>
+      <li><strong>Chunk size mismatch</strong> — chunk is too small to contain the full answer (the answer spans multiple chunks). Solution: increase chunk size or use hierarchical retrieval.</li>
+      <li><strong>Hallucination despite context</strong> — model ignores the retrieved context and generates from training weights anyway. Mitigate with stronger system prompt constraints and few-shot examples of citation behavior.</li>
+      <li><strong>Lost in the middle</strong> — when many chunks are retrieved, model quality degrades for content in the middle of the context. Limit K or put most important chunks first/last.</li>
+    </ul>
+  </div>
+
+  <h2>8. How to evaluate a RAG system</h2>
+  <table>
+    <thead><tr><th>Metric</th><th>What it measures</th><th>How</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Retrieval recall</strong></td><td>Was the answer-containing chunk in the top-K results?</td><td>Compare retrieved IDs to ground-truth IDs for a test set</td></tr>
+      <tr><td><strong>Answer faithfulness</strong></td><td>Is the answer grounded in the retrieved context? (no hallucination)</td><td>LLM-as-judge: "Is every claim in the answer supported by the context?"</td></tr>
+      <tr><td><strong>Answer relevance</strong></td><td>Does the answer actually address the question?</td><td>LLM-as-judge: "Does this answer the question? Score 1–5."</td></tr>
+      <tr><td><strong>Context precision</strong></td><td>Are all retrieved chunks relevant? (no noise)</td><td>LLM-as-judge per chunk: "Is this chunk relevant to the question?"</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pm-box"><div class="pm-box-label">PM evaluation workflow</div>1. Collect 50–100 real user questions with known correct answers.<br/>2. Run the RAG pipeline on each.<br/>3. Score retrieval recall (did we get the right chunk?) and answer faithfulness (did the LLM use the context?).<br/>4. Iterate on chunking, embedding model, or prompt until both metrics exceed 85%.</div>
+
+  <hr />
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">
+    <a class="btn btn-outline" href="visualization.html">← Visualization</a>
+    <div style="display:flex;gap:0.65rem">
+      <a class="btn btn-outline" href="../week-07.html">Practice → Week 7</a>
+      <a class="btn btn-primary" href="chatbots.html">Next: Chatbots →</a>
+    </div>
+  </div>
+
+<div class='quiz-section'>
+  <h2>Test your understanding</h2>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">Describe the two main pipelines in a RAG system.<span class="qz-tog">v</span></div><div class="qz-a"><strong>Indexing (offline):</strong> Documents -> chunker -> embedding model -> vector database. <strong>Query (online):</strong> User query -> embedding model -> vector similarity search -> top-K chunks -> LLM prompt -> response. Indexing quality determines retrieval quality; retrieval quality determines answer quality.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is a chunk, and why does chunk size matter?<span class="qz-tog">v</span></div><div class="qz-a">A chunk is a segment of a document (e.g. 256-512 tokens). Too large: irrelevant content wastes context window space. Too small: the chunk lacks context to answer the question. Most production systems use 256-512 token chunks with overlap.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is the difference between semantic search and keyword search? When does each fail?<span class="qz-tog">v</span></div><div class="qz-a"><strong>Semantic search</strong> finds conceptually similar content even with different phrasing. It fails on specific identifiers (product codes, acronyms). <strong>Keyword search</strong> is precise on exact terms but misses synonyms. Hybrid retrieval combines both.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is reranking and why add it to a RAG pipeline?<span class="qz-tog">v</span></div><div class="qz-a">Reranking is a second-pass scoring step: after vector retrieval, a cross-encoder re-scores each (query, chunk) pair for relevance. It is slower and more expensive but significantly more accurate than vector similarity alone.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">A RAG system retrieves the wrong document. What are the two most common causes?<span class="qz-tog">v</span></div><div class="qz-a"><strong>(1) Poor chunking:</strong> the answer spans a chunk boundary; neither chunk alone is sufficient. Fix: add overlap. <strong>(2) Query-document vocabulary mismatch:</strong> 'invoice' vs 'bill'. Fix: query expansion or hybrid retrieval.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is the 'lost-in-the-middle' problem and how do you mitigate it?<span class="qz-tog">v</span></div><div class="qz-a">LLMs use information at the beginning or end of a long context better than in the middle. Mitigation: sort retrieved chunks by descending relevance and put the highest-ranked chunk first in the prompt.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">How would you evaluate retrieval quality independently of generation quality?<span class="qz-tog">v</span></div><div class="qz-a">Build a test set of (question, ideal source document) pairs. For each question, check if the correct chunk appears in the top-K retrieved results. Report <strong>Recall@K</strong> and <strong>MRR</strong>. Evaluating retrieval separately isolates whether a bad answer is a retrieval failure or a generation failure.</div></div>
+</div>
+<div class='reading-section'>
+  <h2>Further reading &amp; watching</h2>
+  <ul class='read-list'>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Embeddings + Vector Databases (Part I)</a><div class="read-desc">The embeddings and vector database section covers the foundation of every RAG system — costs, latency, and when to use embedding-based retrieval.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://lilianweng.github.io/posts/2023-06-23-agent/" target="_blank" rel="noopener">Lilian Weng — LLM-powered Autonomous Agents</a><div class="read-desc">Covers memory and retrieval as agent subsystems. The memory section maps directly to how RAG fits into AI systems.</div></li>
+  <li><span class="read-type">Video</span><a href="https://www.youtube.com/watch?v=TRjq7t2Ms5I" target="_blank" rel="noopener">Jerry Liu — Building Production RAG</a><div class="read-desc">LlamaIndex founder walks through real production RAG pipelines, failure modes, and improvements.</div></li>
+  <li><span class="read-type">Docs</span><a href="https://docs.ragas.io/" target="_blank" rel="noopener">RAGAS — RAG Evaluation Framework</a><div class="read-desc">Open-source framework for evaluating RAG systems: faithfulness, answer relevance, context recall.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://www.anthropic.com/news/contextual-retrieval" target="_blank" rel="noopener">Anthropic — Contextual Retrieval</a><div class="read-desc">Research post (not an API guide) on improving chunk-level context to significantly improve retrieval accuracy.</div></li>
+  </ul>
+</div>
+<script>
+function toggleQz(el){var a=el.nextElementSibling,t=el.querySelector('.qz-tog'),o=a.classList.contains('open');a.classList.toggle('open',!o);t.textContent=o?'v':'u';}
+</script>
+</main>
+<script src="../js/nav.js"></script>
+</body>
+</html>

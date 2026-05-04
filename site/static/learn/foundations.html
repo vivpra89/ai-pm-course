@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Foundations — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+<style>
+.quiz-section,.reading-section{margin-top:2.5rem}
+.quiz-section h2,.reading-section h2{font-size:1rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem}
+.quiz-section h2::before{content:"\2713 ";font-size:0.85rem;opacity:.5}
+.reading-section h2::before{content:"\2197 ";font-size:0.85rem;opacity:.5}
+.qz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin-bottom:0.6rem;border-left:3px solid var(--accent);overflow:hidden}
+.qz-q{padding:0.75rem 1rem;font-size:0.84rem;font-weight:600;line-height:1.5;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;color:var(--text)}
+.qz-q:hover{background:var(--surface-2)}
+.qz-tog{color:var(--muted-2);font-size:0.75rem;flex-shrink:0;user-select:none;margin-top:0.15rem}
+.qz-a{display:none;padding:0.65rem 1rem 0.85rem;border-top:1px solid var(--border);background:var(--surface-2);font-size:0.82rem;color:var(--muted);line-height:1.65}
+.qz-a.open{display:block}
+.qz-a strong{color:var(--text)}
+.read-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem}
+.read-list li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0.7rem 1rem;display:flex;flex-direction:column;gap:0.2rem}
+.read-list a{font-size:0.83rem;font-weight:600;color:var(--accent);text-decoration:none}
+.read-list a:hover{text-decoration:underline}
+.read-list .read-desc{font-size:0.75rem;color:var(--muted)}
+.read-type{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;opacity:.6}
+</style>
+</head>
+<body>
+
+<header class="topnav">
+  <a class="topnav-logo" href="../index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="index.html" class="active">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks">
+      <button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel">
+        <div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid">
+          <a href="../week-01.html">01</a><a href="../week-02.html">02</a><a href="../week-03.html">03</a><a href="../week-04.html">04</a><a href="../week-05.html">05</a><a href="../week-06.html">06</a><a href="../week-07.html">07</a>
+          <a href="../week-08.html">08</a><a href="../week-09.html">09</a><a href="../week-10.html">10</a><a href="../week-11.html">11</a><a href="../week-12.html">12</a><a href="../week-13.html">13</a><a href="../week-14.html">14</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="index.html">Learn hub</a>
+  <a class="mob-link active" href="foundations.html">Foundations</a>
+  <a class="mob-link" href="prompting.html">Prompting</a>
+  <a class="mob-link" href="sql-and-data.html">SQL &amp; data</a>
+  <a class="mob-link" href="visualization.html">Visualization</a>
+  <a class="mob-link" href="rag.html">RAG</a>
+  <a class="mob-link" href="chatbots.html">Chatbots</a>
+  <a class="mob-link" href="prototypes.html">Prototypes</a>
+  <a class="mob-link" href="agents-and-launch.html">Agents &amp; launch</a>
+  <a class="mob-link" href="faang-prep.html">FAANG prep</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid">
+    <a class="mob-week-btn" href="../week-01.html">01</a><a class="mob-week-btn" href="../week-02.html">02</a><a class="mob-week-btn" href="../week-03.html">03</a><a class="mob-week-btn" href="../week-04.html">04</a><a class="mob-week-btn" href="../week-05.html">05</a><a class="mob-week-btn" href="../week-06.html">06</a><a class="mob-week-btn" href="../week-07.html">07</a>
+    <a class="mob-week-btn" href="../week-08.html">08</a><a class="mob-week-btn" href="../week-09.html">09</a><a class="mob-week-btn" href="../week-10.html">10</a><a class="mob-week-btn" href="../week-11.html">11</a><a class="mob-week-btn" href="../week-12.html">12</a><a class="mob-week-btn" href="../week-13.html">13</a><a class="mob-week-btn" href="../week-14.html">14</a>
+  </div>
+</div>
+
+<nav class="subnav">
+  <a href="../index.html">Home</a>
+  <span class="subnav-sep"></span>
+  <a href="index.html">Hub</a>
+  <a href="foundations.html" class="active">Foundations</a>
+  <a href="prompting.html">Prompting</a>
+  <a href="sql-and-data.html">SQL &amp; data</a>
+  <a href="visualization.html">Visualization</a>
+  <a href="rag.html">RAG</a>
+  <a href="chatbots.html">Chatbots</a>
+  <a href="prototypes.html">Prototypes</a>
+  <a href="agents-and-launch.html">Agents &amp; launch</a><a href="faang-prep.html">FAANG prep</a>
+</nav>
+
+<main class="page has-subnav prose">
+
+  <h1>Foundations — LLM literacy for PMs</h1>
+  <p><em>Chapter 1 · Phase 0 · ~3–5 hours · practice in <a href="../week-01.html">Week 1</a></em></p>
+
+  <div class="callout callout--info">
+    <div class="callout-title">What you will know after this chapter</div>
+    Why tokens drive cost and architecture · what context windows force you to design around · when your team ships inference vs trains · why grounding prevents hallucinations · what embeddings do · how to decide between RAG and fine-tuning
+  </div>
+
+  <!-- ── 1. TOKENS ─────────────────────────────── -->
+  <h2>1. Tokens — the unit of LLM computation</h2>
+
+  <p>LLMs do not read words or characters. They read <strong>tokens</strong> — chunks that fall somewhere between characters and words, determined by a tokenizer trained on the model's corpus. A token is typically 3–4 characters of English, but this varies by language and content type.</p>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Token</div>
+      <div class="def-body">The smallest unit of text a model processes. A tokenizer converts raw text into a sequence of integer IDs before the model sees anything. The same process runs in reverse to produce output text.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Tokenizer</div>
+      <div class="def-body">An algorithm (commonly BPE — Byte Pair Encoding) that segments text into tokens. Each model family has its own tokenizer. GPT-4o, Claude, and Gemini all tokenize the same sentence differently.</div>
+    </div>
+  </div>
+
+  <h3>Tokenization example</h3>
+  <p>The sentence <em>"Retrieval-augmented generation reduces hallucinations."</em> tokenizes roughly as:</p>
+  <div class="token-vis">
+    <span class="token token--t1">Retrieval</span><span class="token token--t2">-</span><span class="token token--t1">augmented</span><span class="token token--t2"> generation</span><span class="token token--t3"> reduces</span><span class="token token--t4"> hallucinations</span><span class="token">.</span>
+  </div>
+  <p style="font-size:0.8rem;color:var(--muted)">7 tokens. The hyphen, spaces, and suffixes each become their own token or part of one. Code and non-English text can be 2–5× more tokens per word.</p>
+
+  <h3>Why tokens matter for PMs</h3>
+  <div class="concept-list">
+    <div class="concept-item">
+      <div class="concept-num">💰</div>
+      <div class="concept-body"><h4>Cost</h4><p>Every API call is billed on input + output tokens. A 10-page document ≈ 3,000 tokens. At $15/M tokens, 1M such documents = $45,000 in input cost alone before any output. <strong>Token efficiency is a product lever, not just an engineering concern.</strong></p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">⏱️</div>
+      <div class="concept-body"><h4>Latency</h4><p>Output tokens are generated one at a time (autoregressive). 500 output tokens at 50 tok/s = 10 seconds. Streaming makes this feel faster, but token count drives wall-clock time for the user.</p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">🧱</div>
+      <div class="concept-body"><h4>Architecture</h4><p>Once you hit the context limit, you cannot simply "add more tokens." You must summarize, chunk, or retrieve. Every architectural decision downstream (RAG, agents, summaries) is a response to token limits.</p></div>
+    </div>
+  </div>
+
+  <div class="pm-box">
+    <div class="pm-box-label">PM rule of thumb</div>
+    1 word ≈ 1.3 tokens (English). 1 page ≈ 300–400 tokens. Code is denser. PDFs with tables or images (as text) can be 5–10× denser. Always estimate token budgets before scoping a feature.
+  </div>
+
+  <!-- ── 2. CONTEXT WINDOW ──────────────────────── -->
+  <h2>2. Context window — the model's working memory</h2>
+
+  <p>Every LLM call has a <strong>context window</strong>: the maximum number of tokens the model can "see" in a single request. Everything outside the window is invisible. There is no background memory, no implicit file system. What you put in the prompt is literally all the model knows.</p>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Context window</div>
+      <div class="def-body">The hard upper limit on tokens per request (input + output combined for some models, or just input for others). Also called "context length" or "context limit." Exceeding it causes an API error or silent truncation.</div>
+    </div>
+  </div>
+
+  <h3>Current model context sizes (2025)</h3>
+  <table>
+    <thead><tr><th>Model</th><th>Context</th><th>~Pages of text</th></tr></thead>
+    <tbody>
+      <tr><td>GPT-4o</td><td>128K tokens</td><td>~300 pages</td></tr>
+      <tr><td>Claude 3.5 Sonnet</td><td>200K tokens</td><td>~450 pages</td></tr>
+      <tr><td>Gemini 1.5 Pro</td><td>1M tokens</td><td>~2,200 pages</td></tr>
+      <tr><td>Llama 3.1 70B</td><td>128K tokens</td><td>~300 pages</td></tr>
+      <tr><td>Mistral Large</td><td>32K tokens</td><td>~70 pages</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.8rem;color:var(--muted)">Larger context ≠ better quality on long inputs. "Lost in the middle" research shows models perform worse on content in the middle of a long context vs. at the beginning or end.</p>
+
+  <h3>What context limits force you to design around</h3>
+  <div class="diagram">
+    <div class="diagram-label">When content exceeds the window</div>
+    <div class="d-flow">
+      <div class="d-node">Raw content<br/><small style="color:var(--muted)">e.g. 500-page wiki</small></div>
+      <div class="d-arrow">→</div>
+      <div class="d-node d-node--red">Exceeds limit</div>
+      <div class="d-arrow">→</div>
+      <div class="d-col">
+        <div class="d-node d-node--blue">Option A: Summarize</div>
+        <div class="d-node d-node--blue">Option B: Chunk + retrieve (RAG)</div>
+        <div class="d-node d-node--blue">Option C: Fine-tune (teach behavior)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pm-box">
+    <div class="pm-box-label">PM implication</div>
+    "Just dump the whole knowledge base into the prompt" never scales. Every LLM product that handles large corpora needs an explicit strategy for what fits in the window and how to retrieve what doesn't.
+  </div>
+
+  <!-- ── 3. INFERENCE VS TRAINING ──────────────── -->
+  <h2>3. Inference vs training — what product teams actually ship</h2>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <h4 style="color:var(--accent)">Training</h4>
+      <ul>
+        <li>Adjusts model weights on large datasets</li>
+        <li>Requires GPUs, weeks of compute, billions of examples</li>
+        <li>Done by model labs (OpenAI, Anthropic, Google, Meta)</li>
+        <li><strong>Pre-training:</strong> learns language from scratch on the internet</li>
+        <li><strong>Fine-tuning:</strong> adapts a pretrained model to a specific task or style</li>
+        <li>PM teams almost never run pre-training; fine-tuning is occasional</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <h4 style="color:var(--green)">Inference</h4>
+      <ul>
+        <li>Running a trained model to produce output</li>
+        <li>Every API call, every user interaction is inference</li>
+        <li>Weights are frozen — the model does not learn from your calls</li>
+        <li><strong>This is what product teams ship</strong></li>
+        <li>Cost = tokens × price per token</li>
+        <li>Latency = time to first token + time to complete</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="diagram">
+    <div class="diagram-label">Training vs inference pipeline</div>
+    <div class="d-col" style="gap:0.75rem">
+      <div class="d-flow">
+        <div class="d-node d-node--gold d-node--big">Training data<br/><small>trillions of tokens</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--gold d-node--big">GPU cluster<br/><small>weeks / months</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--gold d-node--big">Model weights<br/><small>frozen file on disk</small></div>
+      </div>
+      <div style="text-align:center;color:var(--muted-2);font-size:0.75rem">⬇ model weights are then loaded for inference</div>
+      <div class="d-flow">
+        <div class="d-node d-node--blue d-node--big">Your prompt<br/><small>input tokens</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--blue d-node--big">Model (inference)<br/><small>milliseconds–seconds</small></div>
+        <div class="d-arrow">→</div>
+        <div class="d-node d-node--blue d-node--big">Response<br/><small>output tokens</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. HALLUCINATION VS GROUNDING ─────────── -->
+  <h2>4. Hallucination vs grounding</h2>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Hallucination</div>
+      <div class="def-body">A model generating text that is <strong>fluent and confident but factually wrong</strong>. The model does not "know" it is wrong — it produces the most statistically likely token sequence given its weights and the prompt, regardless of factual accuracy.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Grounding</div>
+      <div class="def-body">Anchoring a model's response to verifiable sources. A grounded response cites specific retrieved documents, database rows, or tool outputs — and the claim can be traced back to that source.</div>
+    </div>
+  </div>
+
+  <h3>Why models hallucinate</h3>
+  <p>LLMs are trained to predict the next token — not to be accurate. If a plausible-sounding but false completion is statistically consistent with the training data, the model will generate it. Confidence in tone does not correlate with factual correctness.</p>
+
+  <div class="callout callout--warn">
+    <div class="callout-title">Common hallucination patterns</div>
+    <ul>
+      <li><strong>Fabricated citations</strong> — plausible-looking paper titles, authors, and DOIs that do not exist</li>
+      <li><strong>Wrong numbers</strong> — revenue figures, dates, statistics that are off by an order of magnitude</li>
+      <li><strong>Invented APIs</strong> — function signatures that look correct but are not in the actual library</li>
+      <li><strong>Confident synthesis</strong> — combining two real facts into a third claim that is false</li>
+    </ul>
+  </div>
+
+  <h3>Grounding techniques</h3>
+  <div class="concept-list">
+    <div class="concept-item">
+      <div class="concept-num">1</div>
+      <div class="concept-body"><h4>RAG (Retrieval-Augmented Generation)</h4><p>Retrieve relevant document chunks and inject them into the prompt. Instruct the model to answer <em>only</em> from the provided context. See the <a href="rag.html">RAG chapter</a>.</p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">2</div>
+      <div class="concept-body"><h4>Tool / function calling</h4><p>Give the model a tool that queries a database or API. The model calls the tool; you execute it; actual data comes back. The answer is grounded in live data, not training weights.</p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">3</div>
+      <div class="concept-body"><h4>Constrained output + verification</h4><p>Ask for structured output (JSON with citations). Parse and verify the cited source actually says what the model claims. Reject responses where citations do not match.</p></div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">4</div>
+      <div class="concept-body"><h4>Self-critique prompting</h4><p>Ask the model to review its own answer: "List any claims above that might be uncertain. For each, state the basis." This does not eliminate hallucination but surfaces low-confidence sections for human review.</p></div>
+    </div>
+  </div>
+
+  <!-- ── 5. EMBEDDINGS ─────────────────────────── -->
+  <h2>5. Embeddings — semantic coordinates</h2>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Embedding</div>
+      <div class="def-body">A dense vector (list of ~768–3072 floating-point numbers) that represents the <strong>semantic meaning</strong> of a piece of text. Texts with similar meaning have vectors that are close together in high-dimensional space, measured by cosine similarity.</div>
+    </div>
+  </div>
+
+  <p>Embeddings are produced by a separate <em>embedding model</em> (not the same as the generation model). OpenAI's <code>text-embedding-3-large</code>, Cohere's <code>embed-v3</code>, and Google's <code>text-embedding-004</code> are common choices.</p>
+
+  <div class="diagram">
+    <div class="diagram-label">Embedding intuition — semantic space</div>
+    <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;font-family:var(--mono);font-size:0.78rem;line-height:1.8">
+      "dog"     → [0.21, -0.44, 0.88, ..., 0.03]  ← 1536 dims<br/>
+      "puppy"   → [0.19, -0.41, 0.91, ..., 0.05]  ← very similar vector<br/>
+      "cat"     → [0.18, -0.38, 0.82, ..., 0.11]  ← nearby<br/>
+      "quantum" → [-0.61, 0.22, -0.13, ..., 0.77] ← far away<br/>
+      <br/>
+      cosine_similarity("dog", "puppy") ≈ 0.97  ✓ very similar<br/>
+      cosine_similarity("dog", "quantum") ≈ 0.12 ✓ unrelated
+    </div>
+  </div>
+
+  <h3>What embeddings enable</h3>
+  <ul>
+    <li><strong>Semantic search</strong> — find documents by meaning, not keyword. "How do I reset my password?" matches "account recovery instructions" even with no word overlap.</li>
+    <li><strong>RAG retrieval</strong> — the core mechanism: embed a query, find nearest document chunks, inject them into the prompt.</li>
+    <li><strong>Clustering and classification</strong> — group support tickets by topic, detect duplicate issues, build recommendation systems.</li>
+    <li><strong>Anomaly detection</strong> — items that are outliers in embedding space are unusual (fraud signals, out-of-scope queries).</li>
+  </ul>
+
+  <!-- ── 6. RAG VS FINE-TUNING ──────────────────── -->
+  <h2>6. RAG vs fine-tuning — which bet to make</h2>
+
+  <p>This is one of the most common PM decisions in AI product work. The answer depends on <em>what problem you are actually solving</em>.</p>
+
+  <div class="compare-grid">
+    <div class="compare-col">
+      <h4 style="color:var(--accent)">RAG — Retrieval-Augmented Generation</h4>
+      <ul>
+        <li>Model weights are <strong>not changed</strong></li>
+        <li>At query time, relevant documents are retrieved and added to the prompt</li>
+        <li>Best for: <strong>factual recall from a corpus</strong> (docs, wikis, support articles)</li>
+        <li>Works with up-to-date data (add to the index, not retrain)</li>
+        <li>Auditable: you can show the user the source</li>
+        <li>Cheaper: no training compute, API calls only</li>
+        <li><strong>Use when</strong>: "The model needs to know facts from our data"</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <h4 style="color:var(--green)">Fine-tuning</h4>
+      <ul>
+        <li>Model weights <strong>are adjusted</strong> on your training examples</li>
+        <li>At inference, no extra context needed — behavior is baked in</li>
+        <li>Best for: <strong>teaching a style, format, or behavior</strong> — not recall</li>
+        <li>Data must be collected, cleaned, and formatted (expensive)</li>
+        <li>Stale: retraining needed when data changes</li>
+        <li>Harder to audit: why did it say that?</li>
+        <li><strong>Use when</strong>: "The model needs to respond differently — always structured JSON, always terse, always formal medical language"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout--warn">
+    <div class="callout-title">Common PM mistake</div>
+    Proposing fine-tuning to improve factual accuracy. Fine-tuning adjusts behavior and style — it does not reliably improve factual recall. A model fine-tuned on your documentation will still hallucinate; it will just hallucinate in your brand voice. <strong>Use RAG for facts, fine-tuning for format/behavior.</strong>
+  </div>
+
+  <h3>Decision framework</h3>
+  <table>
+    <thead><tr><th>Question</th><th>RAG</th><th>Fine-tuning</th></tr></thead>
+    <tbody>
+      <tr><td>Does the model need to know facts from your data?</td><td>✓ Yes</td><td>✗ No</td></tr>
+      <tr><td>Does the data change frequently?</td><td>✓ Yes</td><td>✗ Painful</td></tr>
+      <tr><td>Do users need to see sources/citations?</td><td>✓ Natural fit</td><td>✗ Hard</td></tr>
+      <tr><td>Do you need a consistent output format/persona?</td><td>Possible via system prompt</td><td>✓ Better</td></tr>
+      <tr><td>Do you have 1,000+ curated examples?</td><td>Not needed</td><td>✓ Required</td></tr>
+      <tr><td>Can you afford retraining costs?</td><td>Not applicable</td><td>$ to $$$$</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout--green">
+    <div class="callout-title">In practice</div>
+    Most production AI features combine both: a fine-tuned model (for format and behavior) with RAG (for current facts). But if you must pick one to start, <strong>RAG is almost always the right first step</strong> because it is faster to build, easier to debug, and does not require labeled training data.
+  </div>
+
+  <hr />
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">
+    <div style="font-size:0.85rem;color:var(--muted)">Ready to apply these concepts?</div>
+    <div style="display:flex;gap:0.65rem;flex-wrap:wrap">
+      <a class="btn btn-outline" href="../week-01.html">Practice → Week 1</a>
+      <a class="btn btn-primary" href="prompting.html">Next: Prompting →</a>
+    </div>
+  </div>
+
+
+<div class='quiz-section'>
+  <h2>Test your understanding</h2>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is a token, and why does token count matter for a PM?<span class="qz-tog">v</span></div><div class="qz-a">A token is roughly 3-4 characters. Token count sets the cost of every API call and determines how much text fits in the context window. PMs track tokens to budget cost, design UX within limits, and explain why the model 'forgets' earlier messages.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is the difference between inference and training? Which one do you pay for per request?<span class="qz-tog">v</span></div><div class="qz-a"><strong>Training</strong> is the one-time process of learning weights from data. <strong>Inference</strong> is running the trained model to produce output. You pay for <em>inference</em> — every user request is billed by input + output tokens.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">A user asks 'what was our revenue last quarter?' The model answers confidently but incorrectly. Is this hallucination? What is the root cause?<span class="qz-tog">v</span></div><div class="qz-a">Yes — the model produced plausible-sounding text not grounded in fact. Root cause: the model has no access to your actual revenue data. The fix is grounding: RAG (retrieve real numbers before answering) or tool calling (query your database live).</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is the difference between an embedding and a token?<span class="qz-tog">v</span></div><div class="qz-a">A <strong>token</strong> is a discrete text unit. An <strong>embedding</strong> is a dense numeric vector representing the meaning of text — used for similarity search in RAG. Tokens are input units; embeddings are semantic representations.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">When would you recommend RAG over fine-tuning? Give a concrete example.<span class="qz-tog">v</span></div><div class="qz-a"><strong>RAG</strong>: when the model lacks your facts (e.g., internal docs, current product catalog). <strong>Fine-tuning</strong>: when you need to change behavior or format (e.g., brand voice). Fine-tuning does not reliably implant facts — it teaches style.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is a context window limit and how does it constrain product design?<span class="qz-tog">v</span></div><div class="qz-a">The context window is the max tokens the model sees at once. It constrains conversation history length, how many RAG documents can be injected, and how long user documents can be. Longer windows cost more. Design must decide what to include and what to drop.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What does temperature control, and when would you set it near zero vs near one?<span class="qz-tog">v</span></div><div class="qz-a">Temperature controls output randomness. Near <strong>zero</strong>: deterministic — good for SQL generation, factual Q&A, structured output. Near <strong>one</strong>: varied and creative — good for brainstorming, drafting, generating diverse options.</div></div>
+</div>
+<div class='reading-section'>
+  <h2>Further reading &amp; watching</h2>
+  <ul class='read-list'>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Building LLM Applications for Production</a><div class="read-desc">Read Part I: cost & latency, prompting vs fine-tuning, and embeddings. The best single engineering post on LLM product tradeoffs.</div></li>
+  <li><span class="read-type">Video</span><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">Andrej Karpathy — Intro to Large Language Models</a><div class="read-desc">1-hour visual walkthrough of how LLMs work, from tokens to RLHF.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://lilianweng.github.io/posts/2023-01-27-the-transformer-family-v2/" target="_blank" rel="noopener">Lilian Weng — The Transformer Family v2</a><div class="read-desc">Technical deep-dive on transformer architecture. Read the intro and key concepts sections.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://simonwillison.net/2023/Aug/3/weird-world-of-llms/" target="_blank" rel="noopener">Simon Willison — What I learned from LLMs</a><div class="read-desc">Accessible post on the practical strangeness of LLMs from a developer and PM perspective.</div></li>
+  <li><span class="read-type">Tool</span><a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener">OpenAI — Tokenizer (interactive)</a><div class="read-desc">Paste any text and see exactly how it tokenizes. Essential intuition-builder for PMs.</div></li>
+  </ul>
+</div>
+<script>
+function toggleQz(el){var a=el.nextElementSibling,t=el.querySelector('.qz-tog'),o=a.classList.contains('open');a.classList.toggle('open',!o);t.textContent=o?'v':'u';}
+</script>
+</main>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agents &amp; launch — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+<style>
+.quiz-section,.reading-section{margin-top:2.5rem}
+.quiz-section h2,.reading-section h2{font-size:1rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem}
+.quiz-section h2::before{content:"\2713 ";font-size:0.85rem;opacity:.5}
+.reading-section h2::before{content:"\2197 ";font-size:0.85rem;opacity:.5}
+.qz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin-bottom:0.6rem;border-left:3px solid var(--accent);overflow:hidden}
+.qz-q{padding:0.75rem 1rem;font-size:0.84rem;font-weight:600;line-height:1.5;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;color:var(--text)}
+.qz-q:hover{background:var(--surface-2)}
+.qz-tog{color:var(--muted-2);font-size:0.75rem;flex-shrink:0;user-select:none;margin-top:0.15rem}
+.qz-a{display:none;padding:0.65rem 1rem 0.85rem;border-top:1px solid var(--border);background:var(--surface-2);font-size:0.82rem;color:var(--muted);line-height:1.65}
+.qz-a.open{display:block}
+.qz-a strong{color:var(--text)}
+.read-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem}
+.read-list li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0.7rem 1rem;display:flex;flex-direction:column;gap:0.2rem}
+.read-list a{font-size:0.83rem;font-weight:600;color:var(--accent);text-decoration:none}
+.read-list a:hover{text-decoration:underline}
+.read-list .read-desc{font-size:0.75rem;color:var(--muted)}
+.read-type{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;opacity:.6}
+</style>
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="../index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="index.html" class="active">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks"><button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel"><div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid"><a href="../week-01.html">01</a><a href="../week-02.html">02</a><a href="../week-03.html">03</a><a href="../week-04.html">04</a><a href="../week-05.html">05</a><a href="../week-06.html">06</a><a href="../week-07.html">07</a><a href="../week-08.html">08</a><a href="../week-09.html">09</a><a href="../week-10.html">10</a><a href="../week-11.html">11</a><a href="../week-12.html">12</a><a href="../week-13.html">13</a><a href="../week-14.html">14</a></div>
+      </div></div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="index.html">Learn hub</a><a class="mob-link" href="foundations.html">Foundations</a><a class="mob-link" href="prompting.html">Prompting</a><a class="mob-link" href="sql-and-data.html">SQL &amp; data</a><a class="mob-link" href="visualization.html">Visualization</a><a class="mob-link" href="rag.html">RAG</a><a class="mob-link" href="chatbots.html">Chatbots</a><a class="mob-link" href="prototypes.html">Prototypes</a><a class="mob-link active" href="agents-and-launch.html">Agents &amp; launch</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid"><a class="mob-week-btn" href="../week-01.html">01</a><a class="mob-week-btn" href="../week-02.html">02</a><a class="mob-week-btn" href="../week-03.html">03</a><a class="mob-week-btn" href="../week-04.html">04</a><a class="mob-week-btn" href="../week-05.html">05</a><a class="mob-week-btn" href="../week-06.html">06</a><a class="mob-week-btn" href="../week-07.html">07</a><a class="mob-week-btn" href="../week-08.html">08</a><a class="mob-week-btn" href="../week-09.html">09</a><a class="mob-week-btn" href="../week-10.html">10</a><a class="mob-week-btn" href="../week-11.html">11</a><a class="mob-week-btn" href="../week-12.html">12</a><a class="mob-week-btn" href="../week-13.html">13</a><a class="mob-week-btn" href="../week-14.html">14</a></div>
+</div>
+<nav class="subnav">
+  <a href="../index.html">Home</a><span class="subnav-sep"></span>
+  <a href="index.html">Hub</a><a href="foundations.html">Foundations</a><a href="prompting.html">Prompting</a><a href="sql-and-data.html">SQL &amp; data</a><a href="visualization.html">Visualization</a><a href="rag.html">RAG</a><a href="chatbots.html">Chatbots</a><a href="prototypes.html">Prototypes</a><a href="agents-and-launch.html" class="active">Agents &amp; launch</a><a href="faang-prep.html">FAANG prep</a>
+</nav>
+
+<main class="page has-subnav prose">
+  <h1>Agents &amp; launch</h1>
+  <p><em>Chapter 8 · Phase 7 · practice in <a href="../week-13.html">Week 13</a> and <a href="../week-14.html">Week 14</a></em></p>
+
+  <div class="callout callout--info">
+    <div class="callout-title">What you will know after this chapter</div>
+    What an LLM agent is vs a simple chatbot · the plan–act–observe loop in detail · how tool calling enables real-world actions · when to require human-in-the-loop gates · multi-step evaluation strategies · the production launch checklist
+  </div>
+
+  <h2>1. What is an LLM agent?</h2>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">LLM Agent</div>
+      <div class="def-body">A system where an LLM acts as a <strong>controller</strong>: it receives a goal, decides which tools to use, executes those tools, observes the results, and loops until the goal is achieved. Unlike a chatbot, an agent can take multi-step actions with real-world effects — writing code, querying databases, sending emails, browsing the web.</div>
+    </div>
+  </div>
+
+  <h3>Chatbot vs agent</h3>
+  <div class="compare-grid">
+    <div class="compare-col">
+      <h4 style="color:var(--accent)">Chatbot</h4>
+      <ul>
+        <li>Single LLM call per user message</li>
+        <li>One response, no action</li>
+        <li>Deterministic control flow</li>
+        <li>User drives each step</li>
+        <li>No external state changes</li>
+        <li>Low risk per call</li>
+      </ul>
+    </div>
+    <div class="compare-col">
+      <h4 style="color:var(--yellow)">Agent</h4>
+      <ul>
+        <li>Multiple LLM calls to complete a goal</li>
+        <li>Takes real-world actions via tools</li>
+        <li>LLM decides the next step</li>
+        <li>Can operate autonomously for many steps</li>
+        <li>Can write to databases, send messages, run code</li>
+        <li>Higher risk — mistakes compound across steps</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>2. The agent loop</h2>
+
+  <div class="diagram">
+    <div class="diagram-label">ReAct agent loop (Reason + Act)</div>
+    <div class="d-col" style="gap:0.5rem">
+      <div class="d-flow">
+        <div class="d-node d-node--blue d-node--big">Receive goal<br/><small>"Research and summarize all P0 incidents from last quarter"</small></div>
+      </div>
+      <div class="d-arrow--down">↓</div>
+      <div class="d-flow">
+        <div class="d-node d-node--gold d-node--big">LLM: Plan<br/><small>"I need to: 1) query incident DB, 2) filter P0s, 3) retrieve details, 4) summarize"</small></div>
+      </div>
+      <div class="d-arrow--down">↓</div>
+      <div class="d-flow">
+        <div class="d-node d-node--blue">Act: call tool<br/><small>query_incidents(severity="P0", since="90d")</small></div>
+      </div>
+      <div class="d-arrow--down">↓</div>
+      <div class="d-flow">
+        <div class="d-node d-node--green">Observe result<br/><small>Returns 12 incidents with IDs</small></div>
+      </div>
+      <div class="d-arrow--down">↓</div>
+      <div class="d-flow">
+        <div class="d-node d-node--gold">LLM: Reason<br/><small>"I have the list. Now fetch details for each to extract root causes."</small></div>
+      </div>
+      <div class="d-arrow--down">↓</div>
+      <div style="text-align:center;font-size:0.8rem;color:var(--muted)">... loops until task complete or step limit reached ...</div>
+      <div class="d-arrow--down">↓</div>
+      <div class="d-flow">
+        <div class="d-node d-node--green d-node--big">Final answer</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>3. Tool calling in agents</h2>
+  <p>Tools are the agent's arms and legs. Each tool is a function your application exposes. The LLM decides which tool to call with which arguments; your code executes it and returns the result.</p>
+
+  <h3>Common agent tool types</h3>
+  <table>
+    <thead><tr><th>Category</th><th>Examples</th><th>Risk level</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Read-only</strong></td><td>Search docs, query DB (SELECT), call read APIs</td><td>Low</td></tr>
+      <tr><td><strong>Compute</strong></td><td>Run Python, execute SQL, call calculators</td><td>Medium (sandbox required)</td></tr>
+      <tr><td><strong>Write to DB</strong></td><td>INSERT, UPDATE, DELETE</td><td>High (require confirmation)</td></tr>
+      <tr><td><strong>External actions</strong></td><td>Send email, post to Slack, create ticket</td><td>High (irreversible)</td></tr>
+      <tr><td><strong>Code execution</strong></td><td>Run arbitrary Python/shell</td><td>Critical (sandboxed only)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout--warn">
+    <div class="callout-title">Tool design principle</div>
+    Every tool the agent can call should be designed with the <em>principle of least privilege</em>. If the agent only needs to read incidents, do not give it a tool that can delete them. Minimize the blast radius of any single bad tool call.
+  </div>
+
+  <h2>4. Human-in-the-loop (HITL) gates</h2>
+  <p>Not every agent action should run automatically. For high-stakes or irreversible actions, require human approval before execution.</p>
+
+  <div class="concept-list">
+    <div class="concept-item"><div class="concept-num">✓</div><div class="concept-body"><h4>Always gate</h4><p>Sending communications (emails, Slack messages), modifying production data, running shell commands, making purchases. These are irreversible or high-visibility.</p></div></div>
+    <div class="concept-item"><div class="concept-num">~</div><div class="concept-body"><h4>Gate when confidence is low</h4><p>If the agent expresses uncertainty ("I'm not sure if X or Y is correct here"), pause and ask the user. Define a confidence threshold below which the agent must ask.</p></div></div>
+    <div class="concept-item"><div class="concept-num">✗</div><div class="concept-body"><h4>Never gate</h4><p>Read-only queries, search operations, formatting operations. These can run freely — they have no side effects.</p></div></div>
+  </div>
+
+  <h3>How the gate decision works</h3>
+  <p>Before executing any tool call, the system checks two conditions: is this tool on the high-risk list (send email, delete record, post to Slack, run shell commands), OR did the agent express low confidence below a set threshold (typically 70%)? If either is true, the action is paused and a confirmation UI is shown to the user before anything runs. If the user declines, the action is cancelled and the agent receives that feedback so it can try a different approach. If neither condition is met, the action runs automatically without interruption.</p>
+  <p>The key PM decision is defining what goes on the high-risk list and setting the confidence threshold. Too many gates and the agent becomes annoying and slow. Too few and users lose trust the first time it does something they didn't expect.</p>
+
+  <h2>5. Evaluating agents — multi-step evals</h2>
+  <p>Agent evaluation is harder than single-call evals because the output is a sequence of steps, not just a final answer. You need to evaluate both the process and the result.</p>
+
+  <div class="def-list">
+    <div class="def-item">
+      <div class="def-term">Task completion rate</div>
+      <div class="def-body">Did the agent successfully complete the assigned task? Score 0/1. Run on a test set of 20–50 tasks with known correct outcomes.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Step efficiency</div>
+      <div class="def-body">How many tool calls did the agent make? More is not always better — an agent that calls 10 tools when 3 suffice is wasteful and slow. Compare to a reference trajectory.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Hallucinated tool calls</div>
+      <div class="def-body">Did the agent attempt to call a tool that does not exist? Or call a real tool with fabricated arguments? Log every tool call and validate schema compliance.</div>
+    </div>
+    <div class="def-item">
+      <div class="def-term">Loop detection</div>
+      <div class="def-body">Agents can get stuck in loops — calling the same tool repeatedly because the result does not make sense to them. Detect repeated identical calls and abort after N repeats.</div>
+    </div>
+  </div>
+
+  <div class="callout callout--info">
+    <div class="callout-title">How the step limit works in practice</div>
+    Every agent run has a hard cap on iterations — typically 10–20 steps. On each step, the model either calls a tool (which your system executes and returns results for) or produces a final text answer (which ends the loop). If the agent reaches the step limit without finishing, the run is terminated and returned with a "max steps reached" status. This prevents runaway agents from burning through API budget indefinitely. As a PM, the step limit is both a safety valve and a diagnostic: if your agents are frequently hitting the ceiling, the goal decomposition is too complex and should be broken into smaller sub-tasks.
+  </div>
+
+  <h2>6. Production launch checklist</h2>
+  <p>Shipping an LLM feature to production requires infrastructure beyond the prototype. Use this checklist before every launch.</p>
+
+  <div class="concept-list">
+    <div class="concept-item"><div class="concept-num">📊</div><div class="concept-body"><h4>Observability</h4><p>Full request/response logging, latency metrics (p50/p95/p99), error rate dashboard, cost per user/session dashboard. Set alert thresholds before launch, not after.</p></div></div>
+    <div class="concept-item"><div class="concept-num">🔒</div><div class="concept-body"><h4>Safety and content filtering</h4><p>Implement input and output classifiers for harmful content. Define explicit policy for what the system will not do. Test with adversarial inputs before launch.</p></div></div>
+    <div class="concept-item"><div class="concept-num">⚡</div><div class="concept-body"><h4>Rate limiting</h4><p>Per-user and per-org token quotas. API provider rate limit handling (exponential backoff). Queue for burst traffic. Never let one user exhaust your API quota.</p></div></div>
+    <div class="concept-item"><div class="concept-num">🔄</div><div class="concept-body"><h4>Rollback plan</h4><p>Pin the model version and prompt version. Document how to roll back to the previous version in &lt; 10 minutes. Test the rollback procedure before launch day.</p></div></div>
+    <div class="concept-item"><div class="concept-num">📋</div><div class="concept-body"><h4>Eval baseline</h4><p>Run your eval suite against production before and after launch. Record the baseline scores. If post-launch scores drop, you have a regressions signal.</p></div></div>
+    <div class="concept-item"><div class="concept-num">📣</div><div class="concept-body"><h4>User-facing disclosure</h4><p>Users must know they are interacting with AI. Label the feature clearly. For regulated domains (healthcare, legal, finance), include appropriate disclaimers.</p></div></div>
+    <div class="concept-item"><div class="concept-num">🌊</div><div class="concept-body"><h4>Gradual rollout</h4><p>Do not flip to 100% on day one. Start at 1% → 5% → 20% → 100% with a hold period at each stage. Monitor all metrics at each stage before expanding.</p></div></div>
+  </div>
+
+  <div class="callout callout--green">
+    <div class="callout-title">You made it through the course</div>
+    You now have the vocabulary, mental models, and practical skills to contribute meaningfully to every AI feature your team builds. Foundations → Prompting → SQL/data → Visualization → RAG → Chatbots → Prototypes → Agents &amp; launch. Go build something.
+  </div>
+
+  <hr />
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">
+    <a class="btn btn-outline" href="prototypes.html">← Prototypes</a>
+    <div style="display:flex;gap:0.65rem">
+      <a class="btn btn-outline" href="../week-13.html">Practice → Week 13</a>
+      <a class="btn btn-primary" href="../index.html">Back to home</a>
+    </div>
+  </div>
+
+<div class='quiz-section'>
+  <h2>Test your understanding</h2>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is an 'agent loop' and what are its three key components?<span class="qz-tog">v</span></div><div class="qz-a">(1) <strong>Observe</strong> — receive current state (user input, tool output, memory). (2) <strong>Think</strong> — the LLM reasons about what to do next. (3) <strong>Act</strong> — execute a tool call, generate output, or terminate. The loop repeats until a stopping condition is met.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is a human-in-the-loop gate and when should you add one?<span class="qz-tog">v</span></div><div class="qz-a">A HITL gate pauses the agent and asks a human to approve before continuing. Add one when the next action is: (1) irreversible (send email, write to database), (2) high-stakes (medical, legal, financial), or (3) low-confidence (model expresses uncertainty).</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">Name two failure modes specific to multi-step agent tasks.<span class="qz-tog">v</span></div><div class="qz-a"><strong>(1) Action compounding:</strong> 95% accuracy per step means 60% end-to-end success over 10 steps. Small errors compound. <strong>(2) Unrecoverable state:</strong> the agent takes an irreversible action mid-task (deletes a file, sends a message) then fails later, leaving the system in a broken partial state.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is the difference between a tool-calling agent and a simple chain?<span class="qz-tog">v</span></div><div class="qz-a">A <strong>chain</strong> is a fixed sequence of LLM calls defined at build time. A <strong>tool-calling agent</strong> decides at runtime which tool to call and when to stop, based on the model's output. Agents are more flexible but less predictable and harder to debug.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What would you include in a production launch checklist for an AI agent feature?<span class="qz-tog">v</span></div><div class="qz-a">(1) Offline eval suite passing threshold. (2) Human review of 50 random end-to-end task completions. (3) Irreversible actions behind HITL or confirmation. (4) Minimum-permission tool access. (5) Per-user rate limits. (6) Cost-per-task monitoring with alerting. (7) Full tool-call logging for audit. (8) Rollback plan if quality degrades.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">Why do multi-step evals matter more for agents than for simple Q&A features?<span class="qz-tog">v</span></div><div class="qz-a">A Q&A eval tests a single input-output pair. An agent eval must verify a sequence of tool calls achieves the correct end state. A correct final answer reached via a wrong intermediate path is a fragile agent that will fail on real-world variants.</div></div>
+</div>
+<div class='reading-section'>
+  <h2>Further reading &amp; watching</h2>
+  <ul class='read-list'>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Agents, Tools & Control Flows (Part 2)</a><div class="read-desc">The most direct mapping to this chapter: sequential/parallel/loop control flows, tool use, and how to test multi-step agents. Read Part 2 in full.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Testing Agents & Composability Gap (Part 2)</a><div class="read-desc">Explains the composability gap — the compounding failure risk that makes agents harder than single LLM calls. Critical PM awareness.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://lilianweng.github.io/posts/2023-06-23-agent/" target="_blank" rel="noopener">Lilian Weng — LLM-powered Autonomous Agents</a><div class="read-desc">Comprehensive survey of agent architectures, memory, planning, and tool use patterns. The definitive blog post on agents.</div></li>
+  <li><span class="read-type">Video</span><a href="https://www.youtube.com/watch?v=DWUdGhRrv2c" target="_blank" rel="noopener">Harrison Chase — Building Agents with LangGraph</a><div class="read-desc">LangChain co-founder walks through stateful multi-agent graph architectures.</div></li>
+  <li><span class="read-type">Research</span><a href="https://metr.org/" target="_blank" rel="noopener">METR — AI Agent Evaluations</a><div class="read-desc">Research org measuring autonomous AI agent capabilities and risks.</div></li>
+  </ul>
+</div>
+<script>
+function toggleQz(el){var a=el.nextElementSibling,t=el.querySelector('.qz-tog'),o=a.classList.contains('open');a.classList.toggle('open',!o);t.textContent=o?'v':'u';}
+</script>
+</main>
+<script src="../js/nav.js"></script>
+</body>
+</html>

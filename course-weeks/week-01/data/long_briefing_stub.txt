@@ -1,0 +1,26 @@
+SYNTHETIC EXEC BRIEFING STUB — Week 01 context-limit exercise (not real company data).
+
+Purpose: Practice deciding what must survive aggressive summarization. The text below is intentionally repetitive and long-ish.
+
+Section A — Situation
+CloudNote (fictional B2B SaaS) is expanding AI-assisted workflows. Product wants “answers grounded in internal policy.” Engineering notes inference cost scales with tokens and that very long prompts hit context ceilings.
+
+Section B — Stakeholders
+- VP Product: wants executive summaries without engineering jargon.
+- Legal: wants citations to authoritative policy text.
+- Security: worried about untrusted content in retrieved docs steering the model.
+- Finance: wants cost caps per seat per month.
+
+Section C — Technical themes (repeated for length)
+Tokens measure billing and latency for LLM calls. The context window caps total input plus typical output headroom. Training is not the same as inference; shipping features usually means inference-time behavior plus eval plus observability.
+
+Section D — Risks (repeated variants)
+Hallucination remains possible even with fluent outputs. Grounding requires tying answers to sources or database rows. Structured output helps downstream automation but does not alone prevent harmful content.
+
+Section E — Mitigations (repeated variants)
+RAG retrieves chunks rather than loading entire corpora into the prompt. Chunking must preserve boundaries so citations map to user-visible spans. Hybrid search combines keywords with embeddings for better recall on proper nouns.
+
+Section F — Program management asks
+Define north-star metrics before model selection. Phase rollout with shadow mode and kill switch. Ensure audit logs include prompt version and retrieval sources.
+
+(Total length is sufficient to discuss summarization tradeoffs without embedding a full 500-page corpus.)

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 03 — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="learn/index.html">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks">
+      <button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel">
+        <div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid">
+          <a href="week-01.html">01</a><a href="week-02.html">02</a><a href="week-03.html" class="active">03</a><a href="week-04.html">04</a><a href="week-05.html">05</a><a href="week-06.html">06</a><a href="week-07.html">07</a>
+          <a href="week-08.html">08</a><a href="week-09.html">09</a><a href="week-10.html">10</a><a href="week-11.html">11</a><a href="week-12.html">12</a><a href="week-13.html">13</a><a href="week-14.html">14</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="learn/index.html">Learn hub</a>
+  <a class="mob-link" href="learn/foundations.html">Foundations</a>
+  <a class="mob-link" href="learn/prompting.html">Prompting</a>
+  <a class="mob-link" href="learn/sql-and-data.html">SQL &amp; data</a>
+  <a class="mob-link" href="learn/visualization.html">Visualization</a>
+  <a class="mob-link" href="learn/rag.html">RAG</a>
+  <a class="mob-link" href="learn/chatbots.html">Chatbots</a>
+  <a class="mob-link" href="learn/prototypes.html">Prototypes</a>
+  <a class="mob-link" href="learn/agents-and-launch.html">Agents &amp; launch</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid">
+    <a class="mob-week-btn " href="week-01.html">01</a><a class="mob-week-btn " href="week-02.html">02</a><a class="mob-week-btn class="activehref="week-03.html">03</a><a class="mob-week-btn " href="week-04.html">04</a><a class="mob-week-btn " href="week-05.html">05</a><a class="mob-week-btn " href="week-06.html">06</a><a class="mob-week-btn " href="week-07.html">07</a>
+    <a class="mob-week-btn " href="week-08.html">08</a><a class="mob-week-btn " href="week-09.html">09</a><a class="mob-week-btn " href="week-10.html">10</a><a class="mob-week-btn " href="week-11.html">11</a><a class="mob-week-btn " href="week-12.html">12</a><a class="mob-week-btn " href="week-13.html">13</a><a class="mob-week-btn " href="week-14.html">14</a>
+  </div>
+</div>
+
+<nav class="subnav">
+  <a href="index.html">Home</a>
+  <span class="subnav-sep"></span>
+  <a href="week-01.html">W01</a>
+  <a href="week-02.html">W02</a>
+  <a class="active" href="week-03.html">W03</a>
+  <a href="week-04.html">W04</a>
+  <a href="week-05.html">W05</a>
+  <a href="week-06.html">W06</a>
+  <a href="week-07.html">W07</a>
+  <a href="week-08.html">W08</a>
+  <a href="week-09.html">W09</a>
+  <a href="week-10.html">W10</a>
+  <a href="week-11.html">W11</a>
+  <a href="week-12.html">W12</a>
+  <a href="week-13.html">W13</a>
+  <a href="week-14.html">W14</a>
+</nav>
+
+<main class="page has-subnav md-body">
+<div class="week-intro" style="border-left-color:#3b82f6">
+  <div class="phase-tag" style="color:#3b82f6">Phase 1</div>
+  <p><strong>Week 3.</strong> Chain-of-thought, self-critique, tool framing; build your 10-question eval sheet.</p>
+</div>
+<aside class="related-learn"><strong>Learn chapter:</strong> <a href="learn/prompting.html">Prompting</a> — concepts, videos, and links. Study alongside or before practice.</aside>
+<div class="week-tabs">
+  <button class="active" data-tab="section-overview">Overview</button>
+  <button data-tab="section-readings">Readings</button>
+  <button data-tab="section-practice">Practice</button>
+  <button data-tab="section-exam">Exam</button>
+  <button data-tab="section-lab-sheet">Lab sheet</button>
+</div>
+<div class="tab-panel" id="section-overview">
+
+<h2>Problem statement</h2>
+<p>Same incident program as Week 02—now you must make reasoning <strong>auditable</strong>, catch <strong>overconfidence</strong>, and specify <strong>when</strong> the model should refuse or call tools. You also ship a <strong>10-question eval sheet</strong> so QA and PM agree what “pass” means.</p>
+<h2>Outcomes</h2>
+<ul>
+<li>Chain-of-thought <strong>instruction</strong> (raw chain may stay hidden from users).</li>
+<li>Self-critique / verification pattern.</li>
+<li>Tool-use framing: <strong>when</strong> to query SQL vs answer from chat.</li>
+<li><strong>Eval sheet</strong> with pass/fail rules + <strong>2 safety/refusal</strong> rows.</li>
+</ul>
+<h2>Deliverables</h2>
+<ol>
+<li><code>eval_sheet_10.md</code> — ten rows: Question | Expected property | Pass/Fail rule.</li>
+<li>Prompt pack using CoT + self-critique on <code>../week-02/data/incident_sample.md</code>.</li>
+<li>One-page <strong>tool-use policy</strong>: which tools (SQL, search, calendar) for which user intents.</li>
+</ol>
+<h2>Links</h2>
+<ul>
+<li><a href="learning-plan.html#phase-1--prompt-engineering-patterns-not-tricks-weeks-23">Phase 1 mini deliverable</a></li>
+</ul>
+</div>
+<div class="tab-panel" id="section-readings" hidden>
+
+<h2>Required</h2>
+<ul>
+<li>[ ] Provider docs: <strong>function calling / tools</strong> — schema, when the model invokes vs declines.</li>
+<li>[ ] Provider docs or guide: <strong>JSON mode</strong> / structured outputs.</li>
+</ul>
+<h2>Recommended</h2>
+<ul>
+<li>[ ] One article or doc on <strong>LLM evals</strong> (golden set, regression).</li>
+</ul>
+<h2>Time box</h2>
+<p>~2 hours.</p>
+</div>
+<div class="tab-panel" id="section-practice" hidden>
+
+<p>Use incident text from <strong><a href="../week-02/data/incident_sample.md">week-02/data/incident_sample.md</a></strong>.</p>
+<h2>Task A — Chain-of-thought (design only)</h2>
+<p>Write a prompt that forces <strong>explicit reasoning steps</strong> before the final executive summary. Optionally hide raw chain from end users in your product note. Save <code>prompt_cot.md</code>.</p>
+<h2>Task B — Self-critique</h2>
+<p>Same incident: add a second stage— “List assumptions, then challenge them; revise summary if needed.” Save <code>prompt_selfcritique.md</code> + paste <strong>before/after</strong> summary if different.</p>
+<h2>Task C — Tool-use framing</h2>
+<p>Write <code>tool_policy.md</code> answering:</p>
+<ul>
+<li>When should the assistant <strong>refuse</strong> numeric claims without querying <strong><code>practice-env</code> DB</strong>?</li>
+<li>When is “read Support queue +22%” acceptable without SQL?</li>
+</ul>
+<p>Include <strong>one</strong> example user question routed to <strong>SQL</strong> and one routed to <strong>no SQL</strong>.</p>
+<h2>Task D — Eval sheet (required)</h2>
+<p>Create <strong><code>eval_sheet_10.md</code></strong> with <strong>10</strong> rows:</p>
+<p>| # | User question or stress case | Expected property | Pass/Fail rule |</p>
+<p>Include:</p>
+<ul>
+<li>At least <strong>2</strong> safety/refusal cases (e.g. exfiltration, medical/legal).</li>
+<li>At least <strong>2</strong> format/check cases (JSON keys present, word limit).</li>
+<li>At least <strong>1</strong> “must cite or qualify uncertainty” case tied to the incident.</li>
+</ul>
+<hr />
+<p><strong>Submit:</strong> <code>my-submissions/week-03/</code>.</p>
+</div>
+<div class="tab-panel" id="section-exam" hidden>
+
+<p><strong>60 minutes.</strong> Closed notes for Section A; open <strong>only</strong> your eval sheet for Section B if you wrote it from memory.</p>
+<h2>Section A — Concepts (20 min)</h2>
+<ol>
+<li>Explain <strong>tool-use framing</strong> in <strong>your own words</strong>.  </li>
+<li>Why might you <strong>hide</strong> raw chain-of-thought from end users?  </li>
+<li>What makes an eval question <strong>checkable</strong> vs subjective?</li>
+</ol>
+<h2>Section B — Build under pressure (25 min)</h2>
+<p>From scratch (no paste from prior weeks), write <strong>5</strong> eval rows for <em>any</em> AI summarization feature—must include <strong>1 refusal</strong> case and <strong>1 format</strong> case.</p>
+<h2>Section C — Mini scenario (15 min)</h2>
+<p>User asks: “Prove enterprise revenue dropped because of this incident.” Describe how your system should behave <strong>without</strong> inventing numbers—name <strong>tools</strong> or <strong>responses</strong> you’d allow.</p>
+<hr />
+<p><strong>Self-grade:</strong> Compare with <a href="learning-plan.html#phase-1--end-of-weeks-23">Phase 1 checklist</a>.</p>
+</div>
+<div class="tab-panel" id="section-lab-sheet" hidden>
+
+<p><strong>Concepts &amp; curated links:</strong> read the Learn chapter <strong><a href="learn/prompting.html">Prompting</a></strong> first (topic path, not calendar-only). This file is the <strong>weekly practice bank</strong> — extra drills and a checklist on top of <strong>Readings</strong> → <strong>Practice</strong> → <strong>Exam</strong>.</p>
+<hr />
+<h2>1. Practice bank</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Problem</th>
+<th>Data / materials</th>
+<th>Expected outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Build <strong>CoT + self-critique</strong> prompts for the incident sample.</td>
+<td><code>week-02/data/incident_sample.md</code></td>
+<td><code>prompt_cot.md</code>, <code>prompt_selfcritique.md</code></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Write <strong>tool-use policy</strong>: when SQL vs no-SQL for numeric claims.</td>
+<td><code>practice-env/data/cloudnote.db</code> (schema only)</td>
+<td><code>tool_policy.md</code></td>
+</tr>
+<tr>
+<td>P3</td>
+<td>Create <strong>10-row eval sheet</strong>: Question | Expected property | Pass/Fail.</td>
+<td>Feature of your choice</td>
+<td><code>eval_sheet_10.md</code></td>
+</tr>
+<tr>
+<td>P4</td>
+<td>Include <strong>≥2 refusal/safety</strong> rows in eval sheet.</td>
+<td>None</td>
+<td>Same file — highlighted rows</td>
+</tr>
+</tbody>
+</table>
+<p>Align with <strong><code>PRACTICE.md</code></strong> for full wording.</p>
+<hr />
+<h2>2. Week checklist</h2>
+<ul>
+<li>[ ] <strong>T1–T5</strong> skim complete</li>
+<li>[ ] <strong>P1–P4</strong> + <strong><code>PRACTICE.md</code></strong> deliverables</li>
+<li>[ ] <strong><code>EXAM.md</code></strong> timed attempt</li>
+</ul>
+</div>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.week-tabs button');
+  var panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(function (b) { b.classList.remove('active'); });
+      panels.forEach(function (p) { p.hidden = true; });
+      btn.classList.add('active');
+      var panel = document.getElementById(btn.dataset.tab);
+      if (panel) panel.hidden = false;
+    });
+  });
+})();
+</script>
+<nav class="week-pager" aria-label="Adjacent weeks">
+  <a class="pager-link" href="week-02.html">← Week 02</a>
+  <a class="pager-link pager-link--next" href="week-04.html">Week 04 →</a>
+</nav>
+<aside class="work-tip">
+  <strong>Keep your work organized.</strong> Save prompts, SQL, and notes under <code>my-submissions/week-03/</code> in your clone so you can review before interviews.
+</aside>
+</main>
+<script src="js/nav.js"></script>
+</body>
+</html>

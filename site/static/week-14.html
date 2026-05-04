@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 14 — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="learn/index.html">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks">
+      <button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel">
+        <div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid">
+          <a href="week-01.html">01</a><a href="week-02.html">02</a><a href="week-03.html">03</a><a href="week-04.html">04</a><a href="week-05.html">05</a><a href="week-06.html">06</a><a href="week-07.html">07</a>
+          <a href="week-08.html">08</a><a href="week-09.html">09</a><a href="week-10.html">10</a><a href="week-11.html">11</a><a href="week-12.html">12</a><a href="week-13.html">13</a><a href="week-14.html" class="active">14</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="learn/index.html">Learn hub</a>
+  <a class="mob-link" href="learn/foundations.html">Foundations</a>
+  <a class="mob-link" href="learn/prompting.html">Prompting</a>
+  <a class="mob-link" href="learn/sql-and-data.html">SQL &amp; data</a>
+  <a class="mob-link" href="learn/visualization.html">Visualization</a>
+  <a class="mob-link" href="learn/rag.html">RAG</a>
+  <a class="mob-link" href="learn/chatbots.html">Chatbots</a>
+  <a class="mob-link" href="learn/prototypes.html">Prototypes</a>
+  <a class="mob-link" href="learn/agents-and-launch.html">Agents &amp; launch</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid">
+    <a class="mob-week-btn " href="week-01.html">01</a><a class="mob-week-btn " href="week-02.html">02</a><a class="mob-week-btn " href="week-03.html">03</a><a class="mob-week-btn " href="week-04.html">04</a><a class="mob-week-btn " href="week-05.html">05</a><a class="mob-week-btn " href="week-06.html">06</a><a class="mob-week-btn " href="week-07.html">07</a>
+    <a class="mob-week-btn " href="week-08.html">08</a><a class="mob-week-btn " href="week-09.html">09</a><a class="mob-week-btn " href="week-10.html">10</a><a class="mob-week-btn " href="week-11.html">11</a><a class="mob-week-btn " href="week-12.html">12</a><a class="mob-week-btn " href="week-13.html">13</a><a class="mob-week-btn class="activehref="week-14.html">14</a>
+  </div>
+</div>
+
+<nav class="subnav">
+  <a href="index.html">Home</a>
+  <span class="subnav-sep"></span>
+  <a href="week-01.html">W01</a>
+  <a href="week-02.html">W02</a>
+  <a href="week-03.html">W03</a>
+  <a href="week-04.html">W04</a>
+  <a href="week-05.html">W05</a>
+  <a href="week-06.html">W06</a>
+  <a href="week-07.html">W07</a>
+  <a href="week-08.html">W08</a>
+  <a href="week-09.html">W09</a>
+  <a href="week-10.html">W10</a>
+  <a href="week-11.html">W11</a>
+  <a href="week-12.html">W12</a>
+  <a href="week-13.html">W13</a>
+  <a class="active" href="week-14.html">W14</a>
+</nav>
+
+<main class="page has-subnav md-body">
+<div class="week-intro" style="border-left-color:#f97316">
+  <div class="phase-tag" style="color:#f97316">Phase 7 + Capstone</div>
+  <p><strong>Week 14.</strong> Integration, extras review, final exam.</p>
+</div>
+<aside class="related-learn"><strong>Learn chapter:</strong> <a href="learn/agents-and-launch.html">Agents & launch</a> — concepts, videos, and links. Study alongside or before practice.</aside>
+<div class="week-tabs">
+  <button class="active" data-tab="section-overview">Overview</button>
+  <button data-tab="section-readings">Readings</button>
+  <button data-tab="section-practice">Practice</button>
+  <button data-tab="section-exam">Exam</button>
+  <button data-tab="section-final-review">Final review</button>
+  <button data-tab="section-lab-sheet">Lab sheet</button>
+</div>
+<div class="tab-panel" id="section-overview">
+
+<h2>Problem statement</h2>
+<p>Deliver the <strong>Insight copilot</strong> capstone: integrated <strong>RAG + read-only SQL + chart + chat path + eval set + reflection</strong>. Close gaps from <strong>Extras</strong> (eval, security, observability).</p>
+<h2>Outcomes</h2>
+<ul>
+<li>End-to-end demo + short written report.</li>
+<li>Ability to articulate <strong>offline vs online</strong> eval, <strong>prompt injection</strong>, <strong>observability</strong>.</li>
+</ul>
+<h2>Deliverables</h2>
+<p>Match <strong><a href="learning-plan.html#capstone-project">Capstone</a></strong> — plus fill <code>FINAL_REVIEW.md</code> in this folder.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="learning-plan.html#extras--topics-you-might-not-know-yet">Extras</a></li>
+</ul>
+</div>
+<div class="tab-panel" id="section-readings" hidden>
+
+<p>Skim and consolidate notes on:</p>
+<ul>
+<li>[ ] Offline vs online <strong>eval</strong>  </li>
+<li>[ ] <strong>Observability</strong> (traces, version tags)  </li>
+<li>[ ] <strong>Prompt injection</strong> + indirect via RAG  </li>
+<li>[ ] <strong>MCP</strong> (one paragraph in your own words)  </li>
+<li>[ ] When <strong>not</strong> to use LLMs  </li>
+</ul>
+<p>Time: ~3 h spread over the week.</p>
+</div>
+<div class="tab-panel" id="section-practice" hidden>
+
+<h2>Task A — Build</h2>
+<p>Complete the capstone as defined in the master plan:</p>
+<ol>
+<li>RAG with citations over <code>practice-env/corpus</code> (or your own).  </li>
+<li>Read-only SQL on <code>cloudnote.db</code> (approved queries only).  </li>
+<li>At least <strong>one</strong> chart from the DB for a stated hypothesis.  </li>
+<li>Chat or CLI that ties pieces together; <strong>logs</strong> per turn.  </li>
+<li><strong>Eval set</strong> — ≥ 15 items with pass properties.</li>
+</ol>
+<h2>Task B — Report</h2>
+<p><code>capstone_report.md</code> (2000–3500 words) or slide deck + speaker notes: architecture, tradeoffs, risks, launch, metrics, kill switch.</p>
+<h2>Task C — Final review</h2>
+<p>Complete <strong><code>FINAL_REVIEW.md</code></strong> (this folder) after Task A–B.</p>
+<hr />
+<p><strong>Submit:</strong> <code>my-submissions/week-14/capstone/</code> (code + report + eval JSON/MD).</p>
+</div>
+<div class="tab-panel" id="section-exam" hidden>
+
+<p><strong>60 minutes.</strong> Treat as <strong>oral board prep</strong>: speak answers aloud, then write summaries.</p>
+<h2>Section A — System design (20 min)</h2>
+<p>Draw on paper the <strong>data flow</strong> for your capstone: user → UI → retrieval → model → tools → logs → metrics. Photograph or redraw in Mermaid.</p>
+<h2>Section B — Failure injection (15 min)</h2>
+<p>For your capstone, describe behavior for: <strong>empty retrieval</strong>, <strong>wrong SQL from tool</strong>, <strong>model refuses</strong>, <strong>API 429</strong>.</p>
+<h2>Section C — Launch (15 min)</h2>
+<p>List <strong>launch criteria</strong> (numeric or checklist) and <strong>rollback</strong> steps.</p>
+<h2>Section D — Meta (10 min)</h2>
+<p>What <strong>one</strong> topic from Extras do you want to deepen next quarter—why?</p>
+<hr />
+<p><strong>Pass:</strong> Coherent flow, concrete mitigations, honest meta. Compare <a href="learning-plan.html#capstone--end-of-course">Capstone checklist</a> + <a href="learning-plan.html#extras--ongoing-layer-across-later-phases">Extras</a>.</p>
+</div>
+<div class="tab-panel" id="section-final-review" hidden>
+
+<p><strong>Instructions:</strong> Answer from memory first; then open notes and mark gaps.</p>
+<h2>Concepts (short answers)</h2>
+<ol>
+<li>Tokens vs context window — difference in <strong>one</strong> sentence.  </li>
+<li>When RAG vs fine-tuning — <strong>one</strong> sentence each use case.  </li>
+<li>Why SQL stays source of truth in analytics copilots.  </li>
+<li>Two <strong>RAG</strong> failure modes unrelated to “bad GPT.”  </li>
+<li>Three <strong>log fields</strong> you’d require in prod chat.  </li>
+<li>Human approval — give <strong>one</strong> action that always needs it in your capstone.  </li>
+<li><strong>Indirect</strong> prompt injection — example.  </li>
+<li>Offline vs online eval — <strong>one</strong> sentence each.</li>
+</ol>
+<h2>Intuition checks</h2>
+<ul>
+<li>What would you check <strong>first</strong> if P95 latency regressed after a prompt change?  </li>
+<li>What metric proves <strong>citation</strong> quality—not BLEU?</li>
+</ul>
+<h2>Self-grade</h2>
+<ul>
+<li>[ ] I can whiteboard the full capstone in <strong>10 minutes</strong>.  </li>
+<li>[ ] I can explain tradeoffs to a VP without jargon walls.  </li>
+<li>[ ] I listed <strong>three</strong> things I’d still study next month.</li>
+</ul>
+<hr />
+<p>Date completed: <strong><em>_</em></strong><strong><em>_</em></strong>_</p>
+</div>
+<div class="tab-panel" id="section-lab-sheet" hidden>
+
+<p><strong>Concepts &amp; curated links:</strong> read the Learn chapter <strong><a href="learn/agents-and-launch.html">Agents &amp; launch</a></strong> first (topic path, not calendar-only). This file is the <strong>weekly practice bank</strong> — extra drills and a checklist on top of <strong>Readings</strong> → <strong>Practice</strong> → <strong>Exam</strong>.</p>
+<hr />
+<h2>1. Practice bank</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Problem</th>
+<th>Data / materials</th>
+<th>Expected outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Deliver <strong>Insight copilot</strong> capstone (RAG + SQL path + chart + logs + eval set).</td>
+<td><code>practice-env/</code> full stack</td>
+<td>Code + report</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Fill <strong><code>FINAL_REVIEW.md</code></strong> (in week folder / site).</td>
+<td>Reflection only</td>
+<td>Honest gaps list</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Week checklist</h2>
+<ul>
+<li>[ ] Capstone demo + report</li>
+<li>[ ] <strong><code>PRACTICE.md</code></strong> + <strong><code>EXAM.md</code></strong> + <strong>Final review</strong></li>
+</ul>
+</div>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.week-tabs button');
+  var panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(function (b) { b.classList.remove('active'); });
+      panels.forEach(function (p) { p.hidden = true; });
+      btn.classList.add('active');
+      var panel = document.getElementById(btn.dataset.tab);
+      if (panel) panel.hidden = false;
+    });
+  });
+})();
+</script>
+<nav class="week-pager" aria-label="Adjacent weeks">
+  <a class="pager-link" href="week-13.html">← Week 13</a>
+</nav>
+<aside class="work-tip">
+  <strong>Keep your work organized.</strong> Save prompts, SQL, and notes under <code>my-submissions/week-14/</code> in your clone so you can review before interviews.
+</aside>
+</main>
+<script src="js/nav.js"></script>
+</body>
+</html>

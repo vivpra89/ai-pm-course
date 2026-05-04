@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Practice Environment — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-logo">AI PM Course</a>
+        <p class="sidebar-tagline">Learn by topic · weekly practice · labs.</p>
+      </div>
+      <nav class="nav-scroll" aria-label="Main">
+        <div class="nav-section">Learn</div>
+        <a class="nav-link nav-link--compact" href="learn/index.html">Learn hub</a>
+        <a class="nav-link nav-link--compact" href="learn/foundations.html">Foundations</a>
+        <a class="nav-link nav-link--compact" href="learn/prompting.html">Prompting</a>
+        <a class="nav-link nav-link--compact" href="learn/sql-and-data.html">SQL & data</a>
+        <a class="nav-link nav-link--compact" href="learn/visualization.html">Visualization</a>
+        <a class="nav-link nav-link--compact" href="learn/rag.html">RAG</a>
+        <a class="nav-link nav-link--compact" href="learn/chatbots.html">Chatbots</a>
+        <a class="nav-link nav-link--compact" href="learn/prototypes.html">Prototypes</a>
+        <a class="nav-link nav-link--compact" href="learn/agents-and-launch.html">Agents & launch</a>
+        <div class="nav-section">Library</div>
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="learning-plan.html">Learning Plan</a>
+        <a class="nav-link" href="graduate-course.html">Graduate Course</a>
+        <a class="nav-link" href="course-weeks.html">Weekly Index</a>
+        <a class="nav-link active" href="practice-env.html">Practice Env</a>
+        <div class="nav-section">Weekly practice</div>
+        <div class="week-grid"><a class="week-btn" href="week-01.html">01</a>
+          <a class="week-btn" href="week-02.html">02</a>
+          <a class="week-btn" href="week-03.html">03</a>
+          <a class="week-btn" href="week-04.html">04</a>
+          <a class="week-btn" href="week-05.html">05</a>
+          <a class="week-btn" href="week-06.html">06</a>
+          <a class="week-btn" href="week-07.html">07</a>
+          <a class="week-btn" href="week-08.html">08</a>
+          <a class="week-btn" href="week-09.html">09</a>
+          <a class="week-btn" href="week-10.html">10</a>
+          <a class="week-btn" href="week-11.html">11</a>
+          <a class="week-btn" href="week-12.html">12</a>
+          <a class="week-btn" href="week-13.html">13</a>
+          <a class="week-btn" href="week-14.html">14</a></div>
+      </nav>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <div class="breadcrumb"><strong>Practice Environment</strong></div>
+      </header>
+      <main class="content md-body">
+<h1>Practice environment — CloudNote dummy SaaS</h1>
+<p>Use this folder for <strong>hands-on labs</strong> aligned with <code>TPM-PM-AI-Technical-Learning-Plan.md</code>: SQL validation, plots, text-to-SQL drills (with an LLM later), RAG over <code>corpus/</code>, and chatbot prototypes.</p>
+<p>Treat all data as <strong>synthetic</strong>; do not paste real employer customer data here without clearance.</p>
+<hr />
+<h2>What’s included</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>data/cloudnote.db</code></strong></td>
+<td>SQLite database file (created by the build script; listed in <code>.gitignore</code> if absent until you build)</td>
+</tr>
+<tr>
+<td><strong><code>scripts/build_dummy_db.py</code></strong></td>
+<td>Creates/regenerates the DB with fixed <strong><code>RNG_SEED=42</code></strong> so numbers stay reproducible</td>
+</tr>
+<tr>
+<td><strong><code>sql/faang_style_drills.sql</code></strong></td>
+<td>Prompt ideas for analytical SQL (metrics, experiments, support)—you write the queries</td>
+</tr>
+<tr>
+<td><strong><code>corpus/*.md</code></strong></td>
+<td>Short Markdown “policy” docs for <strong>RAG</strong> labs</td>
+</tr>
+<tr>
+<td><strong><code>labs/explore_metrics.py</code></strong></td>
+<td>Minimal Python: connects to SQLite and prints one rollup</td>
+</tr>
+<tr>
+<td><strong><code>requirements.txt</code></strong></td>
+<td>Python deps for labs/plots (pandas, matplotlib, jupyter, …)</td>
+</tr>
+<tr>
+<td><strong><code>.env.example</code></strong></td>
+<td>Template for API keys when you add LLM-based labs later</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scenario:</strong> fictional B2B <strong>CloudNote</strong> — users, subscriptions (MRR), product events, A/B experiments, support tickets.</p>
+<hr />
+<h2>Directory layout (where things live)</h2>
+<pre><code>practice-env/
+├── README.md                 ← this file
+├── requirements.txt
+├── .env.example
+├── scripts/
+│   └── build_dummy_db.py    ← run from practice-env (see below)
+├── data/
+│   └── cloudnote.db          ← produced by build script
+├── sql/
+│   └── faang_style_drills.sql
+├── corpus/
+│   ├── product_faq.md
+│   └── internal_rfc_ai_sidebar.md
+└── labs/
+    └── explore_metrics.py
+</code></pre>
+<p>Always run terminal commands with your <strong>current working directory</strong> set to <code>practice-env</code> unless a lab tells you otherwise (<code>cd practice-env</code>).</p>
+<hr />
+<h2>Prerequisites</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Python 3.10+</strong> (3.11+ recommended)</td>
+<td><code>python3 --version</code></td>
+</tr>
+<tr>
+<td><strong><code>sqlite3</code> CLI</strong> (optional but useful)</td>
+<td>macOS/Linux often preinstalled; Windows: install SQLite or use Python only</td>
+</tr>
+<tr>
+<td><strong>pip / venv</strong></td>
+<td>Standard Python tooling</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>End-to-end setup (first time)</h2>
+<p>Do these steps once per machine (or once per clean clone).</p>
+<h3>1. Go to the practice folder</h3>
+<pre><code class="language-bash">cd path/to/AI_PM_course/practice-env
+</code></pre>
+<h3>2. Create a virtual environment</h3>
+<p>Isolates packages so this course does not clash with other Python projects.</p>
+<pre><code class="language-bash">python3 -m venv venv
+</code></pre>
+<p><strong>Activate:</strong></p>
+<ul>
+<li><strong>macOS / Linux:</strong> <code>source venv/bin/activate</code></li>
+<li><strong>Windows (cmd):</strong> <code>venv\Scripts\activate.bat</code></li>
+<li><strong>Windows (PowerShell):</strong> <code>venv\Scripts\Activate.ps1</code></li>
+</ul>
+<p>Your prompt should usually show <code>(venv)</code>.</p>
+<h3>3. Install dependencies</h3>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<p>This pulls in <strong>pandas</strong>, <strong>matplotlib</strong>, <strong>jupyter</strong>, etc., for later weeks. SQL-only practice does not strictly need everything, but installing once avoids errors when you extend labs.</p>
+<h3>4. Build the database</h3>
+<pre><code class="language-bash">python scripts/build_dummy_db.py
+</code></pre>
+<p>Expected: a message like <code>Wrote .../data/cloudnote.db (users=800, events=..., tickets=...)</code>.</p>
+<p>If <strong><code>data/</code></strong> did not exist, the script creates it.</p>
+<h3>5. Sanity checks</h3>
+<p><strong>SQLite CLI</strong> — lists tables:</p>
+<pre><code class="language-bash">sqlite3 data/cloudnote.db &quot;SELECT name FROM sqlite_master WHERE type='table' ORDER BY 1;&quot;
+</code></pre>
+<p><strong>Python lab:</strong></p>
+<pre><code class="language-bash">python labs/explore_metrics.py
+</code></pre>
+<p>You should see a small <strong>MRR roll-up by segment</strong> printed as text.</p>
+<hr />
+<h2>How to use each piece</h2>
+<h3>A. SQLite database (<code>data/cloudnote.db</code>)</h3>
+<p><strong>When:</strong> Weeks focused on SQL, metrics, plots, text-to-SQL, or any “validate with data” exercise.</p>
+<p><strong>Rules of thumb</strong></p>
+<ol>
+<li>Treat the DB as <strong>source of truth</strong>—if an LLM suggests SQL, <strong>you</strong> review and run it (read-only mindset).</li>
+<li>Prefer <strong><code>LIMIT</code></strong> while exploring row shape.</li>
+<li><code>event_ts</code> and dates are stored as <strong>TEXT</strong> (ISO-like strings); compare with string ranges or use SQLite date functions consistently.</li>
+</ol>
+<p><strong>Open an interactive shell:</strong></p>
+<pre><code class="language-bash">sqlite3 data/cloudnote.db
+</code></pre>
+<p>Useful inside the shell:</p>
+<pre><code class="language-sql">.tables
+.schema dim_user
+.headers on
+.mode column
+</code></pre>
+<p><strong>Exit:</strong> <code>.quit</code></p>
+<h3>B. Drill prompts (<code>sql/faang_style_drills.sql</code>)</h3>
+<p><strong>When:</strong> You practice turning vague PM questions into <strong>metric definitions</strong> + SQL.</p>
+<p><strong>How</strong></p>
+<ol>
+<li>Read a bullet in the file <strong>without</strong> looking at answers (there are none—prompts only).</li>
+<li>Write the metric in <strong>English</strong> (numerator, denominator, time window).</li>
+<li>Write SQL against <code>cloudnote.db</code>.</li>
+<li>Run it; if rows look wrong, fix joins/filters before trusting narrative.</li>
+</ol>
+<h3>C. Corpus (<code>corpus/</code>)</h3>
+<p><strong>When:</strong> RAG labs (chunking, retrieval, citations).</p>
+<p><strong>How</strong></p>
+<ol>
+<li>Point your RAG tutorial/script at these <code>.md</code> files as the <strong>knowledge base</strong>.</li>
+<li>Ask questions whose answers appear in the FAQ vs the RFC (test retrieval vs hallucination).</li>
+<li>Optionally duplicate files into <code>corpus/</code> and edit—keep copies separate from the originals if you want a clean baseline.</li>
+</ol>
+<h3>D. Lab script (<code>labs/explore_metrics.py</code>)</h3>
+<p><strong>When:</strong> First pandas/SQL connection smoke test; starting point for plotting weeks.</p>
+<p><strong>How</strong></p>
+<pre><code class="language-bash">python labs/explore_metrics.py
+</code></pre>
+<p><strong>Extend:</strong> copy the file or import patterns into a Jupyter notebook; swap in your own SQL and add matplotlib/plotly charts.</p>
+<h3>E. API keys (later)</h3>
+<p><strong>When:</strong> Text-to-SQL via API, embeddings for RAG, chatbot demos.</p>
+<p><strong>How</strong></p>
+<pre><code class="language-bash">cp .env.example .env
+# Edit .env — uncomment and set OPENAI_API_KEY or ANTHROPIC_API_KEY as needed
+</code></pre>
+<p>Load <code>.env</code> from Python only if your lab script uses <code>python-dotenv</code> (add it to requirements when you need it). SQL-only weeks skip this entirely.</p>
+<hr />
+<h2>Example: SQL session from scratch</h2>
+<p>After setup and build:</p>
+<pre><code class="language-bash">cd practice-env
+source venv/bin/activate   # if not already active
+sqlite3 data/cloudnote.db
+</code></pre>
+<pre><code class="language-sql">SELECT segment, COUNT(*) AS n_users
+FROM dim_user
+GROUP BY segment;
+</code></pre>
+<pre><code class="language-sql">SELECT event_name, COUNT(*) AS n
+FROM fct_product_event
+GROUP BY event_name
+ORDER BY n DESC
+LIMIT 10;
+</code></pre>
+<p>Adjust filters as your weekly assignments require.</p>
+<hr />
+<h2>Example: text-to-SQL workflow with an LLM (when ready)</h2>
+<ol>
+<li>Export a <strong>small schema cheat-sheet</strong> (you can start from the schema one-liner below).</li>
+<li>In your LLM chat, paste <strong>only</strong> schema + your question; ask for <strong>SELECT-only</strong> SQL with <strong><code>LIMIT</code></strong>.</li>
+<li><strong>Review</strong> the SQL—watch for wrong joins, cartesian products, or leaking columns you did not intend.</li>
+<li>Run in <code>sqlite3</code> or pandas <strong>yourself</strong>; never treat model output as audited facts until executed.</li>
+</ol>
+<hr />
+<h2>Schema cheat-sheet (paste into LLM prompts)</h2>
+<pre><code>Tables:
+- dim_user(user_id, signup_ts, country, segment)  -- segment: smb | mid | enterprise
+- fct_subscription(user_id, plan_tier, mrr_usd, period_start, churn_date)
+- fct_product_event(event_id, user_id, event_ts, event_name, platform)
+- dim_experiment(experiment_id, name, start_date, end_date)
+- fct_experiment_exposure(user_id, experiment_id, variant, first_seen_ts)  -- variant: control | treatment
+- fct_support_ticket(ticket_id, user_id, created_ts, category, priority, resolution_minutes)
+
+Events examples: page_view, doc_open, checkout_complete, error_boundary, ...
+Platforms: web, ios, android
+</code></pre>
+<hr />
+<h2>Rebuilding the database</h2>
+<p>Run again anytime you want a <strong>clean</strong> copy:</p>
+<pre><code class="language-bash">python scripts/build_dummy_db.py
+</code></pre>
+<p>Optional custom output path:</p>
+<pre><code class="language-bash">python scripts/build_dummy_db.py --out data/cloudnote.db
+</code></pre>
+<p>Same seed ⇒ <strong>same data</strong> each time (good for comparing notebooks across machines).</p>
+<hr />
+<h2>Troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>What to try</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>No module named pandas</code></strong></td>
+<td>Activate <code>venv</code> and run <code>pip install -r requirements.txt</code></td>
+</tr>
+<tr>
+<td><strong><code>cloudnote.db</code> missing or old</strong></td>
+<td>Run <code>python scripts/build_dummy_db.py</code> from <code>practice-env</code></td>
+</tr>
+<tr>
+<td><strong><code>sqlite3: command not found</code></strong></td>
+<td>Install SQLite tools or use Python only: <code>python -c "import sqlite3; print(sqlite3.connect('data/cloudnote.db').execute('select 1').fetchone())"</code> from <code>practice-env</code></td>
+</tr>
+<tr>
+<td><strong>Wrong results / empty joins</strong></td>
+<td>Print <code>COUNT(*)</code>, check join keys (<code>user_id</code>), verify date filters on <code>event_ts</code></td>
+</tr>
+<tr>
+<td><strong>Script can’t find <code>data/cloudnote.db</code></strong></td>
+<td>Your shell might not be in <code>practice-env</code>; <code>cd</code> there or use absolute paths</td>
+</tr>
+<tr>
+<td><strong>Permission errors on Windows venv</strong></td>
+<td>Run terminal as normal user; try <code>python -m venv venv</code> again from <code>practice-env</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Jupyter (optional)</h2>
+<pre><code class="language-bash">source venv/bin/activate
+jupyter lab
+</code></pre>
+<p>Create a notebook in <code>labs/</code> or elsewhere; use:</p>
+<pre><code class="language-python">import sqlite3
+import pandas as pd
+conn = sqlite3.connect(&quot;data/cloudnote.db&quot;)
+pd.read_sql_query(&quot;SELECT * FROM dim_user LIMIT 5&quot;, conn)
+</code></pre>
+<p>Paths are relative to the notebook’s working directory—often easiest to <strong>change Jupyter’s cwd</strong> to <code>practice-env</code> or use absolute paths.</p>
+<hr />
+<h2>How this maps to the course</h2>
+<table>
+<thead>
+<tr>
+<th>Course topic</th>
+<th>What to do here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SQL + validation</strong></td>
+<td>Answer prompts in <code>sql/faang_style_drills.sql</code>; define metrics before coding</td>
+</tr>
+<tr>
+<td><strong>Plots</strong></td>
+<td>Extend <code>labs/explore_metrics.py</code> or a notebook; chart from query results</td>
+</tr>
+<tr>
+<td><strong>RAG</strong></td>
+<td>Chunk/embed/search <code>corpus/</code>; compare with vs without retrieval</td>
+</tr>
+<tr>
+<td><strong>Text-to-SQL</strong></td>
+<td>Schema cheat-sheet + LLM proposal + <strong>your</strong> execution</td>
+</tr>
+<tr>
+<td><strong>Chatbot</strong></td>
+<td>Thin Streamlit/Gradio app: optional read-only SQL + optional RAG over <code>corpus/</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Quick reference commands</h2>
+<pre><code class="language-bash">cd practice-env &amp;&amp; source venv/bin/activate
+python scripts/build_dummy_db.py
+python labs/explore_metrics.py
+sqlite3 data/cloudnote.db
+</code></pre>
+<hr />
+<p>For the interactive course hub (browser), rebuild static HTML after README changes: <code>python3 scripts/build_static_site.py</code> from the repo root.</p>
+      </main>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('overlay');
+    if (toggle && sidebar) {
+      toggle.addEventListener('click', function () {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('show');
+      });
+      if (overlay) {
+        overlay.addEventListener('click', function () {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('show');
+        });
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

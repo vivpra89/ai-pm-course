@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Graduate Course — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-logo">AI PM Course</a>
+        <p class="sidebar-tagline">Learn by topic · weekly practice · labs.</p>
+      </div>
+      <nav class="nav-scroll" aria-label="Main">
+        <div class="nav-section">Learn</div>
+        <a class="nav-link nav-link--compact" href="learn/index.html">Learn hub</a>
+        <a class="nav-link nav-link--compact" href="learn/foundations.html">Foundations</a>
+        <a class="nav-link nav-link--compact" href="learn/prompting.html">Prompting</a>
+        <a class="nav-link nav-link--compact" href="learn/sql-and-data.html">SQL & data</a>
+        <a class="nav-link nav-link--compact" href="learn/visualization.html">Visualization</a>
+        <a class="nav-link nav-link--compact" href="learn/rag.html">RAG</a>
+        <a class="nav-link nav-link--compact" href="learn/chatbots.html">Chatbots</a>
+        <a class="nav-link nav-link--compact" href="learn/prototypes.html">Prototypes</a>
+        <a class="nav-link nav-link--compact" href="learn/agents-and-launch.html">Agents & launch</a>
+        <div class="nav-section">Library</div>
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="learning-plan.html">Learning Plan</a>
+        <a class="nav-link active" href="graduate-course.html">Graduate Course</a>
+        <a class="nav-link" href="course-weeks.html">Weekly Index</a>
+        <a class="nav-link" href="practice-env.html">Practice Env</a>
+        <div class="nav-section">Weekly practice</div>
+        <div class="week-grid"><a class="week-btn" href="week-01.html">01</a>
+          <a class="week-btn" href="week-02.html">02</a>
+          <a class="week-btn" href="week-03.html">03</a>
+          <a class="week-btn" href="week-04.html">04</a>
+          <a class="week-btn" href="week-05.html">05</a>
+          <a class="week-btn" href="week-06.html">06</a>
+          <a class="week-btn" href="week-07.html">07</a>
+          <a class="week-btn" href="week-08.html">08</a>
+          <a class="week-btn" href="week-09.html">09</a>
+          <a class="week-btn" href="week-10.html">10</a>
+          <a class="week-btn" href="week-11.html">11</a>
+          <a class="week-btn" href="week-12.html">12</a>
+          <a class="week-btn" href="week-13.html">13</a>
+          <a class="week-btn" href="week-14.html">14</a></div>
+      </nav>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+        <div class="breadcrumb"><strong>Graduate Course</strong></div>
+      </header>
+      <main class="content md-body">
+<h1>Graduate-style course: AI for TPM / Technical PM</h1>
+<p>This document turns <strong><a href="learning-plan.html">TPM-PM-AI-Technical-Learning-Plan.md</a></strong> into a <strong>structured seminar</strong>: readings, <strong>graded-style assignments</strong> (you self-grade with rubrics), milestones, and a capstone. Treat each week like <strong>8–12 hours</strong> of graduate coursework (readings + problem sets + labs).</p>
+<p><strong>Companion artifacts</strong></p>
+<ul>
+<li>Learning roadmap and topic index: <strong><a href="learning-plan.html">TPM-PM-AI-Technical-Learning-Plan.md</a></strong></li>
+<li>Hands-on data and corpus: <strong><a href="practice-env.html">practice-env/README.md</a></strong></li>
+</ul>
+<hr />
+<h2>1. Course information</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Audience</strong></td>
+<td>Program managers, TPMs, and PMs preparing for <strong>technical + AI</strong> depth (including FAANG-style loops).</td>
+</tr>
+<tr>
+<td><strong>Prerequisites</strong></td>
+<td>Comfort with spreadsheets; willingness to run Python in a virtualenv; basic SQL helpful but teachable inside the course.</td>
+</tr>
+<tr>
+<td><strong>Duration</strong></td>
+<td><strong>14 weeks</strong> (one module per week); compress or extend as needed.</td>
+</tr>
+<tr>
+<td><strong>Materials</strong></td>
+<td>Open documentation from major model providers, OWASP LLM materials, optional survey papers; local <strong><code>practice-env</code></strong> SQLite + Markdown corpus.</td>
+</tr>
+</tbody>
+</table>
+<h3>Learning outcomes (what you should be able to do)</h3>
+<p>By the end you should be able to:</p>
+<ol>
+<li><strong>Define</strong> core LLM concepts (tokens, context window, inference vs training, grounding, embeddings) and use vocabulary correctly in design discussions.</li>
+<li><strong>Draft</strong> prompts using reusable <strong>patterns</strong> (role/constraints, few-shot, tool-use framing) and an <strong>eval rubric</strong> for a feature.</li>
+<li><strong>Translate</strong> product questions into <strong>metric definitions</strong> and <strong>SQL or pandas</strong> queries; critique ambiguous analytics.</li>
+<li><strong>Produce</strong> charts tied to a hypothesis and explain <strong>one weakness</strong> of each metric.</li>
+<li><strong>Explain</strong> the RAG pipeline, common failure modes, and mitigations at a <strong>system</strong> level.</li>
+<li><strong>Specify</strong> a minimal chatbot/RAG product: UX, logging, safety, and incident response.</li>
+<li><strong>Diagram</strong> an agentic workflow with <strong>human gates</strong>, idempotency, and auditability.</li>
+</ol>
+<hr />
+<h2>2. How to actually learn this (graduate habits)</h2>
+<table>
+<thead>
+<tr>
+<th>Habit</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Active recall</strong></td>
+<td>After each reading, close the tab and write <strong>5 bullet notes</strong> from memory.</td>
+</tr>
+<tr>
+<td><strong>Explain aloud</strong></td>
+<td>10-minute “lecture to the wall” on one topic (tokens, RAG, eval).</td>
+</tr>
+<tr>
+<td><strong>One artifact per week</strong></td>
+<td>Never finish a module with only passive reading—always submit the <strong>lab deliverable</strong>.</td>
+</tr>
+<tr>
+<td><strong>Timed practice</strong></td>
+<td>Use a <strong>45-minute</strong> block for SQL drills and <strong>90 minutes</strong> for system-design outlines.</td>
+</tr>
+<tr>
+<td><strong>LLM use policy</strong></td>
+<td>You may use AI assistants for drafts <strong>if</strong> you (a) paste your final reasoning in your own words, (b) verify anything that touches <strong>numbers or SQL</strong> against the DB, (c) note in the assignment where the assistant helped.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Grading map (self-assessment)</h2>
+<p>There are no external graders. Use the rubrics below; aim for <strong>“meets” or “exceeds”</strong> on every criterion before moving on.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Weight (suggested)</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Problem sets (PS1–PS7)</strong></td>
+<td>35%</td>
+<td>Written + short analytical tasks</td>
+</tr>
+<tr>
+<td><strong>Labs (L0–L7)</strong></td>
+<td>35%</td>
+<td>Code/SQL/notebook deliverables</td>
+</tr>
+<tr>
+<td><strong>Midterm</strong></td>
+<td>10%</td>
+<td>Timed SQL + metric-definition exam (self-proctored)</td>
+</tr>
+<tr>
+<td><strong>Capstone</strong></td>
+<td>20%</td>
+<td>Integrated project + written report</td>
+</tr>
+</tbody>
+</table>
+<p>Adjust weights if you skip optional sections.</p>
+<hr />
+<h2>4. Weekly modules: readings + assignments</h2>
+<p>Each <strong>Module <em>n</em></strong> lists: objectives, readings (complete <strong>before</strong> the problem set), <strong>Problem Set <em>n</em></strong>, and <strong>Lab <em>n</em></strong>. Solution discipline: store work in a folder like <code>my-submissions/module-03/</code> (you create it).</p>
+<h3>Module 0 — Foundations and jargon (Week 1)</h3>
+<p><strong>Objectives:</strong> Explain tokens, context window, inference vs training, hallucination vs grounding, embeddings at a high level; list 10 jargon terms you did not know before.</p>
+<p><strong>Readings (pick depth)</strong></p>
+<ul>
+<li><em>Required:</em> Skim your chosen provider’s docs on <strong>models</strong>, <strong>tokens</strong>, <strong>chat vs completions</strong>, <strong>JSON / structured output</strong> (e.g. OpenAI, Anthropic, or Google AI Studio documentation—one ecosystem is enough).</li>
+<li><em>Recommended:</em> OWASP <strong>LLM Top 10</strong> overview (conceptual, not memorization of every item).</li>
+</ul>
+<p><strong>Problem Set 0 (PS0)</strong></p>
+<ol>
+<li>In <strong>≤ 250 words</strong>, explain why <strong>context limits</strong> imply summarization, chunking, or RAG for large corpora.</li>
+<li>Glossary: define <strong>10 terms</strong> from the learning plan’s jargon list in <strong>your own words</strong> (no copy-paste).</li>
+</ol>
+<p><strong>Lab 0 (L0)</strong></p>
+<ul>
+<li>Set up <strong><code>practice-env</code></strong> per <a href="practice-env.html">README</a>: <code>venv</code>, <code>pip install -r requirements.txt</code>, run <code>scripts/build_dummy_db.py</code>, run <code>labs/explore_metrics.py</code>.</li>
+<li>Submit: screenshot or paste of terminal output + <strong>one sentence</strong> describing what the script computes.</li>
+</ul>
+<p><strong>Rubric — PS0</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Meets</th>
+<th>Exceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Context limits</td>
+<td>Links limits to a <strong>product</strong> consequence (cost, truncation, recall).</td>
+<td>Compares two mitigation strategies (e.g. RAG vs summarize) with a tradeoff.</td>
+</tr>
+<tr>
+<td>Glossary</td>
+<td>Definitions are accurate and plain-language.</td>
+<td>Each term has a <strong>tiny example</strong> (one phrase).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Module 1 — Prompt engineering as engineering (Weeks 2–3)</h3>
+<p><strong>Objectives:</strong> Use prompt <strong>patterns</strong> (not vibes); design a small <strong>eval</strong> with pass/fail rules.</p>
+<p><strong>Readings</strong></p>
+<ul>
+<li><em>Required:</em> Provider guide on <strong>system prompts</strong>, <strong>multi-turn</strong>, and <strong>function calling</strong> (or equivalent).</li>
+<li><em>Recommended:</em> One industry write-up on <strong>eval sets</strong> for LLM features (blog or vendor-neutral summary).</li>
+</ul>
+<p><strong>Problem Set 1 (PS1)</strong></p>
+<ol>
+<li>Write <strong>one system prompt</strong> and <strong>one user prompt</strong> for: “Summarize a weekly incident report for executives; flag P0 risks.” Include <strong>constraints</strong> (length, tone) and <strong>output format</strong> (bullets vs JSON).</li>
+<li>Build a <strong>10-question eval sheet</strong> for that feature: columns <code>Question | Expected property | Pass/Fail rule</code>. Include at least <strong>2 safety/refusal</strong> cases.</li>
+</ol>
+<p><strong>Lab 1 (L1)</strong></p>
+<ul>
+<li>In a Markdown file, show <strong>three variants</strong> of the same task using: (a) role + constraints only, (b) <strong>few-shot</strong> with 2 examples, (c) <strong>chain-of-thought</strong> instruction with optional hidden reasoning note.</li>
+<li>For each variant, run the prompt against <strong>one</strong> real or synthetic incident paragraph (invented is fine) and paste outputs; write <strong>3 sentences</strong> on which variant you’d ship first and why.</li>
+</ul>
+<p><strong>Rubric — PS1 / L1</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Meets</th>
+<th>Exceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eval sheet</td>
+<td>Pass/fail is <strong>checkable</strong> without subjective vibes.</td>
+<td>Includes <strong>negative tests</strong> (wrong format, missing P0).</td>
+</tr>
+<tr>
+<td>Variant comparison</td>
+<td>Chooses a variant with <strong>stated tradeoffs</strong> (latency, verbosity, control).</td>
+<td>Discusses <strong>eval maintenance</strong> (when prompts change).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Module 2 — LLMs and databases (Weeks 4–5)</h3>
+<p><strong>Objectives:</strong> Treat SQL as source of truth; specify <strong>safe</strong> text-to-SQL workflows; practice <strong><code>practice-env</code></strong>.</p>
+<p><strong>Readings</strong></p>
+<ul>
+<li><em>Required:</em> Documentation on <strong>read-only</strong> DB users / SQLite safety patterns (your choice); one article on <strong>text-to-SQL</strong> pitfalls (join errors, date filters).</li>
+</ul>
+<p><strong>Problem Set 2 (PS2)</strong></p>
+<ol>
+<li>From <strong><code>practice-env</code></strong>, write <strong>5 business questions</strong> in English and the <strong>SQL</strong> that answers each (run against <code>cloudnote.db</code>).</li>
+<li><strong>Threat model:</strong> In <strong>≤ 200 words</strong>, list <strong>three</strong> ways a text-to-SQL assistant could cause harm and <strong>one</strong> control per harm (allowlist, LIMIT, human approval, etc.).</li>
+</ol>
+<p><strong>Lab 2 (L2)</strong></p>
+<ul>
+<li>Complete <strong>at least 3</strong> analytical prompts from <a href="practice-env/sql/faang_style_drills.sql"><code>practice-env/sql/faang_style_drills.sql</code></a>: for each, submit (a) metric definition in English, (b) working SQL, (c) <strong>one sentence</strong> interpreting the result.</li>
+</ul>
+<p><strong>Rubric — PS2 / L2</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Meets</th>
+<th>Exceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQL</td>
+<td>Queries run without error; joins match intent.</td>
+<td>Uses <strong>clear aliases</strong> and comments for non-obvious filters.</td>
+</tr>
+<tr>
+<td>Safety</td>
+<td>Controls map to realistic deployment.</td>
+<td>Mentions <strong>audit log</strong> or <strong>semantic layer</strong> for metrics.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Module 3 — Visualization and narrative (Week 5–6)</h3>
+<p><strong>Objectives:</strong> Tie plots to hypotheses; label and defend denominators.</p>
+<p><strong>Readings</strong></p>
+<ul>
+<li><em>Required:</em> Matplotlib or Plotly “getting started” (skim); one article on <strong>metric hygiene</strong> (cohorts, ratios).</li>
+</ul>
+<p><strong>Problem Set 3 (PS3)</strong></p>
+<ol>
+<li>For each plot type—<strong>line</strong>, <strong>bar</strong>, <strong>funnel</strong>—give <strong>one</strong> PM question it answers well and <strong>one</strong> misuse.</li>
+<li>Hypothesis: “Enterprise users file more support tickets per active user than SMB.” Define <strong>active user</strong> and <strong>normalize</strong> the comparison; state what would <strong>falsify</strong> the hypothesis.</li>
+</ol>
+<p><strong>Lab 3 (L3)</strong></p>
+<ul>
+<li>Extend <a href="practice-env/labs/explore_metrics.py"><code>labs/explore_metrics.py</code></a> or a notebook: produce <strong>three</strong> static plots for <code>cloudnote.db</code> that answer:</li>
+<li>“Is the problem getting worse?”</li>
+<li>“Who is affected?”</li>
+<li>“What’s a simple baseline or comparison?”</li>
+<li>Submit plots (PNG or PDF) + <strong>≤ 150 words</strong> total interpretation.</li>
+</ul>
+<p><strong>Rubric — L3</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Meets</th>
+<th>Exceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Charts</td>
+<td>Axes labeled; title states the takeaway.</td>
+<td>Denominator or time window explicit in caption.</td>
+</tr>
+<tr>
+<td>Narrative</td>
+<td>Hypothesis linked to chart; caution noted.</td>
+<td>Calls out <strong>Simpson’s paradox</strong> or segment confound if relevant.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Module 4 — RAG (Weeks 7–8)</h3>
+<p><strong>Objectives:</strong> Describe ingest → chunk → embed → retrieve → generate; recognize failure modes.</p>
+<p><strong>Readings</strong></p>
+<ul>
+<li><em>Required:</em> One vendor-neutral explainer on <strong>embeddings</strong> and <strong>vector search</strong>; LlamaIndex or LangChain <strong>RAG overview</strong> (skim architecture diagrams only if short on time).</li>
+<li><em>Recommended:</em> Survey <strong>hybrid search</strong> (BM25 + dense) at concept level.</li>
+</ul>
+<p><strong>Problem Set 4 (PS4)</strong></p>
+<ol>
+<li>Draw <strong>RAG architecture</strong> (boxes + arrows): ingestion, chunking, embedding store, retriever, generator, optional reranker.</li>
+<li>List <strong>four failure modes</strong> (stale doc, bad chunk, ACL leak, low recall) and <strong>one</strong> mitigation each.</li>
+</ol>
+<p><strong>Lab 4 (L4)</strong></p>
+<ul>
+<li>Minimum viable RAG: chunk <a href="practice-env/corpus/"><code>practice-env/corpus/</code></a> (by heading or fixed size), embed with a library/API of your choice <strong>or</strong> simulate retrieval with keyword overlap if you have no API key—<strong>state which</strong>.</li>
+<li>Ask <strong>5 questions</strong>; for each, show <strong>retrieved chunks</strong> and model answer with <strong>citations</strong> (or pseudo-citations if simulated).</li>
+<li>Write <strong>two</strong> observed failures and how you’d detect them in production.</li>
+</ul>
+<p><strong>Rubric — L4</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Meets</th>
+<th>Exceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Traceability</td>
+<td>Answers tie to specific chunks.</td>
+<td>Eval idea for <strong>citation accuracy</strong> sketched.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Module 5 — Chatbot product surface (Weeks 9–10)</h3>
+<p><strong>Objectives:</strong> Specify UX, logging, rate limits, fallbacks; naive RAG vs tool-using agent—when each.</p>
+<p><strong>Readings</strong></p>
+<ul>
+<li><em>Required:</em> Your provider’s docs on <strong>streaming</strong> and <strong>rate limits</strong>.</li>
+<li><em>Recommended:</em> One post on <strong>prompt injection</strong> in chat UIs.</li>
+</ul>
+<p><strong>Problem Set 5 (PS5)</strong></p>
+<ol>
+<li><strong>One-pager</strong> spec: stakeholders, success metrics, <strong>P95 latency</strong> target (pick a number and defend order-of-magnitude), logging fields per turn.</li>
+<li><strong>Incident playbook</strong> (≤ 1 page): “model wrong,” “DB down,” “rate limit,” “retrieval returns empty.”</li>
+</ol>
+<p><strong>Lab 5 (L5)</strong></p>
+<ul>
+<li>Minimal UI (Streamlit/Gradio/CLI): user asks a question; system retrieves from <strong>corpus</strong> and/or runs <strong>one</strong> read-only SQL template you approve.</li>
+<li>Log: timestamp, question, sources used, rough latency.</li>
+<li>Submit: short screen recording or transcript + <code>README</code> how to run.</li>
+</ul>
+<p><strong>Rubric — L5</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Meets</th>
+<th>Exceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ops</td>
+<td>Logs exist and are useful.</td>
+<td>Redaction strategy for PII mentioned.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Module 6 — Prototypes and reproducibility (Weeks 11–12)</h3>
+<p><strong>Objectives:</strong> Reproducible demos; versioned prompts; cost awareness.</p>
+<p><strong>Readings</strong></p>
+<ul>
+<li><em>Required:</em> Skim <strong>Streamlit</strong> or <strong>Gradio</strong> docs (your choice).</li>
+<li><em>Recommended:</em> Notes on <strong>token counting</strong> and caching concepts.</li>
+</ul>
+<p><strong>Problem Set 6 (PS6)</strong></p>
+<ol>
+<li>Write a <strong>5-minute demo script</strong> (bullet outline) for leadership: setup, question, expected insight, fallback line if the model fails.</li>
+<li>Estimate <strong>order-of-magnitude</strong> tokens for one session (show assumptions).</li>
+</ol>
+<p><strong>Lab 6 (L6)</strong></p>
+<ul>
+<li>Package L5 into a <strong>reproducible</strong> run: <code>requirements.txt</code> or lockfile, <strong>pinned</strong> prompt text in a file, <code>README</code> with exact commands.</li>
+<li>Optional: add <strong>one</strong> chart from <code>cloudnote.db</code> in the same demo flow.</li>
+</ul>
+<p><strong>Rubric — L6</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Meets</th>
+<th>Exceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repro</td>
+<td>Fresh clone runs with documented steps.</td>
+<td>Single command or Makefile target.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Module 7 — Agentic patterns (Weeks 12–14)</h3>
+<p><strong>Objectives:</strong> Plan–act–observe loops; human gates; cost and audit.</p>
+<p><strong>Readings</strong></p>
+<ul>
+<li><em>Required:</em> One overview of <strong>ReAct</strong> or <strong>tool use</strong> (paper abstract + diagram ok).</li>
+<li><em>Recommended:</em> MCP introduction (Anthropic or official MCP docs)—<strong>conceptual</strong>.</li>
+</ul>
+<p><strong>Problem Set 7 (PS7)</strong></p>
+<ol>
+<li>Compare <strong>single agent with tools</strong> vs <strong>multi-agent</strong> for <strong>one</strong> scenario (e.g. “investigate ticket + query metrics”): pros/cons in a table.</li>
+<li>Design <strong>human approval</strong> for any action that sends email or refunds money—sequence diagram or numbered steps.</li>
+</ol>
+<p><strong>Lab 7 (L7)</strong></p>
+<ul>
+<li>Diagram (Mermaid, draw.io export, or neat ASCII) an agent that <strong>cannot</strong> send external email without approval; include <strong>retry/idempotency</strong> note for tool calls.</li>
+</ul>
+<p><strong>Rubric — PS7 / L7</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Meets</th>
+<th>Exceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Governance</td>
+<td>Approval boundary is explicit.</td>
+<td>Discusses <strong>duplicate execution</strong> or <strong>partial failure</strong>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. Midterm (Week 8 suggested)</h2>
+<p><strong>Duration:</strong> 90 minutes, closed notes except <strong><code>practice-env</code></strong> schema sheet and SQLite CLI.</p>
+<p><strong>Sections</strong></p>
+<ol>
+<li><strong>Metric definitions (30 min):</strong> Given three ambiguous questions (“Did AI improve retention?”), rewrite <strong>precise definitions</strong> (numerator/denominator/window).</li>
+<li><strong>SQL (45 min):</strong> Answer <strong>two</strong> prompts from <a href="practice-env/sql/faang_style_drills.sql"><code>faang_style_drills.sql</code></a> with working queries on <code>cloudnote.db</code>.</li>
+<li><strong>Short concepts (15 min):</strong> Define <strong>four</strong> of: embedding, temperature, RAG, prompt injection, eval set, P95 latency—in <strong>2 sentences each</strong>.</li>
+</ol>
+<p><strong>Self-grade:</strong> Use answer keys you write <strong>after</strong> the exam (prepare keys from your own solutions the next day); flag gaps and redo weak sections.</p>
+<hr />
+<h2>6. Capstone (Weeks 12–14)</h2>
+<p>Align with <strong><a href="learning-plan.html">Capstone in learning plan</a></strong> — <strong>Insight copilot</strong> using <code>practice-env</code> corpus + DB.</p>
+<h3>Deliverables</h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Code/notebook</strong></td>
+<td>RAG + at least <strong>one</strong> approved SQL path + <strong>one</strong> chart from DB</td>
+</tr>
+<tr>
+<td><strong>Eval</strong></td>
+<td>≥ <strong>15</strong> golden questions with expected behaviors (correct refusal, citation, numeric sanity)</td>
+</tr>
+<tr>
+<td><strong>Report (2000–3500 words)</strong></td>
+<td>Problem, users, architecture, <strong>tradeoffs</strong>, risks, <strong>launch plan</strong>, metrics dashboard sketch</td>
+</tr>
+<tr>
+<td><strong>Demo</strong></td>
+<td>8-minute recorded walkthrough or live checklist</td>
+</tr>
+</tbody>
+</table>
+<h3>Capstone rubric (summary)</h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Meets</th>
+<th>Exceeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technical coherence</td>
+<td>End-to-end flow works; limitations stated.</td>
+<td>Clear comparison vs baseline without AI.</td>
+</tr>
+<tr>
+<td>Product judgment</td>
+<td>Metrics tied to decisions; rollout phased.</td>
+<td>Explicit <strong>rollback</strong> and <strong>kill switch</strong>.</td>
+</tr>
+<tr>
+<td>Risk</td>
+<td>Safety and misuse discussed with mitigations.</td>
+<td><strong>Red-team</strong> two abuse scenarios.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. Suggested calendar (14 weeks)</h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Focus</th>
+<th>Submit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Module 0</td>
+<td>PS0, L0</td>
+</tr>
+<tr>
+<td>2–3</td>
+<td>Module 1</td>
+<td>PS1, L1</td>
+</tr>
+<tr>
+<td>4–5</td>
+<td>Module 2</td>
+<td>PS2, L2</td>
+</tr>
+<tr>
+<td>5–6</td>
+<td>Module 3</td>
+<td>PS3, L3</td>
+</tr>
+<tr>
+<td>7–8</td>
+<td>Module 4 + <strong>Midterm</strong></td>
+<td>PS4, L4, midterm</td>
+</tr>
+<tr>
+<td>9–10</td>
+<td>Module 5</td>
+<td>PS5, L5</td>
+</tr>
+<tr>
+<td>11–12</td>
+<td>Module 6</td>
+<td>PS6, L6</td>
+</tr>
+<tr>
+<td>12–14</td>
+<td>Module 7 + <strong>Capstone</strong></td>
+<td>PS7, L7, capstone</td>
+</tr>
+</tbody>
+</table>
+<p>Overlap weeks intentionally combine lighter reading with heavier labs—adjust to your schedule.</p>
+<hr />
+<h2>8. Where this ties back</h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Learning plan phase</th>
+<th>This course</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jargon / fundamentals</td>
+<td>Phase 0</td>
+<td>Module 0</td>
+</tr>
+<tr>
+<td>Prompting / eval</td>
+<td>Phase 1</td>
+<td>Module 1</td>
+</tr>
+<tr>
+<td>SQL / validation</td>
+<td>Phase 2</td>
+<td>Module 2</td>
+</tr>
+<tr>
+<td>Plots</td>
+<td>Phase 3</td>
+<td>Module 3</td>
+</tr>
+<tr>
+<td>RAG</td>
+<td>Phase 4</td>
+<td>Module 4</td>
+</tr>
+<tr>
+<td>Chatbot</td>
+<td>Phase 5</td>
+<td>Module 5</td>
+</tr>
+<tr>
+<td>Prototypes</td>
+<td>Phase 6</td>
+<td>Module 6</td>
+</tr>
+<tr>
+<td>Agents</td>
+<td>Phase 7</td>
+<td>Module 7</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>This syllabus is for independent study; adapt deadlines, readings, and rubrics to your goals.</em></p>
+      </main>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var toggle = document.querySelector('.menu-toggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('overlay');
+    if (toggle && sidebar) {
+      toggle.addEventListener('click', function () {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('show');
+      });
+      if (overlay) {
+        overlay.addEventListener('click', function () {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('show');
+        });
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

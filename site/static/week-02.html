@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 02 — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="learn/index.html">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks">
+      <button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel">
+        <div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid">
+          <a href="week-01.html">01</a><a href="week-02.html" class="active">02</a><a href="week-03.html">03</a><a href="week-04.html">04</a><a href="week-05.html">05</a><a href="week-06.html">06</a><a href="week-07.html">07</a>
+          <a href="week-08.html">08</a><a href="week-09.html">09</a><a href="week-10.html">10</a><a href="week-11.html">11</a><a href="week-12.html">12</a><a href="week-13.html">13</a><a href="week-14.html">14</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="learn/index.html">Learn hub</a>
+  <a class="mob-link" href="learn/foundations.html">Foundations</a>
+  <a class="mob-link" href="learn/prompting.html">Prompting</a>
+  <a class="mob-link" href="learn/sql-and-data.html">SQL &amp; data</a>
+  <a class="mob-link" href="learn/visualization.html">Visualization</a>
+  <a class="mob-link" href="learn/rag.html">RAG</a>
+  <a class="mob-link" href="learn/chatbots.html">Chatbots</a>
+  <a class="mob-link" href="learn/prototypes.html">Prototypes</a>
+  <a class="mob-link" href="learn/agents-and-launch.html">Agents &amp; launch</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid">
+    <a class="mob-week-btn " href="week-01.html">01</a><a class="mob-week-btn class="activehref="week-02.html">02</a><a class="mob-week-btn " href="week-03.html">03</a><a class="mob-week-btn " href="week-04.html">04</a><a class="mob-week-btn " href="week-05.html">05</a><a class="mob-week-btn " href="week-06.html">06</a><a class="mob-week-btn " href="week-07.html">07</a>
+    <a class="mob-week-btn " href="week-08.html">08</a><a class="mob-week-btn " href="week-09.html">09</a><a class="mob-week-btn " href="week-10.html">10</a><a class="mob-week-btn " href="week-11.html">11</a><a class="mob-week-btn " href="week-12.html">12</a><a class="mob-week-btn " href="week-13.html">13</a><a class="mob-week-btn " href="week-14.html">14</a>
+  </div>
+</div>
+
+<nav class="subnav">
+  <a href="index.html">Home</a>
+  <span class="subnav-sep"></span>
+  <a href="week-01.html">W01</a>
+  <a class="active" href="week-02.html">W02</a>
+  <a href="week-03.html">W03</a>
+  <a href="week-04.html">W04</a>
+  <a href="week-05.html">W05</a>
+  <a href="week-06.html">W06</a>
+  <a href="week-07.html">W07</a>
+  <a href="week-08.html">W08</a>
+  <a href="week-09.html">W09</a>
+  <a href="week-10.html">W10</a>
+  <a href="week-11.html">W11</a>
+  <a href="week-12.html">W12</a>
+  <a href="week-13.html">W13</a>
+  <a href="week-14.html">W14</a>
+</nav>
+
+<main class="page has-subnav md-body">
+<div class="week-intro" style="border-left-color:#3b82f6">
+  <div class="phase-tag" style="color:#3b82f6">Phase 1</div>
+  <p><strong>Week 2.</strong> Prompt patterns: role/constraints, few-shot, decomposition.</p>
+</div>
+<aside class="related-learn"><strong>Learn chapter:</strong> <a href="learn/prompting.html">Prompting</a> — concepts, videos, and links. Study alongside or before practice.</aside>
+<div class="week-tabs">
+  <button class="active" data-tab="section-overview">Overview</button>
+  <button data-tab="section-readings">Readings</button>
+  <button data-tab="section-practice">Practice</button>
+  <button data-tab="section-exam">Exam</button>
+  <button data-tab="section-lab-sheet">Lab sheet</button>
+</div>
+<div class="tab-panel" id="section-overview">
+
+<h2>Problem statement</h2>
+<p>You own an AI-assisted <strong>weekly incident summary</strong> for executives. Leadership wants consistent tone, bounded length, and predictable structure—but engineering wants flexibility when incidents are messy.</p>
+<h2>Outcomes</h2>
+<p>You can draft prompts using <strong>role + constraints + format</strong>, <strong>few-shot</strong> examples, and <strong>decomposition</strong> (split complex asks into steps).</p>
+<h2>Deliverables</h2>
+<ol>
+<li>Three prompt variants for the <strong>same</strong> incident narrative (see <code>data/incident_sample.md</code>).</li>
+<li>Written comparison: which variant you’d pilot first and <strong>one tradeoff</strong> (verbosity, control, maintenance).</li>
+</ol>
+<h2>Links</h2>
+<ul>
+<li>Master plan: <a href="learning-plan.html#phase-1--prompt-engineering-patterns-not-tricks-weeks-23">Phase 1</a></li>
+<li>Patterns checklist: <a href="learning-plan.html#phase-1--end-of-weeks-23">Phase 1 concepts</a></li>
+</ul>
+</div>
+<div class="tab-panel" id="section-readings" hidden>
+
+<h2>Required</h2>
+<ul>
+<li>[ ] Provider docs: <strong>system vs user messages</strong>, <strong>multi-turn</strong> chat state.</li>
+<li>[ ] Provider docs: <strong>function calling / tool use</strong> at a conceptual level (you will apply it more in Week 03).</li>
+</ul>
+<h2>Recommended</h2>
+<ul>
+<li>[ ] Skim LangChain or LlamaIndex intro <strong>only</strong> for vocabulary (“chains,” “retrieval”)—no need to build apps yet.</li>
+</ul>
+<h2>Time box</h2>
+<p>~2 hours readings + notes.</p>
+</div>
+<div class="tab-panel" id="section-practice" hidden>
+
+<p>Use <code>data/incident_sample.md</code> as the <strong>single source incident</strong> for all tasks.</p>
+<h2>Task A — Role + constraints + format</h2>
+<p>Write <strong>one system prompt</strong> and <strong>one user prompt</strong> that produce:</p>
+<ul>
+<li>Executive audience, neutral tone.</li>
+<li><strong>≤ 120 words</strong> total output.</li>
+<li>Sections: <strong>Summary</strong>, <strong>Customer impact</strong>, <strong>Next steps</strong>.</li>
+</ul>
+<p>Save as <code>prompts_v1.md</code>.</p>
+<h2>Task B — Few-shot</h2>
+<p>Add <strong>two</strong> input/output examples (synthetic is fine) showing “good” summaries for smaller incidents. Keep examples <strong>short</strong>. Save as <code>prompts_v2_fewshot.md</code>.</p>
+<h2>Task C — Decomposition</h2>
+<p>Before summarizing, ask the model (or write yourself) a <strong>3-step decomposition</strong>:</p>
+<ol>
+<li>Extract facts vs hypotheses.  </li>
+<li>Rank severity.  </li>
+<li>Then summarize.</li>
+</ol>
+<p>Implement this either as <strong>three chained prompts</strong> or <strong>one prompt with explicit steps</strong>. Save as <code>prompts_v3_decompose.md</code>.</p>
+<h2>Task D — Compare outputs</h2>
+<p>Run <strong>A, B, C</strong> against <code>incident_sample.md</code> (use any chat UI or API). Paste outputs side-by-side in <code>comparison.md</code> (≤ 400 words) with:</p>
+<ul>
+<li>Which output you’d ship first.</li>
+<li>One <strong>failure mode</strong> you still see (missed P0, vague impact, etc.).</li>
+</ul>
+<hr />
+<p><strong>Submit:</strong> <code>my-submissions/week-02/</code> with all markdown files.</p>
+</div>
+<div class="tab-panel" id="section-exam" hidden>
+
+<p><strong>45 minutes, closed notes.</strong> Then compare with <a href="learning-plan.html#phase-1--end-of-weeks-23">Phase 1 checklist</a>.</p>
+<h2>1. Short answers</h2>
+<ol>
+<li>Why is the <strong>system prompt</strong> often treated like a “product contract”?  </li>
+<li>What does <strong>few-shot</strong> buy you that <strong>zero-shot</strong> does not?  </li>
+<li>When is <strong>decomposition</strong> worth the extra latency?</li>
+</ol>
+<h2>2. Prompt sketch</h2>
+<p>Write a <strong>system prompt only</strong> (≤ 120 words) for: “Convert messy customer feedback into a <strong>JSON</strong> object with keys <code>theme</code>, <code>severity</code>, <code>quote</code>.” Include <strong>at least two constraints</strong> on tone or safety.</p>
+<h2>3. Failure mode</h2>
+<p>Give <strong>one</strong> example of how a vague <strong>format</strong> constraint could break downstream automation.</p>
+<hr />
+<p><strong>Self-grade:</strong> Clear definitions; prompt is checkable; failure mode is realistic.</p>
+</div>
+<div class="tab-panel" id="section-lab-sheet" hidden>
+
+<p><strong>Concepts &amp; curated links:</strong> read the Learn chapter <strong><a href="learn/prompting.html">Prompting</a></strong> first (topic path, not calendar-only). This file is the <strong>weekly practice bank</strong> — extra drills and a checklist on top of <strong>Readings</strong> → <strong>Practice</strong> → <strong>Exam</strong>.</p>
+<hr />
+<h2>1. Practice bank</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Problem</th>
+<th>Data / materials</th>
+<th>Expected outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Write <strong>system + user</strong> prompts for executive incident summary (<strong>≤120 words</strong> output, fixed sections).</td>
+<td><code>data/incident_sample.md</code> (this week’s folder)</td>
+<td>Two prompts in <code>prompts_v1.md</code></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Add <strong>two few-shot</strong> examples (synthetic incidents OK).</td>
+<td>Same incident file</td>
+<td><code>prompts_v2_fewshot.md</code> + model output pasted</td>
+</tr>
+<tr>
+<td>P3</td>
+<td><strong>Decompose</strong> the task into 3 explicit steps in the prompt (chain).</td>
+<td>Same</td>
+<td><code>prompts_v3_decompose.md</code> + comparison notes</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>Run all three variants; note <strong>which you’d ship first</strong> and <strong>one failure mode</strong>.</td>
+<td>Chat UI or API</td>
+<td><code>comparison.md</code> (≤400 words)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expanded</strong></p>
+<ul>
+<li><strong>P1–P3:</strong> Formal assignment detail lives in <strong><code>PRACTICE.md</code></strong> — use this table as the outcome checklist.</li>
+</ul>
+<hr />
+<h2>2. Week checklist</h2>
+<ul>
+<li>[ ] Completed <strong>T1–T4</strong> readings/videos</li>
+<li>[ ] <strong>P1–P4</strong> artifacts saved</li>
+<li>[ ] <strong><code>PRACTICE.md</code></strong> + <strong><code>EXAM.md</code></strong></li>
+</ul>
+</div>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.week-tabs button');
+  var panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(function (b) { b.classList.remove('active'); });
+      panels.forEach(function (p) { p.hidden = true; });
+      btn.classList.add('active');
+      var panel = document.getElementById(btn.dataset.tab);
+      if (panel) panel.hidden = false;
+    });
+  });
+})();
+</script>
+<nav class="week-pager" aria-label="Adjacent weeks">
+  <a class="pager-link" href="week-01.html">← Week 01</a>
+  <a class="pager-link pager-link--next" href="week-03.html">Week 03 →</a>
+</nav>
+<aside class="work-tip">
+  <strong>Keep your work organized.</strong> Save prompts, SQL, and notes under <code>my-submissions/week-02/</code> in your clone so you can review before interviews.
+</aside>
+</main>
+<script src="js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visualization — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+<style>
+.quiz-section,.reading-section{margin-top:2.5rem}
+.quiz-section h2,.reading-section h2{font-size:1rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem}
+.quiz-section h2::before{content:"\2713 ";font-size:0.85rem;opacity:.5}
+.reading-section h2::before{content:"\2197 ";font-size:0.85rem;opacity:.5}
+.qz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);margin-bottom:0.6rem;border-left:3px solid var(--accent);overflow:hidden}
+.qz-q{padding:0.75rem 1rem;font-size:0.84rem;font-weight:600;line-height:1.5;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:0.75rem;color:var(--text)}
+.qz-q:hover{background:var(--surface-2)}
+.qz-tog{color:var(--muted-2);font-size:0.75rem;flex-shrink:0;user-select:none;margin-top:0.15rem}
+.qz-a{display:none;padding:0.65rem 1rem 0.85rem;border-top:1px solid var(--border);background:var(--surface-2);font-size:0.82rem;color:var(--muted);line-height:1.65}
+.qz-a.open{display:block}
+.qz-a strong{color:var(--text)}
+.read-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem}
+.read-list li{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:0.7rem 1rem;display:flex;flex-direction:column;gap:0.2rem}
+.read-list a{font-size:0.83rem;font-weight:600;color:var(--accent);text-decoration:none}
+.read-list a:hover{text-decoration:underline}
+.read-list .read-desc{font-size:0.75rem;color:var(--muted)}
+.read-type{font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;opacity:.6}
+</style>
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="../index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="index.html" class="active">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks"><button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel"><div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid"><a href="../week-01.html">01</a><a href="../week-02.html">02</a><a href="../week-03.html">03</a><a href="../week-04.html">04</a><a href="../week-05.html">05</a><a href="../week-06.html">06</a><a href="../week-07.html">07</a><a href="../week-08.html">08</a><a href="../week-09.html">09</a><a href="../week-10.html">10</a><a href="../week-11.html">11</a><a href="../week-12.html">12</a><a href="../week-13.html">13</a><a href="../week-14.html">14</a></div>
+      </div></div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="index.html">Learn hub</a><a class="mob-link" href="foundations.html">Foundations</a><a class="mob-link" href="prompting.html">Prompting</a><a class="mob-link" href="sql-and-data.html">SQL &amp; data</a><a class="mob-link active" href="visualization.html">Visualization</a><a class="mob-link" href="rag.html">RAG</a><a class="mob-link" href="chatbots.html">Chatbots</a><a class="mob-link" href="prototypes.html">Prototypes</a><a class="mob-link" href="agents-and-launch.html">Agents &amp; launch</a>
+  <a class="mob-link" href="faang-prep.html">FAANG prep</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid"><a class="mob-week-btn" href="../week-01.html">01</a><a class="mob-week-btn" href="../week-02.html">02</a><a class="mob-week-btn" href="../week-03.html">03</a><a class="mob-week-btn" href="../week-04.html">04</a><a class="mob-week-btn" href="../week-05.html">05</a><a class="mob-week-btn" href="../week-06.html">06</a><a class="mob-week-btn" href="../week-07.html">07</a><a class="mob-week-btn" href="../week-08.html">08</a><a class="mob-week-btn" href="../week-09.html">09</a><a class="mob-week-btn" href="../week-10.html">10</a><a class="mob-week-btn" href="../week-11.html">11</a><a class="mob-week-btn" href="../week-12.html">12</a><a class="mob-week-btn" href="../week-13.html">13</a><a class="mob-week-btn" href="../week-14.html">14</a></div>
+</div>
+<nav class="subnav">
+  <a href="../index.html">Home</a><span class="subnav-sep"></span>
+  <a href="index.html">Hub</a><a href="foundations.html">Foundations</a><a href="prompting.html">Prompting</a><a href="sql-and-data.html">SQL &amp; data</a><a href="visualization.html" class="active">Visualization</a><a href="rag.html">RAG</a><a href="chatbots.html">Chatbots</a><a href="prototypes.html">Prototypes</a><a href="agents-and-launch.html">Agents &amp; launch</a><a href="faang-prep.html">FAANG prep</a>
+</nav>
+
+<main class="page has-subnav prose">
+  <h1>Visualization</h1>
+  <p><em>Chapter 4 · Phase 3 · practice in <a href="../week-06.html">Week 6</a></em></p>
+
+  <div class="callout callout--info">
+    <div class="callout-title">What you will know after this chapter</div>
+    The hypothesis-first workflow · which chart type to use for which question · how to validate AI system behavior with plots · common chart mistakes that hide the truth · Python/pandas patterns for PM analysis
+  </div>
+
+  <h2>1. Hypothesis-first visualization</h2>
+  <p>The most common PM mistake with data is opening a BI tool, generating many charts, and then finding a story. This is <em>data fishing</em> — you will always find something that looks interesting, and you will have no way to know if it is real or artifact.</p>
+
+  <p>The correct workflow:</p>
+  <div class="concept-list">
+    <div class="concept-item"><div class="concept-num">1</div><div class="concept-body"><h4>Write the hypothesis first</h4><p><em>"I believe that Pro users who use the RAG feature in their first week retain at 90-day rates 20% higher than those who do not."</em> Be specific about the effect direction and magnitude.</p></div></div>
+    <div class="concept-item"><div class="concept-num">2</div><div class="concept-body"><h4>Choose the chart type that would confirm or deny it</h4><p>For this hypothesis: a retention curve (cohort analysis) comparing two groups. The chart either shows the gap or doesn't.</p></div></div>
+    <div class="concept-item"><div class="concept-num">3</div><div class="concept-body"><h4>Generate the plot</h4><p>Run the query, create the chart. Look for the pattern you hypothesized. Check if it exists.</p></div></div>
+    <div class="concept-item"><div class="concept-num">4</div><div class="concept-body"><h4>State what the chart proves or disproves</h4><p>Write one sentence under every chart: <em>"This chart shows X, which [confirms/does not confirm] the hypothesis because Y."</em> If you cannot write this sentence, the chart is decorative, not analytical.</p></div></div>
+  </div>
+
+  <h2>2. Chart type selection guide</h2>
+  <table>
+    <thead><tr><th>Question type</th><th>Chart type</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>How does X change over time?</td><td><strong>Line chart</strong></td><td>Daily active users over 90 days</td></tr>
+      <tr><td>How does X compare across categories?</td><td><strong>Bar chart</strong></td><td>RAG query latency by model version</td></tr>
+      <tr><td>What is the distribution of X?</td><td><strong>Histogram</strong></td><td>Distribution of response latencies</td></tr>
+      <tr><td>What is the distribution of a count?</td><td><strong>Box plot</strong></td><td>Token usage per user per day, p25/median/p75/p99</td></tr>
+      <tr><td>Are X and Y correlated?</td><td><strong>Scatter plot</strong></td><td>Chunk size vs retrieval accuracy</td></tr>
+      <tr><td>How does a cohort retain over time?</td><td><strong>Cohort / retention chart</strong></td><td>Week 1 users: % still active at Week 2, 4, 8</td></tr>
+      <tr><td>Where do users drop off in a flow?</td><td><strong>Funnel chart</strong></td><td>Prompt sent → result received → user upvoted</td></tr>
+      <tr><td>What fraction of X is each category?</td><td><strong>Stacked bar or area</strong></td><td>Breakdown of error types over time</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Visualizing AI system behavior</h2>
+  <p>For AI products specifically, you need charts that diagnose model behavior — not just business metrics. Here are the three most important ones to build for any LLM feature.</p>
+
+  <div class="concept-list">
+    <div class="concept-item">
+      <div class="concept-num">📊</div>
+      <div class="concept-body">
+        <h4>Latency distribution chart</h4>
+        <p>Load your inference logs into a spreadsheet or BI tool. Plot a histogram of response times in milliseconds. Draw vertical lines at p95 and p99 so you can instantly see your tail latency. Add a second panel showing median latency over time (by hour or day) to catch regressions. If your p99 is 3× your p50, you have a reliability problem worth investigating even if the average looks fine.</p>
+      </div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">💰</div>
+      <div class="concept-body">
+        <h4>Token usage per user (cost outlier chart)</h4>
+        <p>Sum input + output tokens per user, then sort descending. Plot the top 20 users as a bar chart. Calculate what percentage of total token cost comes from the top 10% of users — this number is almost always shockingly high (often 60–80%). Use this to find abuse, set per-user quotas, and justify tiered pricing. A healthy cost distribution should be relatively flat; a spiky one means you have no guardrails.</p>
+      </div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-num">🎯</div>
+      <div class="concept-body">
+        <h4>RAG retrieval recall over time</h4>
+        <p>For each week, calculate what fraction of queries had the correct answer-containing chunk in the top-K results. Plot this as a line with a target threshold line at 85%. A declining recall line tells you your index is going stale, your chunk strategy is degrading on new content, or a recent embedding model change broke retrieval. This chart is your early warning system for RAG quality decay.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>4. Common chart mistakes that hide the truth</h2>
+
+  <div class="callout callout--warn">
+    <div class="callout-title">Mistakes to avoid</div>
+    <ul>
+      <li><strong>Y-axis not starting at zero</strong> — makes small changes look dramatic. Always start bar charts at 0. For line charts, note when you do not.</li>
+      <li><strong>Averaging rates without denominators</strong> — "error rate dropped from 5% to 2%" — but did the denominator triple? Show both numerator and denominator.</li>
+      <li><strong>Mixing users and sessions</strong> — a user who makes 100 queries counts as 100 sessions. User-level and session-level metrics tell different stories. Label clearly.</li>
+      <li><strong>Survivor bias in cohorts</strong> — if you measure retention only for users still active, you have already excluded churn. Start with a full cohort.</li>
+      <li><strong>Smoothing over incidents</strong> — weekly averages hide a bad day. Show daily data alongside weekly averages for anything latency- or error-rate-related.</li>
+    </ul>
+  </div>
+
+  <h2>5. The one-sentence chart rule</h2>
+  <p>Every chart you put in a doc, deck, or PR should have a title that states the conclusion, not just the data source:</p>
+  <div class="compare-grid">
+    <div class="compare-col">
+      <h4 style="color:#f85149">❌ Weak title</h4>
+      <ul><li>"RAG latency by week"</li><li>"User retention chart"</li><li>"Token usage over time"</li></ul>
+    </div>
+    <div class="compare-col">
+      <h4 style="color:var(--green)">✓ Strong title (states the finding)</h4>
+      <ul><li>"RAG p99 latency exceeded SLA in weeks 3 and 7"</li><li>"Pro users retain 2× better at 90 days than Free"</li><li>"Token cost grew 3× while DAU grew 1.5× — efficiency regression"</li></ul>
+    </div>
+  </div>
+
+  <hr />
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">
+    <a class="btn btn-outline" href="sql-and-data.html">← SQL &amp; data</a>
+    <div style="display:flex;gap:0.65rem">
+      <a class="btn btn-outline" href="../week-06.html">Practice → Week 6</a>
+      <a class="btn btn-primary" href="rag.html">Next: RAG →</a>
+    </div>
+  </div>
+
+<div class='quiz-section'>
+  <h2>Test your understanding</h2>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is a hypothesis-driven chart, and how does it differ from exploratory analysis?<span class="qz-tog">v</span></div><div class="qz-a">A <strong>hypothesis-driven chart</strong> starts with a specific claim and builds one chart that proves or disproves it. <strong>Exploratory analysis</strong> scans data broadly to discover patterns. PM deliverables should be hypothesis-driven; data science exploration precedes them.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">When would you use a bar chart vs a line chart?<span class="qz-tog">v</span></div><div class="qz-a"><strong>Bar chart</strong>: comparing discrete categories at a single point in time. <strong>Line chart</strong>: showing change over a continuous time axis. Key rule: lines imply continuity and trend; bars imply comparison of separate groups.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What are two ways a chart can be misleading with accurate data?<span class="qz-tog">v</span></div><div class="qz-a"><strong>(1) Truncated y-axis:</strong> starting at 95 instead of 0 makes a 2% change look like a cliff. <strong>(2) Cherry-picked time window:</strong> choosing the date range that only shows the favorable trend. Always show the full relevant context.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">A stakeholder asks to 'see all the data' in a dashboard. Why is this often wrong?<span class="qz-tog">v</span></div><div class="qz-a">Showing too many metrics forces the viewer to decide what matters — and they may focus on the wrong thing. Every chart should support a stated decision. A dashboard full of numbers is a data dump, not a communication tool.</div></div>
+  <div class="qz-card"><div class="qz-q" onclick="toggleQz(this)">What is the PM's primary responsibility in a data visualization project?<span class="qz-tog">v</span></div><div class="qz-a">Define the <strong>decision</strong> the visualization must support and specify the audience. The PM owns the question; the analyst owns the answer. A PM who says 'show me everything' has abdicated this responsibility.</div></div>
+</div>
+<div class='reading-section'>
+  <h2>Further reading &amp; watching</h2>
+  <ul class='read-list'>
+  <li><span class="read-type">Blog</span><a href="https://huyenchip.com/2023/04/11/llm-engineering.html" target="_blank" rel="noopener">Chip Huyen — Can LLMs do data analysis? (Part 3)</a><div class="read-desc">Chip's analysis of LLM-assisted data workflows — the gap between what demos suggest and what production requires.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://www.storytellingwithdata.com/blog" target="_blank" rel="noopener">Storytelling with Data — Blog</a><div class="read-desc">Cole Nussbaumer Knaflic's practical guide to data viz for communicators. Highly applicable to PM work.</div></li>
+  <li><span class="read-type">Gallery</span><a href="https://informationisbeautiful.net/" target="_blank" rel="noopener">Information is Beautiful</a><div class="read-desc">David McCandless's showcase of well-designed data visualizations. Great for visual inspiration.</div></li>
+  <li><span class="read-type">Video</span><a href="https://www.youtube.com/c/3blue1brown" target="_blank" rel="noopener">3Blue1Brown — Statistics & Probability series</a><div class="read-desc">Visual, intuitive explanations of quantitative concepts.</div></li>
+  <li><span class="read-type">Blog</span><a href="https://www.thefunctionalart.com/" target="_blank" rel="noopener">The Functional Art — Alberto Cairo</a><div class="read-desc">Data visualization theory from a journalism perspective.</div></li>
+  </ul>
+</div>
+<script>
+function toggleQz(el){var a=el.nextElementSibling,t=el.querySelector('.qz-tog'),o=a.classList.contains('open');a.classList.toggle('open',!o);t.textContent=o?'v':'u';}
+</script>
+</main>
+<script src="../js/nav.js"></script>
+</body>
+</html>

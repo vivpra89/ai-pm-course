@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI PM Course — AI for TPM &amp; Technical PM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── Home-page only styles ── */
+    .home-hero {
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .home-hero .badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--accent);
+      background: var(--accent-dim); border: 1px solid rgba(68,147,248,.3);
+      padding: 0.28rem 0.75rem; border-radius: 999px; margin-bottom: 1.5rem;
+    }
+    .home-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800; letter-spacing: -0.04em; line-height: 1.1;
+      background: linear-gradient(140deg, #e6edf3 30%, #4493f8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 1.1rem;
+    }
+    .home-hero p {
+      font-size: 1.05rem; color: var(--muted); line-height: 1.65;
+      max-width: 52ch; margin: 0 auto 2rem;
+    }
+    .hero-btns {
+      display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
+    }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 2rem;
+      margin-top: 2.5rem; flex-wrap: wrap;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num { font-size: 1.5rem; font-weight: 800; color: var(--text); }
+    .hero-stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.15rem; }
+
+    /* Phase grid */
+    .home-section { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+    .home-section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem; }
+    .home-section-title { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted-2); }
+    .phase-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0.75rem; }
+    .pcard {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 1.1rem 1.2rem;
+      text-decoration: none; color: var(--text); display: block;
+      border-left: 3px solid var(--pc, var(--accent));
+      transition: background 0.15s, transform 0.12s;
+    }
+    .pcard:hover { background: var(--surface-2); transform: translateY(-2px); text-decoration: none; color: var(--text); }
+    .pcard-eyebrow { font-size: 0.63rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--pc, var(--accent)); margin-bottom: 0.4rem; }
+    .pcard h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+    .pcard p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.75rem; }
+    .pcard-weeks { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+    .pcard-week {
+      font-size: 0.65rem; font-weight: 700; font-family: var(--mono);
+      padding: 0.15rem 0.5rem; border-radius: 4px;
+      background: var(--surface-2); border: 1px solid var(--border); color: var(--muted);
+    }
+
+    /* Steps */
+    .steps-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 1.5rem 1.75rem; margin-bottom: 2.5rem;
+      max-width: 1040px; margin: 0 auto 2.5rem;
+    }
+    .steps-card-title { font-size: 1rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 680px) { .steps-grid { grid-template-columns: 1fr; } }
+    .step { display: flex; gap: 0.85rem; align-items: flex-start; }
+    .step-num {
+      flex-shrink: 0; width: 1.8rem; height: 1.8rem; border-radius: 50%;
+      background: var(--accent-dim); border: 1px solid var(--accent);
+      color: var(--accent); font-size: 0.75rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step strong { display: block; font-size: 0.875rem; margin-bottom: 0.3rem; }
+    .step p { margin: 0; font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+    /* Quick links */
+    .qlinks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.6rem; }
+    .ql {
+      display: flex; gap: 0.85rem; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 0.9rem 1rem;
+      text-decoration: none; color: var(--text);
+      transition: border-color 0.15s;
+    }
+    .ql:hover { border-color: var(--accent); text-decoration: none; color: var(--text); }
+    .ql-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .ql strong { display: block; font-size: 0.85rem; margin-bottom: 0.15rem; }
+    .ql span { font-size: 0.76rem; color: var(--muted); line-height: 1.45; }
+
+    /* Divider line */
+    .hdivider { border: none; border-top: 1px solid var(--border); margin: 0 1.5rem 2.5rem; }
+  </style>
+</head>
+<body>
+
+<header class="topnav">
+  <a class="topnav-logo" href="index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="learn/index.html">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks">
+      <button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel">
+        <div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid">
+          <a href="week-01.html">01</a><a href="week-02.html">02</a><a href="week-03.html">03</a><a href="week-04.html">04</a><a href="week-05.html">05</a><a href="week-06.html">06</a><a href="week-07.html">07</a>
+          <a href="week-08.html">08</a><a href="week-09.html">09</a><a href="week-10.html">10</a><a href="week-11.html">11</a><a href="week-12.html">12</a><a href="week-13.html">13</a><a href="week-14.html">14</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="learn/index.html">Learn hub</a>
+  <a class="mob-link" href="learn/foundations.html">Foundations</a>
+  <a class="mob-link" href="learn/prompting.html">Prompting</a>
+  <a class="mob-link" href="learn/sql-and-data.html">SQL &amp; data</a>
+  <a class="mob-link" href="learn/visualization.html">Visualization</a>
+  <a class="mob-link" href="learn/rag.html">RAG</a>
+  <a class="mob-link" href="learn/chatbots.html">Chatbots</a>
+  <a class="mob-link" href="learn/prototypes.html">Prototypes</a>
+  <a class="mob-link" href="learn/agents-and-launch.html">Agents &amp; launch</a>
+  <a class="mob-link" href="learn/faang-prep.html">FAANG prep</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid">
+    <a class="mob-week-btn" href="week-01.html">01</a><a class="mob-week-btn" href="week-02.html">02</a><a class="mob-week-btn" href="week-03.html">03</a><a class="mob-week-btn" href="week-04.html">04</a><a class="mob-week-btn" href="week-05.html">05</a><a class="mob-week-btn" href="week-06.html">06</a><a class="mob-week-btn" href="week-07.html">07</a>
+    <a class="mob-week-btn" href="week-08.html">08</a><a class="mob-week-btn" href="week-09.html">09</a><a class="mob-week-btn" href="week-10.html">10</a><a class="mob-week-btn" href="week-11.html">11</a><a class="mob-week-btn" href="week-12.html">12</a><a class="mob-week-btn" href="week-13.html">13</a><a class="mob-week-btn" href="week-14.html">14</a>
+  </div>
+</div>
+
+<!-- ── HERO ─────────────────────────────────────────── -->
+<div class="home-hero">
+  <div class="badge">AI for TPM &amp; Technical PM · 14 weeks</div>
+  <h1>Go from AI-curious<br/>to AI-credible</h1>
+  <p>Learn the technical foundations PMs actually need — tokens, RAG, SQL, chatbots, agents — then build fluency through weekly hands-on practice.</p>
+  <div class="hero-btns">
+    <a class="btn btn-primary" href="learn/foundations.html">Start learning →</a>
+    <a class="btn btn-outline" href="learn/index.html">Browse chapters</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-label">Learn chapters</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">14</div><div class="hero-stat-label">Practice weeks</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">7</div><div class="hero-stat-label">Phases</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">6–10h</div><div class="hero-stat-label">Per week</div></div>
+  </div>
+</div>
+
+<!-- ── HOW TO USE ────────────────────────────────────── -->
+<div style="max-width:1040px;margin:0 auto;padding:0 1.5rem">
+  <div class="steps-card">
+    <p style="font-size:0.63rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--accent);margin-bottom:0.5rem">How it works</p>
+    <div class="steps-card-title">Three steps to AI fluency</div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <strong>Read the Learn hub in order</strong>
+          <p>8 chapters — Foundations → Agents. Each has definitions, diagrams, and PM mental models. Study at your own pace.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <strong>Set up the practice environment</strong>
+          <p>Create <code style="font-size:0.8em;background:var(--surface-2);padding:0.1em 0.35em;border-radius:3px;color:var(--text)">cloudnote.db</code> and run sample scripts. You'll use it every week for SQL, charts, and RAG labs.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <strong>Work through weekly folders</strong>
+          <p>Each week: Overview → Readings → Practice → Exam → Lab sheet. Save artifacts to <code style="font-size:0.8em;background:var(--surface-2);padding:0.1em 0.35em;border-radius:3px;color:var(--text)">my-submissions/</code>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── COURSE ROADMAP ────────────────────────────────── -->
+<div class="home-section">
+  <div class="home-section-header">
+    <span class="home-section-title">Course roadmap — 7 phases</span>
+  </div>
+
+  <div class="phase-row">
+
+    <a class="pcard" href="learn/foundations.html" style="--pc:#a78bfa">
+      <div class="pcard-eyebrow">Phase 0 · Week 1</div>
+      <h3>Foundations</h3>
+      <p>Tokens, context windows, inference vs training, hallucination, embeddings, RAG vs fine-tuning.</p>
+      <div class="pcard-weeks"><span class="pcard-week">Wk 01</span></div>
+    </a>
+
+    <a class="pcard" href="learn/prompting.html" style="--pc:#60a5fa">
+      <div class="pcard-eyebrow">Phase 1 · Weeks 2–3</div>
+      <h3>Prompting</h3>
+      <p>Prompt anatomy, role constraints, few-shot, chain-of-thought, evals, function calling.</p>
+      <div class="pcard-weeks"><span class="pcard-week">Wk 02</span><span class="pcard-week">Wk 03</span></div>
+    </a>
+
+    <a class="pcard" href="learn/sql-and-data.html" style="--pc:#22d3ee">
+      <div class="pcard-eyebrow">Phase 2 · Weeks 4–5</div>
+      <h3>SQL &amp; data</h3>
+      <p>SQL as source of truth, text-to-SQL pipeline, threat model, validation patterns.</p>
+      <div class="pcard-weeks"><span class="pcard-week">Wk 04</span><span class="pcard-week">Wk 05</span></div>
+    </a>
+
+    <a class="pcard" href="learn/visualization.html" style="--pc:#34d399">
+      <div class="pcard-eyebrow">Phase 3 · Week 6</div>
+      <h3>Visualization</h3>
+      <p>Hypothesis-driven charts, chart type selection, Python plotting, quantitative proof.</p>
+      <div class="pcard-weeks"><span class="pcard-week">Wk 06</span></div>
+    </a>
+
+    <a class="pcard" href="learn/rag.html" style="--pc:#fbbf24">
+      <div class="pcard-eyebrow">Phase 4 · Weeks 7–8</div>
+      <h3>RAG</h3>
+      <p>Full retrieval pipeline: chunk → embed → index → retrieve → generate. Failure modes.</p>
+      <div class="pcard-weeks"><span class="pcard-week">Wk 07</span><span class="pcard-week">Wk 08</span></div>
+    </a>
+
+    <a class="pcard" href="learn/chatbots.html" style="--pc:#f87171">
+      <div class="pcard-eyebrow">Phase 5 · Weeks 9–10</div>
+      <h3>Chatbots</h3>
+      <p>Multi-turn context, streaming UX, logging, rate limits, incident playbook.</p>
+      <div class="pcard-weeks"><span class="pcard-week">Wk 09</span><span class="pcard-week">Wk 10</span></div>
+    </a>
+
+    <a class="pcard" href="learn/prototypes.html" style="--pc:#e879f9">
+      <div class="pcard-eyebrow">Phase 6 · Weeks 11–12</div>
+      <h3>Prototypes</h3>
+      <p>Reproducible demos, pinned prompts, token cost budgeting, demo script structure.</p>
+      <div class="pcard-weeks"><span class="pcard-week">Wk 11</span><span class="pcard-week">Wk 12</span></div>
+    </a>
+
+    <a class="pcard" href="learn/agents-and-launch.html" style="--pc:#fb923c">
+      <div class="pcard-eyebrow">Phase 7 · Weeks 13–14</div>
+      <h3>Agents &amp; launch</h3>
+      <p>Agent loop, tool calling, human gates, multi-step evals, production launch checklist.</p>
+      <div class="pcard-weeks"><span class="pcard-week">Wk 13</span><span class="pcard-week">Wk 14</span></div>
+    </a>
+
+  </div>
+</div>
+
+<hr class="hdivider" />
+
+<!-- ── QUICK LINKS ────────────────────────────────────── -->
+<div class="home-section" style="padding-bottom:4rem">
+  <div class="home-section-header">
+    <span class="home-section-title">Quick links</span>
+  </div>
+  <div class="qlinks">
+    <a class="ql" href="practice-env.html">
+      <span class="ql-icon">⚙️</span>
+      <div><strong>Practice environment</strong><span>Set up cloudnote.db, SQL drills, RAG corpus, Python labs.</span></div>
+    </a>
+    <a class="ql" href="course-weeks.html">
+      <span class="ql-icon">🗓️</span>
+      <div><strong>Full course map</strong><span>All 14 weeks with phases, themes, and milestones.</span></div>
+    </a>
+    <a class="ql" href="learning-plan.html">
+      <span class="ql-icon">📋</span>
+      <div><strong>Technical learning plan</strong><span>Master roadmap, phases 0–7, FAANG prep, capstone rubric.</span></div>
+    </a>
+    <a class="ql" href="graduate-course.html">
+      <span class="ql-icon">🎓</span>
+      <div><strong>Graduate course</strong><span>Assignments, midterm, rubrics, seminar structure.</span></div>
+    </a>
+    <a class="ql" href="week-08.html">
+      <span class="ql-icon">🏁</span>
+      <div><strong>Week 8 — Midterm</strong><span>RAG failure modes + timed midterm checkpoint.</span></div>
+    </a>
+    <a class="ql" href="week-14.html">
+      <span class="ql-icon">🏆</span>
+      <div><strong>Week 14 — Capstone</strong><span>Integration, extras review, final exam.</span></div>
+    </a>
+  </div>
+</div>
+
+<!-- ── FAANG INTERVIEW QUESTIONS ──────────────────────── -->
+<div class="home-section" style="padding-bottom:5rem">
+  <hr style="border:none;border-top:1px solid var(--border);margin-bottom:2.5rem" />
+  <div class="home-section-header" style="margin-bottom:0.5rem">
+    <span class="home-section-title">FAANG interview prep</span>
+  </div>
+  <h2 style="font-size:1.25rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.4rem">Questions AI PMs &amp; TPMs get asked</h2>
+  <p style="color:var(--muted);font-size:0.9rem;margin-bottom:2rem;max-width:60ch">Real question types across Meta, Google, Amazon, Apple, and Microsoft for PM / TPM / APM roles with an AI focus. Grouped by domain.</p>
+
+  <!-- Foundations & LLM literacy -->
+  <div class="iq-group">
+    <div class="iq-group-header" style="--gc:#a78bfa">
+      <span class="iq-group-dot"></span>Foundations &amp; LLM literacy
+    </div>
+    <div class="iq-list">
+      <div class="iq">Explain how a large language model works to a non-technical VP. What are the key constraints a PM should keep in mind?</div>
+      <div class="iq">A user says our AI feature is "hallucinating." Walk me through how you'd investigate and mitigate the problem.</div>
+      <div class="iq">What is a context window and why does it matter for product design? Give an example of a product decision shaped by context limits.</div>
+      <div class="iq">When would you choose RAG over fine-tuning? What signals would push you toward one or the other?</div>
+      <div class="iq">How do tokens relate to cost and latency? If you're building a feature at 10M queries/day, what's your token budget strategy?</div>
+      <div class="iq">Our model gets a 90% accuracy score on our eval set. Is the feature ready to ship? What else would you want to know?</div>
+    </div>
+  </div>
+
+  <!-- Product design -->
+  <div class="iq-group">
+    <div class="iq-group-header" style="--gc:#60a5fa">
+      <span class="iq-group-dot"></span>AI product design
+    </div>
+    <div class="iq-list">
+      <div class="iq">Design an AI-powered customer support chatbot for a B2B SaaS product. Walk through the key product decisions, trade-offs, and failure modes.</div>
+      <div class="iq">How would you design an evaluation framework for a generative AI feature before shipping to 1% of users?</div>
+      <div class="iq">You're building a text-to-SQL feature for non-technical employees. What are the top three risks and how do you mitigate them?</div>
+      <div class="iq">A competitor ships an AI feature in 3 weeks. Your team says it'll take 3 months to do it right. How do you navigate this?</div>
+      <div class="iq">How do you handle uncertainty in AI outputs in the UI? Give examples of good and bad UX patterns for this.</div>
+      <div class="iq">You need to add a "confidence score" to AI responses shown to users. How would you design, calibrate, and display it?</div>
+      <div class="iq">Design an AI-assisted code review tool for a team of 5,000 engineers. What are the most important product requirements?</div>
+    </div>
+  </div>
+
+  <!-- Metrics & data -->
+  <div class="iq-group">
+    <div class="iq-group-header" style="--gc:#22d3ee">
+      <span class="iq-group-dot"></span>Metrics &amp; data
+    </div>
+    <div class="iq-list">
+      <div class="iq">What metrics would you define to measure the success of an AI search feature? How do you separate model quality from UX quality?</div>
+      <div class="iq">Your AI feature's thumbs-up rate dropped from 78% to 62% overnight. Walk me through your investigation. What queries would you write first?</div>
+      <div class="iq">How would you set up an A/B test for a RAG-powered Q&amp;A feature where responses are non-deterministic?</div>
+      <div class="iq">Define a north star metric for a Copilot-style AI writing assistant integrated into a document editor.</div>
+      <div class="iq">How do you measure "helpfulness" for an AI assistant? What's the difference between user satisfaction and task completion?</div>
+      <div class="iq">Token costs grew 4× while DAU grew 2×. How do you diagnose this? What product changes could fix it without degrading quality?</div>
+    </div>
+  </div>
+
+  <!-- Technical depth (TPM) -->
+  <div class="iq-group">
+    <div class="iq-group-header" style="--gc:#34d399">
+      <span class="iq-group-dot"></span>Technical depth (TPM-specific)
+    </div>
+    <div class="iq-list">
+      <div class="iq">Walk me through the architecture of a RAG system. Where are the failure points and what would you instrument to detect them?</div>
+      <div class="iq">Your model latency p99 spiked from 1.8s to 8s in production. How do you triage this? What's your rollback plan?</div>
+      <div class="iq">How does vector search work? How would you choose between Pinecone, pgvector, and Weaviate for a new product?</div>
+      <div class="iq">A team proposes fine-tuning GPT-4o on proprietary data. As TPM, what questions do you ask before approving the project plan?</div>
+      <div class="iq">How do you prevent prompt injection attacks in a product where users can input arbitrary text that reaches the LLM?</div>
+      <div class="iq">Explain the trade-offs between streaming and non-streaming API responses for a customer-facing chat product.</div>
+      <div class="iq">How would you structure a rate-limiting system for an AI API feature that has both free and paid tiers?</div>
+    </div>
+  </div>
+
+  <!-- Strategy & prioritization -->
+  <div class="iq-group">
+    <div class="iq-group-header" style="--gc:#fbbf24">
+      <span class="iq-group-dot"></span>Strategy &amp; prioritization
+    </div>
+    <div class="iq-list">
+      <div class="iq">Your team has 3 AI feature proposals: a chatbot, a recommendation engine, and a text-to-SQL tool. How do you prioritize? What framework do you use?</div>
+      <div class="iq">Leadership wants to ship an AI feature in 6 weeks. Engineering says the eval infrastructure alone takes 4 weeks. How do you resolve this?</div>
+      <div class="iq">How do you balance "move fast with AI" against safety, accuracy, and compliance requirements in a regulated industry?</div>
+      <div class="iq">When is it the right time to build AI in-house vs use a third-party API like OpenAI or Anthropic? What factors change that decision?</div>
+      <div class="iq">A major LLM provider suddenly raises API prices by 300%. How does this affect your roadmap? What's your contingency plan?</div>
+    </div>
+  </div>
+
+  <!-- Behavioral -->
+  <div class="iq-group">
+    <div class="iq-group-header" style="--gc:#f87171">
+      <span class="iq-group-dot"></span>Behavioral (AI context)
+    </div>
+    <div class="iq-list">
+      <div class="iq">Tell me about a time you shipped an AI feature that didn't perform as expected. What happened, what did you learn, and what did you change?</div>
+      <div class="iq">Describe a situation where you had to explain a complex AI/ML limitation to a skeptical stakeholder. How did you handle it?</div>
+      <div class="iq">Tell me about a time you used data to kill an AI feature idea that was popular internally. How did you build the case?</div>
+      <div class="iq">Give an example of a time you pushed back on engineering's technical approach to an AI problem. What was your reasoning and what was the outcome?</div>
+      <div class="iq">Describe a time you had to make a ship/no-ship decision on an AI feature with incomplete data. How did you frame the risk?</div>
+    </div>
+  </div>
+
+</div>
+
+<style>
+.iq-group { margin-bottom: 1.75rem; }
+.iq-group-header {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.78rem; font-weight: 700;
+  color: var(--gc, var(--accent));
+  margin-bottom: 0.65rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.iq-group-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gc, var(--accent)); flex-shrink: 0;
+}
+.iq-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.iq {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-sm); padding: 0.75rem 1rem;
+  font-size: 0.84rem; line-height: 1.55; color: var(--text);
+  border-left: 2px solid var(--gc, var(--accent));
+}
+.iq:hover { background: var(--surface-2); }
+</style>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

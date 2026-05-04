@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week 10 — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="learn/index.html">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks">
+      <button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel">
+        <div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid">
+          <a href="week-01.html">01</a><a href="week-02.html">02</a><a href="week-03.html">03</a><a href="week-04.html">04</a><a href="week-05.html">05</a><a href="week-06.html">06</a><a href="week-07.html">07</a>
+          <a href="week-08.html">08</a><a href="week-09.html">09</a><a href="week-10.html" class="active">10</a><a href="week-11.html">11</a><a href="week-12.html">12</a><a href="week-13.html">13</a><a href="week-14.html">14</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="learn/index.html">Learn hub</a>
+  <a class="mob-link" href="learn/foundations.html">Foundations</a>
+  <a class="mob-link" href="learn/prompting.html">Prompting</a>
+  <a class="mob-link" href="learn/sql-and-data.html">SQL &amp; data</a>
+  <a class="mob-link" href="learn/visualization.html">Visualization</a>
+  <a class="mob-link" href="learn/rag.html">RAG</a>
+  <a class="mob-link" href="learn/chatbots.html">Chatbots</a>
+  <a class="mob-link" href="learn/prototypes.html">Prototypes</a>
+  <a class="mob-link" href="learn/agents-and-launch.html">Agents &amp; launch</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid">
+    <a class="mob-week-btn " href="week-01.html">01</a><a class="mob-week-btn " href="week-02.html">02</a><a class="mob-week-btn " href="week-03.html">03</a><a class="mob-week-btn " href="week-04.html">04</a><a class="mob-week-btn " href="week-05.html">05</a><a class="mob-week-btn " href="week-06.html">06</a><a class="mob-week-btn " href="week-07.html">07</a>
+    <a class="mob-week-btn " href="week-08.html">08</a><a class="mob-week-btn " href="week-09.html">09</a><a class="mob-week-btn class="activehref="week-10.html">10</a><a class="mob-week-btn " href="week-11.html">11</a><a class="mob-week-btn " href="week-12.html">12</a><a class="mob-week-btn " href="week-13.html">13</a><a class="mob-week-btn " href="week-14.html">14</a>
+  </div>
+</div>
+
+<nav class="subnav">
+  <a href="index.html">Home</a>
+  <span class="subnav-sep"></span>
+  <a href="week-01.html">W01</a>
+  <a href="week-02.html">W02</a>
+  <a href="week-03.html">W03</a>
+  <a href="week-04.html">W04</a>
+  <a href="week-05.html">W05</a>
+  <a href="week-06.html">W06</a>
+  <a href="week-07.html">W07</a>
+  <a href="week-08.html">W08</a>
+  <a href="week-09.html">W09</a>
+  <a class="active" href="week-10.html">W10</a>
+  <a href="week-11.html">W11</a>
+  <a href="week-12.html">W12</a>
+  <a href="week-13.html">W13</a>
+  <a href="week-14.html">W14</a>
+</nav>
+
+<main class="page has-subnav md-body">
+<div class="week-intro" style="border-left-color:#ef4444">
+  <div class="phase-tag" style="color:#ef4444">Phase 5</div>
+  <p><strong>Week 10.</strong> Minimal UI demo + incident playbook.</p>
+</div>
+<aside class="related-learn"><strong>Learn chapter:</strong> <a href="learn/chatbots.html">Chatbots</a> — concepts, videos, and links. Study alongside or before practice.</aside>
+<div class="week-tabs">
+  <button class="active" data-tab="section-overview">Overview</button>
+  <button data-tab="section-readings">Readings</button>
+  <button data-tab="section-practice">Practice</button>
+  <button data-tab="section-exam">Exam</button>
+  <button data-tab="section-lab-sheet">Lab sheet</button>
+</div>
+<div class="tab-panel" id="section-overview">
+
+<h2>Problem statement</h2>
+<p>Ship a <strong>thin</strong> demo: user asks a question; system uses <strong>corpus and/or read-only SQL</strong>; logs a turn. Write the <strong>incident playbook</strong> for launch night.</p>
+<h2>Outcomes</h2>
+<ul>
+<li>Minimal Streamlit/Gradio/CLI acceptable.</li>
+<li>Playbook for wrong answer, DB down, rate limit.</li>
+</ul>
+<h2>Deliverables</h2>
+<ul>
+<li>Runnable artifact + <code>README_run.md</code>.</li>
+<li><code>incident_playbook.md</code> (≤ 1 page) covering model wrong, DB down, rate limit.</li>
+</ul>
+<h2>Links</h2>
+<ul>
+<li><a href="learning-plan.html#phase-5--building-a-chatbot-weeks-910">Phase 5 mini deliverable</a></li>
+</ul>
+</div>
+<div class="tab-panel" id="section-readings" hidden>
+
+<ul>
+<li>[ ] Streamlit <strong>or</strong> Gradio quickstart (pick one).</li>
+<li>[ ] Skim one doc on <strong>prompt injection</strong> in chat UIs.</li>
+</ul>
+<p>Time: ~2–3 h.</p>
+</div>
+<div class="tab-panel" id="section-practice" hidden>
+
+<h2>Task A — Minimal chat path</h2>
+<p>Implement <strong>one</strong> of:</p>
+<ul>
+<li>Streamlit/Gradio app that accepts a question and shows answer + <strong>sources</strong> (RAG from <code>practice-env/corpus/</code> <strong>or</strong> canned retrieval).  </li>
+<li>CLI Python script with same contract.</li>
+</ul>
+<p>Log each turn to a file or stdout with <strong>latency</strong>.</p>
+<h2>Task B — Incident playbook</h2>
+<p><code>incident_playbook.md</code>: for <strong>model wrong</strong>, <strong>DB unavailable</strong>, <strong>429 rate limit</strong> — detection, first response, escalation, comms template (one line each).</p>
+<h2>Task C — Demo</h2>
+<p>Record a <strong>2-minute</strong> screen capture or paste a transcript of one happy path + one failure path.</p>
+<hr />
+<p><strong>Submit:</strong> <code>my-submissions/week-10/</code> (code + docs).</p>
+</div>
+<div class="tab-panel" id="section-exam" hidden>
+
+<p><strong>30 min.</strong></p>
+<h2>1</h2>
+<p>When is <strong>naive RAG chat</strong> enough vs when do you need an <strong>agent with tools</strong>?</p>
+<h2>2</h2>
+<p>Write <strong>5</strong> bullet <strong>runbook</strong> steps if users report “the bot invented revenue numbers.”</p>
+<h2>3</h2>
+<p>What is <strong>one</strong> PII risk in logging full user questions?</p>
+<hr />
+<p><strong>Self-grade:</strong> <a href="learning-plan.html#phase-5--end-of-weeks-910">Phase 5 checklist</a>.</p>
+</div>
+<div class="tab-panel" id="section-lab-sheet" hidden>
+
+<p><strong>Concepts &amp; curated links:</strong> read the Learn chapter <strong><a href="learn/chatbots.html">Chatbots</a></strong> first (topic path, not calendar-only). This file is the <strong>weekly practice bank</strong> — extra drills and a checklist on top of <strong>Readings</strong> → <strong>Practice</strong> → <strong>Exam</strong>.</p>
+<hr />
+<h2>1. Practice bank</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Problem</th>
+<th>Data / materials</th>
+<th>Expected outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Ship <strong>minimal chat</strong> (CLI/Streamlit/Gradio) + <strong>log</strong> latency + sources.</td>
+<td>Corpus and/or <code>cloudnote.db</code></td>
+<td>Code + <code>README_run.md</code></td>
+</tr>
+<tr>
+<td>P2</td>
+<td><strong><code>incident_playbook.md</code></strong> — model wrong / DB down / 429.</td>
+<td>None</td>
+<td>≤1 page</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Week checklist</h2>
+<ul>
+<li>[ ] UI framework hello-world</li>
+<li>[ ] <strong><code>PRACTICE.md</code></strong> + <strong><code>EXAM.md</code></strong></li>
+</ul>
+</div>
+<script>
+(function () {
+  var btns = document.querySelectorAll('.week-tabs button');
+  var panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(function (b) { b.classList.remove('active'); });
+      panels.forEach(function (p) { p.hidden = true; });
+      btn.classList.add('active');
+      var panel = document.getElementById(btn.dataset.tab);
+      if (panel) panel.hidden = false;
+    });
+  });
+})();
+</script>
+<nav class="week-pager" aria-label="Adjacent weeks">
+  <a class="pager-link" href="week-09.html">← Week 09</a>
+  <a class="pager-link pager-link--next" href="week-11.html">Week 11 →</a>
+</nav>
+<aside class="work-tip">
+  <strong>Keep your work organized.</strong> Save prompts, SQL, and notes under <code>my-submissions/week-10/</code> in your clone so you can review before interviews.
+</aside>
+</main>
+<script src="js/nav.js"></script>
+</body>
+</html>

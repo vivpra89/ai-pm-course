@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAANG Interview Prep — AI PM Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .q-section { margin-bottom: 2.5rem; }
+    .q-section-header {
+      display: flex; align-items: center; gap: 0.65rem;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--qs-color, var(--accent));
+      margin-bottom: 1rem; padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .q-section-dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--qs-color, var(--accent)); flex-shrink: 0;
+    }
+    .q-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); margin-bottom: 0.75rem;
+      border-left: 3px solid var(--qs-color, var(--accent));
+      overflow: hidden;
+    }
+    .q-question {
+      padding: 0.85rem 1.1rem; font-size: 0.88rem; font-weight: 600;
+      line-height: 1.5; color: var(--text); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem;
+    }
+    .q-question:hover { background: var(--surface-2); }
+    .q-toggle { color: var(--muted-2); font-size: 0.8rem; flex-shrink: 0; margin-top: 0.1rem; user-select: none; }
+    .q-answer {
+      display: none; padding: 0 1.1rem 1rem; border-top: 1px solid var(--border);
+      background: var(--surface-2);
+    }
+    .q-answer.open { display: block; }
+    .q-answer p { font-size: 0.84rem; color: var(--muted); line-height: 1.65; margin-top: 0.75rem; margin-bottom: 0; }
+    .q-answer p + p { margin-top: 0.65rem; }
+    .q-answer strong { color: var(--text); }
+    .q-answer ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+    .q-answer li { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.25rem; }
+    .q-answer li strong { color: var(--text); }
+    .q-answer .framework {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-sm); padding: 0.75rem 1rem; margin-top: 0.75rem;
+      font-size: 0.81rem; line-height: 1.6;
+    }
+    .q-answer .framework-label {
+      font-size: 0.63rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--qs-color, var(--accent)); margin-bottom: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+<header class="topnav">
+  <a class="topnav-logo" href="../index.html"><span class="topnav-logo-dot"></span>AI&nbsp;PM&nbsp;Course</a>
+  <nav class="topnav-nav">
+    <a href="index.html" class="active">Learn</a>
+    <div class="nav-dropdown" id="dd-weeks"><button onclick="toggleDd('dd-weeks')">Weeks ▾</button>
+      <div class="nav-dropdown-panel weeks-panel"><div class="nav-dropdown-label">Jump to week</div>
+        <div class="week-nav-grid"><a href="../week-01.html">01</a><a href="../week-02.html">02</a><a href="../week-03.html">03</a><a href="../week-04.html">04</a><a href="../week-05.html">05</a><a href="../week-06.html">06</a><a href="../week-07.html">07</a><a href="../week-08.html">08</a><a href="../week-09.html">09</a><a href="../week-10.html">10</a><a href="../week-11.html">11</a><a href="../week-12.html">12</a><a href="../week-13.html">13</a><a href="../week-14.html">14</a></div>
+      </div></div>
+  </nav>
+  <button class="topnav-hamburger" onclick="toggleMobile()">☰</button>
+</header>
+<div class="mobile-overlay" id="mobile-overlay">
+  <div class="mob-section">Learn</div>
+  <a class="mob-link" href="index.html">Learn hub</a><a class="mob-link" href="foundations.html">Foundations</a><a class="mob-link" href="prompting.html">Prompting</a><a class="mob-link" href="sql-and-data.html">SQL &amp; data</a><a class="mob-link" href="visualization.html">Visualization</a><a class="mob-link" href="rag.html">RAG</a><a class="mob-link" href="chatbots.html">Chatbots</a><a class="mob-link" href="prototypes.html">Prototypes</a><a class="mob-link" href="agents-and-launch.html">Agents &amp; launch</a><a class="mob-link active" href="faang-prep.html">FAANG prep</a>
+  <div class="mob-section">Weekly practice</div>
+  <div class="mob-week-grid"><a class="mob-week-btn" href="../week-01.html">01</a><a class="mob-week-btn" href="../week-02.html">02</a><a class="mob-week-btn" href="../week-03.html">03</a><a class="mob-week-btn" href="../week-04.html">04</a><a class="mob-week-btn" href="../week-05.html">05</a><a class="mob-week-btn" href="../week-06.html">06</a><a class="mob-week-btn" href="../week-07.html">07</a><a class="mob-week-btn" href="../week-08.html">08</a><a class="mob-week-btn" href="../week-09.html">09</a><a class="mob-week-btn" href="../week-10.html">10</a><a class="mob-week-btn" href="../week-11.html">11</a><a class="mob-week-btn" href="../week-12.html">12</a><a class="mob-week-btn" href="../week-13.html">13</a><a class="mob-week-btn" href="../week-14.html">14</a></div>
+</div>
+
+<nav class="subnav">
+  <a href="../index.html">Home</a><span class="subnav-sep"></span>
+  <a href="index.html">Hub</a>
+  <a href="foundations.html">Foundations</a><a href="prompting.html">Prompting</a><a href="sql-and-data.html">SQL &amp; data</a><a href="visualization.html">Visualization</a><a href="rag.html">RAG</a><a href="chatbots.html">Chatbots</a><a href="prototypes.html">Prototypes</a><a href="agents-and-launch.html">Agents &amp; launch</a><a href="faang-prep.html" class="active">FAANG prep</a>
+</nav>
+
+<main class="page has-subnav prose">
+  <h1>FAANG Interview Prep — AI PM &amp; TPM</h1>
+  <p><em>Chapter 10 · Covers all phases · use this throughout the course, not just at the end</em></p>
+
+  <div class="callout callout--info">
+    <div class="callout-title">How to use this chapter</div>
+    Each question below is expandable — click it to see a <strong>framework for answering</strong> and <strong>what the interviewer is actually testing</strong>. The questions are real patterns from Meta, Google, Amazon, Apple, and Microsoft PM/TPM loops. Read a chapter, then come back here and practice the questions mapped to it.
+  </div>
+
+  <h2>How FAANG AI PM interviews are structured</h2>
+  <div class="concept-list">
+    <div class="concept-item"><div class="concept-num">1</div><div class="concept-body"><h4>Product design (40%)</h4><p>Design an AI feature from scratch. Interviewers want to see how you scope, handle trade-offs, account for failure modes, and define success metrics — not just generate ideas.</p></div></div>
+    <div class="concept-item"><div class="concept-num">2</div><div class="concept-body"><h4>Analytical / metrics (25%)</h4><p>Given a metric drop or ambiguous data, diagnose the root cause. You need SQL fluency, a structured investigation framework, and awareness of AI-specific measurement challenges.</p></div></div>
+    <div class="concept-item"><div class="concept-num">3</div><div class="concept-body"><h4>Technical depth (20%)</h4><p>For TPM roles especially: explain how systems work, make architecture trade-off calls, ask the right engineering questions. You are not expected to write code but must be precise.</p></div></div>
+    <div class="concept-item"><div class="concept-num">4</div><div class="concept-body"><h4>Behavioral / leadership (15%)</h4><p>STAR stories about shipping AI features, handling uncertainty, influencing without authority, making data-driven decisions to kill or pivot a project.</p></div></div>
+  </div>
+
+  <!-- ── SECTION 1: FOUNDATIONS ── -->
+  <div class="q-section" style="--qs-color:#a78bfa">
+    <div class="q-section-header"><span class="q-section-dot"></span>Foundations &amp; LLM literacy</div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Explain how a large language model works to a non-technical VP. What are the key constraints a PM should keep in mind?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Can you communicate technical concepts clearly without jargon? Do you understand the practical constraints that shape product decisions?</p>
+        <div class="framework"><div class="framework-label">Answer framework</div>Start with a one-sentence analogy: "An LLM is a very sophisticated autocomplete — trained on so much text that it learned patterns of language, reasoning, and knowledge." Then explain the three constraints that matter for product: (1) <strong>Context limits</strong> — the model only knows what you put in the prompt; it has no persistent memory. (2) <strong>Hallucination</strong> — it produces plausible-sounding text whether or not it's true. (3) <strong>Cost and latency</strong> — every word in and out costs money and time. Tie each constraint to a product implication: "This is why we can't just dump our entire knowledge base into the prompt — that's why we need RAG."</div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">A user says our AI feature is "hallucinating." Walk me through how you'd investigate and mitigate the problem.<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Do you have a structured debugging process? Do you understand root causes vs symptoms?</p>
+        <div class="framework"><div class="framework-label">Answer framework</div><strong>Diagnose first:</strong> Sample 20–50 affected conversations. Classify the hallucinations — are they factual errors, invented citations, wrong numbers, or off-scope responses? Each type has a different root cause. <strong>Common causes by type:</strong> Factual errors → model's training data is wrong or outdated (fix: RAG). Wrong numbers → model generating statistics from pattern-matching (fix: SQL tool calling). Invented citations → model completing a plausible citation pattern (fix: constrain to retrieved sources only). <strong>Mitigations:</strong> (1) Grounding via RAG — model must answer from retrieved documents only. (2) Tool use — for any fact that must be precise, give the model a tool to look it up live. (3) Self-critique prompt — ask the model to flag uncertain claims. (4) Output validation — parse the response and verify cited sources actually say what the model claims.</div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">When would you choose RAG over fine-tuning? What signals push you toward one or the other?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Do you understand the practical difference, or did you just read the marketing? This is a common trap — many candidates conflate "the model doesn't know our data" (a retrieval problem) with "the model behaves wrong" (a behavior problem).</p>
+        <div class="framework"><div class="framework-label">Answer framework</div><strong>RAG</strong> when: the model needs to know facts from your corpus (docs, tickets, wikis), the data changes frequently, you need to show citations, or you're prototyping fast. <strong>Fine-tuning</strong> when: you need to change how the model responds — its format, tone, persona, or output structure — and you have hundreds or thousands of labeled examples. <strong>The key insight to land:</strong> "Fine-tuning teaches behavior, not facts. If your problem is that the model doesn't know your documentation, fine-tuning won't reliably fix that — it will just make it hallucinate more confidently. Use RAG for facts. Fine-tuning for format and style."</div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Our model gets 90% accuracy on our eval set. Is the feature ready to ship? What else would you want to know?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Do you have eval sophistication, or do you treat a single number as a complete picture?</p>
+        <div class="framework"><div class="framework-label">Follow-up questions to ask</div>
+          <ul>
+            <li><strong>Is the eval set representative?</strong> 90% on 20 curated examples is meaningless. Is it 500 randomly sampled real user queries?</li>
+            <li><strong>What does failure look like?</strong> Is the 10% wrong in a safe, minor way or in a dangerous, trust-destroying way?</li>
+            <li><strong>What's the accuracy on adversarial / edge-case inputs?</strong> Malicious prompts, off-topic questions, ambiguous queries?</li>
+            <li><strong>How was ground truth defined?</strong> Who labeled the correct answers, and are labelers consistent?</li>
+            <li><strong>Does 90% translate to user satisfaction?</strong> A technically correct answer that is too long, too formal, or unhelpful is still a failure.</li>
+            <li><strong>What is the regression baseline?</strong> What did users do before this feature? Is 90% better or worse?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: PRODUCT DESIGN ── -->
+  <div class="q-section" style="--qs-color:#60a5fa">
+    <div class="q-section-header"><span class="q-section-dot"></span>AI product design</div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Design an AI-powered customer support chatbot for a B2B SaaS product.<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Can you scope a product design problem, identify the right constraints, make trade-offs, and define success — not just describe a chatbot?</p>
+        <div class="framework"><div class="framework-label">Structure (8–10 min answer)</div>
+          <ul>
+            <li><strong>Clarify (1 min):</strong> Who are the users (end users or internal support agents)? What's the primary goal (deflection rate or resolution quality)? What existing support stack do we have?</li>
+            <li><strong>Scope the problem (1 min):</strong> Pick the highest-leverage starting point. "I'll focus on tier-1 FAQ deflection for end users, which handles ~60% of ticket volume."</li>
+            <li><strong>Architecture decisions (2 min):</strong> RAG over the knowledge base (not fine-tuning — we need citation support and the KB changes weekly). Streaming for UX. Escalation path to human agent when confidence is low.</li>
+            <li><strong>Top 3 risks (2 min):</strong> (1) Hallucinated answers erode trust. Mitigation: answer only from KB, cite sources. (2) Bot handles sensitive billing issues badly. Mitigation: route billing queries to human. (3) KB is stale. Mitigation: auto-flag articles older than 90 days.</li>
+            <li><strong>Metrics (2 min):</strong> Deflection rate, answer accuracy (human-reviewed sample), escalation rate, user satisfaction score post-interaction. Launch threshold: deflection ≥ 40% with accuracy ≥ 90% on eval set.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">How would you design an evaluation framework for a generative AI feature before shipping to 1% of users?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Do you treat evals as a first-class deliverable or an afterthought?</p>
+        <div class="framework"><div class="framework-label">Eval framework layers</div>
+          <ul>
+            <li><strong>Layer 1 — Offline evals (before any traffic):</strong> 100–500 test cases with known correct answers. Measure exact-match accuracy for structured outputs, LLM-as-judge for open-ended outputs. Gate: must pass before any user sees the feature.</li>
+            <li><strong>Layer 2 — Shadow mode:</strong> Run the new model in parallel with the existing experience. Compare outputs without serving them to users. Catch regressions silently.</li>
+            <li><strong>Layer 3 — Human review sample:</strong> For every eval metric, have domain experts review a 50-item random sample to validate that your automated scoring is calibrated correctly.</li>
+            <li><strong>Layer 4 — Live metrics at 1%:</strong> Thumbs up/down rate, escalation rate, session abandonment, latency p95. Alert thresholds must be defined before launch, not discovered post-launch.</li>
+            <li><strong>Layer 5 — Adversarial testing:</strong> A red team tries to jailbreak, confuse, or extract sensitive information. Run before any public traffic.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">How do you handle uncertainty in AI outputs in the UI? Give examples of good and bad UX patterns.<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <div class="framework"><div class="framework-label">Good vs bad patterns</div>
+          <p><strong>Bad:</strong> Showing AI output as authoritative fact with no indication it could be wrong ("Your account balance is $2,340"). Bad: showing a raw confidence number ("87.3% confident") that users cannot interpret. Bad: hiding the AI nature of the response entirely.</p>
+          <p><strong>Good:</strong> Framing output as a suggestion, not a fact ("Based on your usage, it looks like..."). Good: surfacing the source ("From your plan documentation:"). Good: graceful degradation ("I'm not certain about this — you may want to verify with support"). Good: showing what the AI couldn't answer clearly ("I couldn't find information about X in your plan").</p>
+          <p><strong>Key principle:</strong> Uncertainty UX is a trust calibration problem. You want users to trust the system appropriately — neither over-trusting (leads to acting on wrong information) nor under-trusting (ignores genuinely useful output).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">A competitor ships an AI feature in 3 weeks. Your team says it'll take 3 months to do it right. How do you navigate this?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Speed vs quality judgment, stakeholder management, ability to scope intelligently under pressure.</p>
+        <div class="framework"><div class="framework-label">Answer framework</div>
+          <p><strong>Step 1 — Diagnose the competitor's feature:</strong> Is their 3-week version actually good, or is it a demo? Ship speed is meaningless if quality is poor. Analyze their feature honestly.</p>
+          <p><strong>Step 2 — Find the 80/20:</strong> What is the smallest version of our feature that serves the core user need? Could we ship a constrained MVP in 4–6 weeks that covers 80% of cases?</p>
+          <p><strong>Step 3 — Define the non-negotiables:</strong> What quality bar must we hit before shipping anything? For AI features, that usually means: eval accuracy ≥ X%, no safety violations, clear disclosure to users. These are not negotiable even under competitive pressure.</p>
+          <p><strong>Step 4 — Communicate the trade-off clearly:</strong> "We can ship a limited version in 6 weeks that handles these 3 use cases, or a full version in 3 months. Here is what we give up in each scenario." Let leadership make the call with full information.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3: METRICS ── -->
+  <div class="q-section" style="--qs-color:#22d3ee">
+    <div class="q-section-header"><span class="q-section-dot"></span>Metrics &amp; analytical</div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Your AI feature's thumbs-up rate dropped from 78% to 62% overnight. Walk me through your investigation.<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Structured debugging. Can you rule out instrumentation issues before panicking about the model?</p>
+        <div class="framework"><div class="framework-label">Investigation order</div>
+          <ul>
+            <li><strong>1. Is the signal real?</strong> Check if the feedback UI changed (a UI change can bias thumbs-down rate). Check if the sample size is statistically meaningful. Check if the drop happened across all platforms or one surface.</li>
+            <li><strong>2. Did anything change?</strong> Model version update, prompt change, upstream data change, new traffic source (different user segment arrived). Check deployment logs against the timestamp of the drop.</li>
+            <li><strong>3. Which query types degraded?</strong> Segment by query category, user plan, device, language. A drop in one segment with others flat means the issue is specific, not systemic.</li>
+            <li><strong>4. Sample the bad responses:</strong> Read 20 low-rated conversations from after the drop. What pattern do you see — wrong facts, unhelpful tone, wrong language, irrelevant retrieval?</li>
+            <li><strong>5. Run your eval suite:</strong> If you have offline evals, run them on the current prompt + model combination. Compare to the last passing run.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Define a north star metric for a Copilot-style AI writing assistant in a document editor.<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Metric design. Can you pick a metric that captures real value, not vanity engagement?</p>
+        <div class="framework"><div class="framework-label">Framework</div>
+          <p><strong>Bad north stars:</strong> Suggestions shown (supply metric, not demand). Suggestions clicked (could be clicked and immediately deleted). DAU using Copilot (engagement without quality).</p>
+          <p><strong>Better:</strong> <em>Accepted-and-retained suggestion rate</em> — the fraction of AI suggestions that the user accepted AND did not delete within the next 60 seconds. This captures that the suggestion was useful enough to keep, not just curiosity-clicked.</p>
+          <p><strong>Even better, tied to user outcome:</strong> <em>Documents completed per user per week for Copilot users vs non-users</em>. This ties the feature to the actual job-to-be-done (finishing writing tasks faster).</p>
+          <p><strong>Key principle:</strong> Your north star should be something that goes up when the AI is genuinely helping users, and stays flat or goes down when it's a toy or a distraction.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Token costs grew 4× while DAU grew 2×. How do you diagnose this and what product changes could fix it?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <div class="framework"><div class="framework-label">Diagnosis then fix</div>
+          <p><strong>Diagnose first:</strong> The ratio of cost-per-user doubled. That means either (a) each user is making more queries, (b) each query is consuming more tokens, or (c) a small number of power users are driving disproportionate cost. Check all three.</p>
+          <p><strong>If average tokens per query grew:</strong> Did context window size grow (more history, larger RAG chunks)? Did output length grow (prompt change, new feature)? Did you add a new expensive step (e.g., a second LLM call for self-critique)?</p>
+          <p><strong>Product fixes:</strong> (1) Smarter context management — trim conversation history aggressively. (2) Per-user quotas — cap daily token consumption by plan tier. (3) Model tiering — route simple queries to a cheaper model (GPT-4o mini vs GPT-4o). (4) Caching — if the same question is asked repeatedly (FAQ patterns), cache the answer. (5) Chunk size optimization — smaller, more precise retrieval chunks reduce noise tokens injected into the prompt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4: TECHNICAL DEPTH ── -->
+  <div class="q-section" style="--qs-color:#34d399">
+    <div class="q-section-header"><span class="q-section-dot"></span>Technical depth (TPM-focused)</div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Walk me through the architecture of a RAG system. Where are the failure points?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <div class="framework"><div class="framework-label">RAG architecture walkthrough</div>
+          <p><strong>Indexing pipeline (offline):</strong> Documents → chunker (splits text into 256–1024 token segments) → embedding model (converts each chunk to a dense vector) → vector database (stores vectors + original text).</p>
+          <p><strong>Query pipeline (online):</strong> User question → same embedding model → vector similarity search → top-K most relevant chunks → injected into LLM prompt with the question → LLM generates answer citing retrieved chunks.</p>
+          <p><strong>Failure points to name:</strong> (1) <em>Wrong retrieval</em> — the most similar vector isn't the most relevant chunk. Usually a chunking or embedding quality problem. (2) <em>Stale index</em> — document was updated but index wasn't re-run. (3) <em>Chunk boundary problem</em> — the answer spans two chunks; neither alone is sufficient. (4) <em>Hallucination despite context</em> — model ignores the retrieved context and generates from training weights. (5) <em>Lost-in-the-middle</em> — quality degrades for content in the middle of a long context; most important chunks should be first or last.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Your model latency p99 spiked from 1.8s to 8s in production. How do you triage this?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <div class="framework"><div class="framework-label">Triage order</div>
+          <ul>
+            <li><strong>Check provider status page first.</strong> LLM API providers have outages and degraded performance windows. 80% of latency spikes are provider-side.</li>
+            <li><strong>Check if input token count grew.</strong> Did a recent change increase prompt size? Larger prompts take longer to process and longer to generate responses for. Compare average input tokens before and after the spike.</li>
+            <li><strong>Check if a new LLM call was added.</strong> Did a recent deploy add a second model call (e.g., self-critique, reranking)? Two calls in series doubles latency floor.</li>
+            <li><strong>Check if it's all users or a segment.</strong> If only enterprise users (who have longer conversation histories) are affected, it's a context window size problem.</li>
+            <li><strong>Rollback plan:</strong> Have a feature flag that can switch the model version or revert to the previous prompt in under 10 minutes. If the cause is unclear and users are impacted, roll back first, investigate second.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">A team proposes fine-tuning GPT-4o on proprietary data. As TPM, what questions do you ask before approving the project plan?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <div class="framework"><div class="framework-label">Questions to ask</div>
+          <ul>
+            <li><strong>What problem does fine-tuning solve that prompting cannot?</strong> If the answer is "improve factual accuracy," fine-tuning is the wrong tool. If the answer is "consistent JSON output format" or "adopt our brand voice," it may be appropriate.</li>
+            <li><strong>How many labeled examples do you have?</strong> Fine-tuning needs hundreds to thousands of high-quality (input, ideal output) pairs. Who creates and reviews them?</li>
+            <li><strong>How will you evaluate the fine-tuned model against the base model?</strong> What's the eval suite? What metrics define success?</li>
+            <li><strong>What is the data governance plan?</strong> What proprietary data is used? Does it contain PII? What are the data processing agreements with the model provider?</li>
+            <li><strong>What is the ongoing maintenance cost?</strong> When the base model updates, will you need to re-fine-tune? Who owns that work?</li>
+            <li><strong>Have you tried a strong system prompt + few-shot examples first?</strong> Fine-tuning is rarely the first solution. Can the behavior be achieved at inference time instead?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">How do you prevent prompt injection attacks in a product where users input arbitrary text?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Security awareness for AI products. Many PMs and TPMs overlook this — it's a differentiator to know it well.</p>
+        <div class="framework"><div class="framework-label">Defense layers</div>
+          <ul>
+            <li><strong>Principle of least privilege for tools:</strong> Only give the LLM tools it needs. If it's a Q&amp;A bot, it should have no write access to databases, no ability to send messages.</li>
+            <li><strong>Input sanitization:</strong> Strip or escape known injection patterns ("ignore previous instructions," "you are now DAN") before sending to the model. Not foolproof but raises the bar.</li>
+            <li><strong>Output validation:</strong> If the model generates a tool call, validate the arguments against an allowlist. A user cannot inject a command that produces a call to a tool that doesn't exist or with arguments outside expected types.</li>
+            <li><strong>Separate user input from instructions:</strong> Clearly delimit what is system instruction vs user content in the prompt. Use structured formats (XML tags, JSON) rather than raw text insertion.</li>
+            <li><strong>Red team before launch:</strong> Have a team actively try to jailbreak the system. This is not optional for any externally-facing AI feature.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: STRATEGY ── -->
+  <div class="q-section" style="--qs-color:#fbbf24">
+    <div class="q-section-header"><span class="q-section-dot"></span>Strategy &amp; prioritization</div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Your team has 3 AI feature proposals: a chatbot, a recommendation engine, and a text-to-SQL tool. How do you prioritize?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <div class="framework"><div class="framework-label">Prioritization framework</div>
+          <p>State the framework you'll use upfront: "I'll score each on impact, confidence, and effort." Then ask two clarifying questions: (1) What is the company's current AI maturity — are we building AI foundations or shipping to millions of users? (2) Which customer segment is the primary focus?</p>
+          <p><strong>Impact:</strong> Which feature creates the most user or business value? A text-to-SQL tool that cuts analyst report time by 80% may have higher ROI than a chatbot with moderate deflection. Quantify where possible.</p>
+          <p><strong>Confidence:</strong> Which feature has the clearest path to quality? Chatbots are deceptively hard to do well (hallucinations, off-topic, multi-turn complexity). Text-to-SQL has a tighter, more measurable success criterion.</p>
+          <p><strong>Effort and risk:</strong> Which feature requires the least new infrastructure? Reuse of existing RAG pipeline, logging, evals infrastructure reduces cost and time.</p>
+          <p>Land on a recommendation with a rationale, not a tie: "I'd start with text-to-SQL because it has a clear success metric (query accuracy), builds on infrastructure we already need, and generates immediate analyst productivity wins that are easy to measure."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">When is it the right time to build AI in-house vs use a third-party API?<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <div class="framework"><div class="framework-label">Build vs buy decision matrix</div>
+          <ul>
+            <li><strong>Start with API:</strong> When you are exploring, prototyping, or don't yet know if the use case has product-market fit. API lets you validate in weeks without infrastructure investment.</li>
+            <li><strong>Stay with API at scale:</strong> When quality of third-party models is sufficient, data privacy requirements are met, and cost is manageable. Most products stay here permanently.</li>
+            <li><strong>Consider in-house when:</strong> (1) Cost at scale becomes prohibitive and you have the volume to justify training/hosting. (2) Data cannot leave your infrastructure (regulated industries, PII). (3) Your specific domain has such unique patterns that general models consistently underperform and fine-tuning is not enough. (4) You need real-time latency (&lt; 100ms) that API calls cannot achieve.</li>
+            <li><strong>Key insight:</strong> "In-house" rarely means training from scratch — it means fine-tuning or running open-source models (Llama, Mistral) on your infrastructure. The decision is API vs self-hosted open-source vs full custom training, in increasing order of cost and control.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 6: BEHAVIORAL ── -->
+  <div class="q-section" style="--qs-color:#f87171">
+    <div class="q-section-header"><span class="q-section-dot"></span>Behavioral (STAR stories)</div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Tell me about a time you shipped an AI feature that didn't perform as expected.<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Self-awareness, learning from failure, ability to explain complex failure modes to non-technical stakeholders.</p>
+        <div class="framework"><div class="framework-label">STAR structure for AI failure stories</div>
+          <p><strong>Situation:</strong> Set the context — what feature, what team, what the goal was.</p>
+          <p><strong>Task:</strong> What was your specific role and what did you own?</p>
+          <p><strong>Action:</strong> What did you build? What evaluation did you run before launch? Be specific — "we had 50 eval cases with 88% accuracy" is better than "we tested it thoroughly." This is where interviewers look for eval rigor.</p>
+          <p><strong>Result (the failure part):</strong> What went wrong? Be precise about the failure mode — "hallucination rate in production was 3× higher than on our eval set because our eval set wasn't representative of long-tail queries." Vague failures ("it didn't work as well as expected") are weak.</p>
+          <p><strong>Learning:</strong> What changed? Did you build better evals? Add grounding? Implement human-in-the-loop? This is the part interviewers remember most. Show systematic improvement, not just a fix.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Tell me about a time you used data to kill an AI feature idea that was popular internally.<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Courage, data-driven decision making, ability to influence against headwinds.</p>
+        <div class="framework"><div class="framework-label">What makes this answer strong</div>
+          <p>The most compelling versions of this story have: (1) Genuine internal enthusiasm for the feature — otherwise killing it isn't hard. (2) Clear, specific data that contradicted the enthusiasm — not vibes, not "I had a bad feeling," but numbers. (3) A crisp framing of the data to stakeholders — you translated technical results into business consequences. (4) An alternative you proposed — you didn't just kill, you redirected energy productively.</p>
+          <p>Common AI-specific angles for this story: eval accuracy was too low to maintain user trust, the cost per query made unit economics impossible, a user study showed the AI answer was ignored or mistrusted 60% of the time, or the failure mode was high-severity (wrong medical/financial information) with no mitigation path.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-question" onclick="toggleQ(this)">Describe a situation where you had to explain an AI/ML limitation to a skeptical stakeholder.<span class="q-toggle">▾</span></div>
+      <div class="q-answer">
+        <p><strong>What they're testing:</strong> Communication skills, ability to translate technical constraints into business language, empathy for non-technical audiences.</p>
+        <div class="framework"><div class="framework-label">Communication framework for AI limitations</div>
+          <p>The most effective approach: <strong>lead with the consequence, not the mechanism.</strong> Don't say "the model doesn't know post-training-cutoff data." Say "if a customer asks about a product we launched last month, the AI will give wrong information — and that erodes trust faster than just not having an AI feature."</p>
+          <p>Then offer the solution in business terms: "The fix is a retrieval system that fetches current product information before answering — it adds 3 weeks but means we can keep the AI accurate even as the product catalog changes."</p>
+          <p>Show in your story that you anticipated the skepticism and prepared: you had data, examples of the failure mode, and a clear trade-off framing ready before the meeting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout--green">
+    <div class="callout-title">Final prep tip</div>
+    For every behavioral question, prepare 3–4 STAR stories from your actual work and practice mapping each to multiple question types. A story about "shipping a feature with poor evals" covers: failure stories, metrics questions, and trade-off decisions. Versatile stories are the highest-leverage prep investment.
+  </div>
+
+  <hr />
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem">
+    <a class="btn btn-outline" href="agents-and-launch.html">← Agents &amp; launch</a>
+    <a class="btn btn-primary" href="../index.html">Back to home</a>
+  </div>
+</main>
+
+<script src="../js/nav.js"></script>
+<script>
+function toggleQ(el) {
+  var answer = el.nextElementSibling;
+  var toggle = el.querySelector('.q-toggle');
+  var isOpen = answer.classList.contains('open');
+  answer.classList.toggle('open', !isOpen);
+  toggle.textContent = isOpen ? '▾' : '▴';
+}
+</script>
+</body>
+</html>
